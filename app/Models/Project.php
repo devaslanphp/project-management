@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -38,11 +39,15 @@ class Project extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'project_users', 'project_id', 'user_id')->withPivot(['role']);
     }
 
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'project_id', 'id');
+    }
+
     public function cover(): Attribute
     {
         return new Attribute(
-            get: fn() =>
-                $this->media('cover')?->first()?->getFullUrl()
+            get: fn() => $this->media('cover')?->first()?->getFullUrl()
                 ??
                 'https://ui-avatars.com/api/?background=3f84f3&color=ffffff&name=' . $this->name
         );

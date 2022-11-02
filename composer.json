@@ -11,6 +11,7 @@
         "filament/filament": "^2.16",
         "filament/spatie-laravel-media-library-plugin": "^2.16",
         "guzzlehttp/guzzle": "^7.2",
+        "invaders-xx/filament-kanban-board": "^0.3.0",
         "jeffgreco13/filament-breezy": "^1.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
