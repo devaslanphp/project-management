@@ -57,10 +57,10 @@ class UserResource extends Resource
                                     ->required(fn($livewire) => $livewire instanceof CreateRecord)
                                     ->visible(fn($livewire) => $livewire instanceof CreateRecord),
 
-                                Forms\Components\Select::make('roles')
-                                    ->label(__('Roles'))
-                                    ->multiple()
-                                    ->preload()
+                                Forms\Components\CheckboxList::make('roles')
+                                    ->label(__('Permission roles'))
+                                    ->required()
+                                    ->columns(3)
                                     ->relationship('roles', 'name'),
                             ]),
                     ])

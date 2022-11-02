@@ -22,6 +22,6 @@ class Project extends Model
 
     public function status(): BelongsTo
     {
-        return $this->belongsTo(ProjectStatus::class, 'project_status', 'id')->withTrashed();
+        return $this->belongsTo(ProjectStatus::class, 'status_id', 'id')->withTrashed();
     }
 }

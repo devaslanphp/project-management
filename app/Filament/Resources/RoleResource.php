@@ -37,18 +37,18 @@ class RoleResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Grid::make()
+                            ->columns(1)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
                                     ->label(__('Permission name'))
                                     ->unique(table: Permission::class, column: 'name')
                                     ->maxLength(255)
-                                    ->required()
-                                    ->columnSpan(1),
+                                    ->required(),
 
-                                Forms\Components\Select::make('permissions')
+                                Forms\Components\CheckboxList::make('permissions')
                                     ->label(__('Permissions'))
-                                    ->multiple()
-                                    ->preload()
+                                    ->required()
+                                    ->columns(4)
                                     ->relationship('permissions', 'name'),
                             ]),
                     ])
