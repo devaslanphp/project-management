@@ -27,7 +27,7 @@
     }
 
     .kanban {
-        @apply bg-white rounded-xl flex flex-col h-full border border-gray-200 overflow-y-auto;
+        @apply bg-white rounded-xl flex flex-col h-full border border-gray-300 overflow-y-auto;
 
         height: calc(100vh - 260px);
     }

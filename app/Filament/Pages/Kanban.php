@@ -51,7 +51,7 @@ class Kanban extends FilamentKanbanBoard
                 'id' => $item->id,
                 'title' => $item->name,
                 'bg-color' => $item->color . '11',
-                'border-color' => $item->color . '33'
+                'border-color' => $item->color . '55'
             ]);
     }
 
