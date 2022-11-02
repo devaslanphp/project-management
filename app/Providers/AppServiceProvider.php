@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Register navigation groups
         Filament::registerNavigationGroups([
-            __('Permissions'),
+            __('Security'),
         ]);
     }
 }

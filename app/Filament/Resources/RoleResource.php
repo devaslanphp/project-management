@@ -18,7 +18,7 @@ class RoleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-lock-open';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected static function getNavigationLabel(): string
     {
@@ -49,7 +49,7 @@ class RoleResource extends Resource
                                     ->label(__('Permissions'))
                                     ->multiple()
                                     ->preload()
-                                    ->relationship('permissions', 'name')
+                                    ->relationship('permissions', 'name'),
                             ]),
                     ])
             ]);
