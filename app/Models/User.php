@@ -55,4 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Project::class, 'project_users', 'user_id', 'project_id')->withPivot(['role']);
     }
+
+    public function favoriteProjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'project_favorites', 'user_id', 'project_id');
+    }
 }

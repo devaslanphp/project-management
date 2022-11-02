@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
+use App\Models\ProjectFavorite;
 use App\Models\ProjectStatus;
 use App\Models\User;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -88,9 +90,9 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('cover')
                     ->label(__('Cover image'))
                     ->formatStateUsing(fn ($state) => new HtmlString('
-                        <div style=\'background-image: url("' . $state . '")\'
-                             class="w-8 h-8 rounded bg-cover bg-center bg-no-repeat bg-gray-50"></div>
-                    ')),
+                            <div style=\'background-image: url("' . $state . '")\'
+                                 class="w-8 h-8 rounded bg-cover bg-center bg-no-repeat bg-gray-50"></div>
+                        ')),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Project name'))
@@ -128,6 +130,27 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('favorite')
+                    ->label(__('Favorite'))
+                    ->icon('heroicon-o-star')
+                    ->color(fn ($record) =>
+                        auth()->user()->favoriteProjects()
+                            ->where('projects.id', $record->id)->count() ? 'success' : 'warning')
+                    ->action(function ($record) {
+                        $projectId = $record->id;
+                        $projectFavorite = ProjectFavorite::where('project_id', $projectId)
+                            ->where('user_id', auth()->user()->id)
+                            ->first();
+                        if ($projectFavorite) {
+                            $projectFavorite->delete();
+                        } else {
+                            ProjectFavorite::create([
+                                'project_id' => $projectId,
+                                'user_id' => auth()->user()->id
+                            ]);
+                        }
+                        Filament::notify('success', __('Project updated'));
+                    }),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
