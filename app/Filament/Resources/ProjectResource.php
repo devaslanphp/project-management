@@ -110,6 +110,10 @@ class ProjectResource extends Resource
                     ->sortable()
                     ->searchable(),
 
+                Tables\Columns\TagsColumn::make('users.name')
+                    ->label(__('Affected users'))
+                    ->limit(2),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Created at'))
                     ->dateTime()
