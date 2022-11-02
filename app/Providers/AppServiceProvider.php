@@ -37,11 +37,6 @@ class AppServiceProvider extends ServiceProvider
             'https://unpkg.com/tippy.js@6/dist/tippy.css',
         ]);
 
-        // Register tippy scripts
-        Filament::registerScripts([
-            'https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-tooltip@0.x.x/dist/cdn.min.js',
-        ], true);
-
         // Register navigation groups
         Filament::registerNavigationGroups([
             __('Management'),
