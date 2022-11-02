@@ -57,7 +57,7 @@ class ProjectResource extends Resource
                                     ->label(__('Project status'))
                                     ->searchable()
                                     ->options(fn() => ProjectStatus::all()->pluck('name', 'id')->toArray())
-                                    ->default(fn () => ProjectStatus::where('is_default', true)->first()?->id)
+                                    ->default(fn() => ProjectStatus::where('is_default', true)->first()?->id)
                                     ->required(),
 
                                 Forms\Components\RichEditor::make('description')
@@ -79,7 +79,7 @@ class ProjectResource extends Resource
 
                 Tables\Columns\TextColumn::make('status.name')
                     ->label(__('Project status'))
-                    ->formatStateUsing(fn ($record) => new HtmlString('
+                    ->formatStateUsing(fn($record) => new HtmlString('
                             <div class="flex items-center gap-2">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>

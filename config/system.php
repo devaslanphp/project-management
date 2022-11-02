@@ -10,6 +10,8 @@ return [
 
                 'default' => 'collaborator',
 
+                'can_manage' => 'Administrator',
+
                 'list' => [
                     'collaborator' => 'Collaborator',
                     'administrator' => 'Administrator'
