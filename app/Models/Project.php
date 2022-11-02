@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,10 @@ class Project extends Model implements HasMedia
         'name', 'description', 'status_id', 'owner_id'
     ];
 
+    protected $appends = [
+        'cover'
+    ];
+
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id', 'id');
@@ -31,5 +36,15 @@ class Project extends Model implements HasMedia
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'project_users', 'project_id', 'user_id')->withPivot(['role']);
+    }
+
+    public function cover(): Attribute
+    {
+        return new Attribute(
+            get: fn() =>
+                $this->media('cover')?->first()?->getFullUrl()
+                ??
+                'https://ui-avatars.com/api/?background=3f84f3&color=ffffff&name=' . $this->name
+        );
     }
 }
