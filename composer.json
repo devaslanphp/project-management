@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "devaslanphp/filament-avatar": "^1.0",
         "doctrine/dbal": "^3.5",
         "filament/filament": "^2.16",
         "filament/spatie-laravel-media-library-plugin": "^2.16",

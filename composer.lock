@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b663f76a70db9d99e7ce35d9ff7f958c",
+    "content-hash": "02ae9232e09f68906edb161d8b4ab202",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -485,6 +485,61 @@
                 "source": "https://github.com/DASPRiD/Enum/tree/1.0.3"
             },
             "time": "2020-10-02T16:03:48+00:00"
+        },
+        {
+            "name": "devaslanphp/filament-avatar",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devaslanphp/filament-avatar.git",
+                "reference": "36f1151f48e6938bc16dc3ece03e3ec153a88806"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devaslanphp/filament-avatar/zipball/36f1151f48e6938bc16dc3ece03e3ec153a88806",
+                "reference": "36f1151f48e6938bc16dc3ece03e3ec153a88806",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Devaslanphp\\FilamentAvatar\\FilamentAvatarProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Devaslanphp\\FilamentAvatar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "EL OUFIR Hatim",
+                    "email": "eloufirhatim@gmail.com"
+                }
+            ],
+            "description": "A complete and customizable User Avatar provider for your Filament project, and also for any project using a User Model.",
+            "homepage": "https://github.com/devaslanphp/filament-avatar",
+            "keywords": [
+                "avatar",
+                "filament",
+                "provider",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/devaslanphp/filament-avatar/issues",
+                "source": "https://github.com/devaslanphp/filament-avatar/tree/1.0.0"
+            },
+            "time": "2022-09-20T13:56:28+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
