@@ -5,7 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/filament.css'
+                'resources/css/filament.scss'
             ],
             refresh: true,
         }),

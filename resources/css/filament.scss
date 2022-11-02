@@ -1,0 +1,56 @@
+@import '../../vendor/filament/filament/resources/css/app.css';
+
+// KANBAN
+.kanban-container {
+    @apply w-full h-full flex space-x-4 overflow-x-auto pb-5;
+
+    .kanban-wrapper {
+        @apply h-full flex-1;
+
+        width: calc(100% / 2);
+        min-width: calc(100% / 2);
+
+        @screen sm {
+            width: calc(100% / 3);
+            min-width: calc(100% / 3);
+        }
+
+        @screen md {
+            width: calc(100% / 4);
+            min-width: calc(100% / 4);
+        }
+
+        @screen lg {
+            width: calc(100% / 6);
+            min-width: calc(100% / 6);
+        }
+    }
+
+    .kanban {
+        @apply bg-white rounded-xl flex flex-col h-full border border-gray-200 overflow-y-auto;
+
+        height: calc(100vh - 260px);
+    }
+
+    .kanban-header {
+        @apply px-3 py-4 text-sm text-gray-700 font-medium uppercase border-b-4 rounded-tl-xl rounded-tr-xl mb-5;
+    }
+
+    .kanban-footer {
+
+    }
+
+    .kanban-records {
+        @apply space-y-2 p-2 mx-2 flex-1 overflow-y-auto;
+    }
+
+    .record {
+        @apply block hover:cursor-pointer hover:shadow-lg hover:bg-gray-50 hover:shadow-gray-100 p-2 rounded-xl border border-gray-200;
+
+        background-color: rgba(119, 119, 119, .03);
+    }
+
+    .record-content {
+        @apply w-full;
+    }
+}

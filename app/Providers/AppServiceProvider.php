@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         // Register custom Filament theme
         Filament::serving(function () {
             Filament::registerTheme(
-                app(Vite::class)('resources/css/filament.css'),
+                app(Vite::class)('resources/css/filament.scss'),
             );
         });
 

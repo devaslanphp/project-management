@@ -7,6 +7,7 @@ use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use App\Models\ProjectFavorite;
 use App\Models\ProjectStatus;
+use App\Models\TicketStatus;
 use App\Models\User;
 use Filament\Facades\Filament;
 use Filament\Forms;
@@ -127,15 +128,29 @@ class ProjectResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('owner_id')
+                    ->label(__('Owner'))
+                    ->multiple()
+                    ->options(fn() => User::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('status_id')
+                    ->label(__('Status'))
+                    ->multiple()
+                    ->options(fn() => ProjectStatus::all()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
+                Tables\Actions\Action::make('kanban')
+                    ->label('')
+                    ->icon('heroicon-o-adjustments')
+                    ->color('warning')
+                    ->url(fn ($record) => route('filament.pages.kanban/{project}', $record)),
+
                 Tables\Actions\Action::make('favorite')
-                    ->label(__('Favorite'))
+                    ->label('')
                     ->icon('heroicon-o-star')
                     ->color(fn ($record) =>
                         auth()->user()->favoriteProjects()
-                            ->where('projects.id', $record->id)->count() ? 'success' : 'warning')
+                            ->where('projects.id', $record->id)->count() ? 'success' : 'default')
                     ->action(function ($record) {
                         $projectId = $record->id;
                         $projectFavorite = ProjectFavorite::where('project_id', $projectId)

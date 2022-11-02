@@ -69,8 +69,7 @@ class TicketResource extends Resource
                                 Forms\Components\Select::make('project_id')
                                     ->label(__('Project'))
                                     ->searchable()
-                                    ->options(fn() =>
-                                    Project::where('owner_id', auth()->user()->id)
+                                    ->options(fn() => Project::where('owner_id', auth()->user()->id)
                                         ->orWhereHas('users', function ($query) {
                                             return $query->where('users.id', auth()->user()->id);
                                         })->pluck('name', 'id')->toArray()
@@ -123,7 +122,25 @@ class TicketResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('project_id')
+                    ->label(__('Project'))
+                    ->multiple()
+                    ->options(fn() => Project::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('owner_id')
+                    ->label(__('Owner'))
+                    ->multiple()
+                    ->options(fn() => User::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('responsible_id')
+                    ->label(__('Responsible'))
+                    ->multiple()
+                    ->options(fn() => User::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('status_id')
+                    ->label(__('Status'))
+                    ->multiple()
+                    ->options(fn() => TicketStatus::all()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
