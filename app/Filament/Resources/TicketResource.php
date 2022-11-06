@@ -7,9 +7,11 @@ use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Models\Project;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
+use App\Models\TicketType;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -41,19 +43,32 @@ class TicketResource extends Resource
                     ->schema([
                         Forms\Components\Grid::make()
                             ->schema([
+                                Forms\Components\Select::make('project_id')
+                                    ->label(__('Project'))
+                                    ->searchable()
+                                    ->options(fn() => Project::where('owner_id', auth()->user()->id)
+                                        ->orWhereHas('users', function ($query) {
+                                            return $query->where('users.id', auth()->user()->id);
+                                        })->pluck('name', 'id')->toArray()
+                                    )
+                                    ->required(),
+
                                 Forms\Components\Grid::make()
                                     ->columns(12)
                                     ->columnSpan(2)
                                     ->schema([
                                         Forms\Components\TextInput::make('code')
                                             ->label(__('Ticket code'))
+                                            ->visible(fn ($livewire) => !($livewire instanceof CreateRecord))
                                             ->columnSpan(2)
                                             ->disabled(),
 
                                         Forms\Components\TextInput::make('name')
                                             ->label(__('Ticket name'))
                                             ->required()
-                                            ->columnSpan(10)
+                                            ->columnSpan(
+                                                fn ($livewire) => !($livewire instanceof CreateRecord) ? 10 : 12
+                                            )
                                             ->maxLength(255),
                                     ]),
 
@@ -76,14 +91,11 @@ class TicketResource extends Resource
                                     ->default(fn() => TicketStatus::where('is_default', true)->first()?->id)
                                     ->required(),
 
-                                Forms\Components\Select::make('project_id')
-                                    ->label(__('Project'))
+                                Forms\Components\Select::make('type_id')
+                                    ->label(__('Ticket type'))
                                     ->searchable()
-                                    ->options(fn() => Project::where('owner_id', auth()->user()->id)
-                                        ->orWhereHas('users', function ($query) {
-                                            return $query->where('users.id', auth()->user()->id);
-                                        })->pluck('name', 'id')->toArray()
-                                    )
+                                    ->options(fn() => TicketType::all()->pluck('name', 'id')->toArray())
+                                    ->default(fn() => TicketType::where('is_default', true)->first()?->id)
                                     ->required(),
                             ]),
 

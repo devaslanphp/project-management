@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
 use Filament\Facades\Filament;
+use Filament\Pages\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
@@ -36,6 +37,17 @@ class Kanban extends Page
                 abort(403);
             }
         }
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Action::make('refresh')
+                ->button()
+                ->label(__('Refresh'))
+                ->color('secondary')
+                ->action(fn () => $this->getRecords())
+        ];
     }
 
     protected static function getNavigationGroup(): ?string

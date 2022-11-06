@@ -13,7 +13,7 @@ class Ticket extends Model
 
     protected $fillable = [
         'name', 'content', 'owner_id', 'responsible_id',
-        'status_id', 'project_id', 'code', 'order'
+        'status_id', 'project_id', 'code', 'order', 'type_id'
     ];
 
     public static function boot()
