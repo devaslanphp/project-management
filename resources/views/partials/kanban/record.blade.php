@@ -13,6 +13,7 @@
     </div>
     <div class="record-footer">
         <div class="record-type-code">
+            <x-ticket-priority :priority="$record['priority']" />
             <x-ticket-type :type="$record['type']" />
             <span>{{ $record['code'] }}</span>
         </div>

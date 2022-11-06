@@ -90,7 +90,7 @@ class Kanban extends Page
     public function getRecords(): Collection
     {
         $query = Ticket::query();
-        $query->with(['project', 'owner', 'responsible', 'status', 'type']);
+        $query->with(['project', 'owner', 'responsible', 'status', 'type', 'priority']);
         if ($this->project) {
             $query->where('project_id', $this->project->id);
         }
@@ -104,7 +104,6 @@ class Kanban extends Page
                         });
                 });
         });
-        $query->orderBy('order');
         return $query->get()
             ->map(fn($item) => [
                 'id' => $item->id,
@@ -114,7 +113,8 @@ class Kanban extends Page
                 'type' => $item->type,
                 'responsible' => $item->responsible,
                 'project' => $item->project,
-                'status' => $item->status->id
+                'status' => $item->status->id,
+                'priority' => $item->priority
             ]);
     }
 
