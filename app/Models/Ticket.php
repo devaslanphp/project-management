@@ -14,7 +14,8 @@ class Ticket extends Model
 
     protected $fillable = [
         'name', 'content', 'owner_id', 'responsible_id',
-        'status_id', 'project_id', 'code', 'order', 'type_id'
+        'status_id', 'project_id', 'code', 'order', 'type_id',
+        'priority_id'
     ];
 
     public static function boot()
@@ -65,6 +66,11 @@ class Ticket extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(TicketType::class, 'type_id', 'id')->withTrashed();
+    }
+
+    public function priority(): BelongsTo
+    {
+        return $this->belongsTo(TicketPriority::class, 'priority_id', 'id')->withTrashed();
     }
 
     public function activities(): HasMany

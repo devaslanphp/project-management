@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\TicketTypeResource\Pages;
+namespace App\Filament\Resources\TicketPriorityResource\Pages;
 
-use App\Filament\Resources\TicketTypeResource;
-use App\Models\TicketStatus;
+use App\Filament\Resources\TicketPriorityResource;
+use App\Models\TicketPriority;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditTicketType extends EditRecord
+class EditTicketPriority extends EditRecord
 {
-    protected static string $resource = TicketTypeResource::class;
+    protected static string $resource = TicketPriorityResource::class;
 
     protected function getActions(): array
     {
@@ -22,7 +22,7 @@ class EditTicketType extends EditRecord
     protected function afterSave(): void
     {
         if ($this->record->is_default) {
-            TicketStatus::where('id', '<>', $this->record->id)
+            TicketPriority::where('id', '<>', $this->record->id)
                 ->where('is_default', true)
                 ->update(['is_default' => false]);
         }

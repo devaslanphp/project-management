@@ -46,7 +46,10 @@ class Kanban extends Page
                 ->button()
                 ->label(__('Refresh'))
                 ->color('secondary')
-                ->action(fn () => $this->getRecords())
+                ->action(function () {
+                    $this->getRecords();
+                    Filament::notify('success', __('Kanban board updated'));
+                })
         ];
     }
 

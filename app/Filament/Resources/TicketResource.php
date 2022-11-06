@@ -6,6 +6,7 @@ use App\Filament\Resources\TicketResource\Pages;
 use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Models\Project;
 use App\Models\Ticket;
+use App\Models\TicketPriority;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
@@ -84,19 +85,31 @@ class TicketResource extends Resource
                                     ->searchable()
                                     ->options(fn() => User::all()->pluck('name', 'id')->toArray()),
 
-                                Forms\Components\Select::make('status_id')
-                                    ->label(__('Ticket status'))
-                                    ->searchable()
-                                    ->options(fn() => TicketStatus::all()->pluck('name', 'id')->toArray())
-                                    ->default(fn() => TicketStatus::where('is_default', true)->first()?->id)
-                                    ->required(),
+                                Forms\Components\Grid::make()
+                                    ->columns(3)
+                                    ->columnSpan(2)
+                                    ->schema([
+                                        Forms\Components\Select::make('status_id')
+                                            ->label(__('Ticket status'))
+                                            ->searchable()
+                                            ->options(fn() => TicketStatus::all()->pluck('name', 'id')->toArray())
+                                            ->default(fn() => TicketStatus::where('is_default', true)->first()?->id)
+                                            ->required(),
 
-                                Forms\Components\Select::make('type_id')
-                                    ->label(__('Ticket type'))
-                                    ->searchable()
-                                    ->options(fn() => TicketType::all()->pluck('name', 'id')->toArray())
-                                    ->default(fn() => TicketType::where('is_default', true)->first()?->id)
-                                    ->required(),
+                                        Forms\Components\Select::make('type_id')
+                                            ->label(__('Ticket type'))
+                                            ->searchable()
+                                            ->options(fn() => TicketType::all()->pluck('name', 'id')->toArray())
+                                            ->default(fn() => TicketType::where('is_default', true)->first()?->id)
+                                            ->required(),
+
+                                        Forms\Components\Select::make('priority_id')
+                                            ->label(__('Ticket priority'))
+                                            ->searchable()
+                                            ->options(fn() => TicketPriority::all()->pluck('name', 'id')->toArray())
+                                            ->default(fn() => TicketPriority::where('is_default', true)->first()?->id)
+                                            ->required(),
+                                    ]),
                             ]),
 
                         Forms\Components\RichEditor::make('content')
@@ -110,6 +123,11 @@ class TicketResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('project.name')
+                    ->label(__('Project'))
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Ticket name'))
                     ->sortable()
@@ -118,11 +136,23 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('owner.name')
                     ->label(__('Owner'))
                     ->sortable()
+                    ->formatStateUsing(fn ($record) => new HtmlString('
+                        <img src="' . $record->owner->avatar_url . '"
+                             alt="' . $record->owner->name . '"
+                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
+                             title="' . $record->owner->name . '" />
+                    '))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('responsible.name')
                     ->label(__('Responsible'))
                     ->sortable()
+                    ->formatStateUsing(fn ($record) => $record->responsible ? new HtmlString('
+                        <img src="' . $record->responsible->avatar_url . '"
+                             alt="' . $record->responsible->name . '"
+                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
+                             title="' . $record->responsible->name . '" />
+                    ') : '')
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('status.name')
@@ -132,6 +162,24 @@ class TicketResource extends Resource
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>
                                 <span>' . $record->status->name . '</span>
+                            </div>
+                        '))
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('type')
+                    ->label(__('Type'))
+                    ->view('partials.filament.resources.ticket-type')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('priority.name')
+                    ->label(__('Priority'))
+                    ->formatStateUsing(fn($record) => new HtmlString('
+                            <div class="flex items-center gap-2">
+                                <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
+                                    style="background-color: ' . $record->priority->color . '"></span>
+                                <span>' . $record->priority->name . '</span>
                             </div>
                         '))
                     ->sortable()
@@ -163,6 +211,16 @@ class TicketResource extends Resource
                     ->label(__('Status'))
                     ->multiple()
                     ->options(fn() => TicketStatus::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('type_id')
+                    ->label(__('Type'))
+                    ->multiple()
+                    ->options(fn() => TicketType::all()->pluck('name', 'id')->toArray()),
+
+                Tables\Filters\SelectFilter::make('priority_id')
+                    ->label(__('Priority'))
+                    ->multiple()
+                    ->options(fn() => TicketPriority::all()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
