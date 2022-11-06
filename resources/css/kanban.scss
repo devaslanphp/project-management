@@ -11,12 +11,12 @@
         }
 
         .status-container {
-            @apply relative w-full flex flex-col gap-2 bg-white pt-2 px-2 pb-16 rounded overflow-y-auto overflow-x-hidden;
+            @apply relative w-full flex flex-col gap-2 bg-white p-2 rounded overflow-y-auto overflow-x-hidden;
 
             height: calc(100vh - 320px);
 
             .create-record {
-                @apply flex items-center gap-1 text-xs text-gray-500 absolute bottom-4 left-1 right-1 p-3 bg-transparent hover:text-gray-600 hover:bg-gray-100 rounded;
+                @apply flex items-center gap-1 mt-auto text-xs text-gray-500 p-3 bg-transparent hover:text-gray-600 hover:bg-gray-100 rounded;
             }
 
             .kanban-record {
