@@ -37,7 +37,7 @@ class FavoriteProjects extends BaseWidget
                             </a>
                             <span class="text-gray-300">|</span>
                             <a class="text-primary-400 hover:text-primary-500 hover:cursor-pointer"
-                               href="#">
+                               href="' . route('filament.pages.kanban/{project}', $project) . '">
                                 ' . __('Tickets') . '
                             </a>
                         </div>
