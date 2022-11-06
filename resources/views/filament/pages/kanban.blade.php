@@ -23,6 +23,7 @@
                             pull: true,
                             put: true
                         },
+                        handle: '.handle',
                         animation: 100,
                         onEnd: function (evt) {
                             Livewire.emit('recordUpdated',

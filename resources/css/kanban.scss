@@ -20,7 +20,17 @@
             }
 
             .kanban-record {
-                @apply w-full flex flex-col gap-4 rounded bg-gray-50 border border-gray-200 p-3 hover:cursor-pointer hover:shadow hover:bg-gray-100;
+                @apply w-full flex flex-col gap-4 rounded bg-gray-50 border border-gray-200 p-3 hover:shadow hover:bg-gray-100 relative;
+
+                .handle {
+                    @apply absolute top-0 right-0 text-gray-500 opacity-0 hover:cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-bl p-2 transition;
+                }
+
+                &:hover {
+                    .handle {
+                        @apply opacity-100;
+                    }
+                }
 
                 .record-info {
                     @apply w-full flex flex-col gap-0;
