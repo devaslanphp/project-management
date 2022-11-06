@@ -32,6 +32,9 @@ class Kanban extends Page
     {
         if (request()->has('project')) {
             $this->project = Project::find(request()->get('project'));
+            if (!$this->project->users->where('id', auth()->user()->id)->count()) {
+                abort(403);
+            }
         }
     }
 
@@ -75,6 +78,16 @@ class Kanban extends Page
         if ($this->project) {
             $query->where('project_id', $this->project->id);
         }
+        $query->where(function ($query) {
+            return $query->where('owner_id', auth()->user()->id)
+                ->orWhere('responsible_id', auth()->user()->id)
+                ->orWhereHas('project', function ($query) {
+                    return $query->where('owner_id', auth()->user()->id)
+                        ->orWhereHas('users', function ($query) {
+                            return $query->where('users.id', auth()->user()->id);
+                        });
+                });
+        });
         $query->orderBy('order');
         return $query->get()
             ->map(fn($item) => [
