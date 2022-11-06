@@ -10,6 +10,7 @@ use Filament\Pages\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
 
 class Kanban extends Page
 {
@@ -60,16 +61,28 @@ class Kanban extends Page
 
     protected function getHeading(): string|Htmlable
     {
-        $heading = __('Kanban');
+        $heading = '<div class="flex flex-col gap-1">';
+        $heading .= '<span>' . __('Kanban');
         if ($this->project) {
-            $heading .= ' - ' . $this->project->name;
+            $heading .= ' - ' . $this->project->name . '</span>';
+        } else {
+            $heading .= '</span><span class="text-xs text-gray-400">'
+                . __('Only default statuses are listed when no projects selected')
+                . '</span>';
         }
-        return $heading;
+        $heading .= '</div>';
+        return new HtmlString($heading);
     }
 
     public function getStatuses(): Collection
     {
-        return TicketStatus::orderBy('order')
+        $query = TicketStatus::query();
+        if ($this->project && $this->project->status_type === 'custom') {
+            $query->where('project_id', $this->project->id);
+        } else {
+            $query->whereNull('project_id');
+        }
+        return $query->orderBy('order')
             ->get()
             ->map(function ($item) {
                 $query = Ticket::query();
@@ -93,6 +106,8 @@ class Kanban extends Page
         $query->with(['project', 'owner', 'responsible', 'status', 'type', 'priority']);
         if ($this->project) {
             $query->where('project_id', $this->project->id);
+        } else {
+            $query->whereHas('project', fn($query) => $query->where('status_type', 'default'));
         }
         $query->where(function ($query) {
             return $query->where('owner_id', auth()->user()->id)

@@ -55,7 +55,7 @@ class TicketStatusResource extends Resource
                                 Forms\Components\TextInput::make('order')
                                     ->label(__('Status order'))
                                     ->integer()
-                                    ->default(fn () => 1)
+                                    ->default(fn() => TicketStatus::whereNull('project_id')->count() + 1)
                                     ->required(),
                             ])
                     ])

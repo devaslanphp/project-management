@@ -90,6 +90,19 @@ class ProjectResource extends Resource
                                 Forms\Components\RichEditor::make('description')
                                     ->label(__('Project description'))
                                     ->columnSpan(3),
+
+                                Forms\Components\Select::make('status_type')
+                                    ->label(__('Statuses configuration'))
+                                    ->helperText(
+                                        __('If custom type selected, you need to configure project specific statuses')
+                                    )
+                                    ->searchable()
+                                    ->options([
+                                        'default' => __('Default'),
+                                        'custom' => __('Custom configuration')
+                                    ])
+                                    ->default(fn() => 'default')
+                                    ->required(),
                             ]),
                     ]),
             ]);
@@ -189,6 +202,7 @@ class ProjectResource extends Resource
     {
         return [
             RelationManagers\UsersRelationManager::class,
+            RelationManagers\StatusesRelationManager::class,
         ];
     }
 

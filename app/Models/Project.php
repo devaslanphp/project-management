@@ -17,7 +17,8 @@ class Project extends Model implements HasMedia
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
-        'name', 'description', 'status_id', 'owner_id', 'ticket_prefix'
+        'name', 'description', 'status_id', 'owner_id', 'ticket_prefix',
+        'status_type'
     ];
 
     protected $appends = [
@@ -42,6 +43,11 @@ class Project extends Model implements HasMedia
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'project_id', 'id');
+    }
+
+    public function statuses(): HasMany
+    {
+        return $this->hasMany(TicketStatus::class, 'project_id', 'id');
     }
 
     public function cover(): Attribute

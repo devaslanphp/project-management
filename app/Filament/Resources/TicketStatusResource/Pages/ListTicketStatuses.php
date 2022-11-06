@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TicketStatusResource\Pages;
 use App\Filament\Resources\TicketStatusResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListTicketStatuses extends ListRecords
 {
@@ -15,5 +16,11 @@ class ListTicketStatuses extends ListRecords
         return [
             Actions\CreateAction::make(),
         ];
+    }
+
+    protected function getTableQuery(): Builder
+    {
+        return parent::getTableQuery()
+            ->whereNull('project_id');
     }
 }
