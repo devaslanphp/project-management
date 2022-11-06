@@ -12,7 +12,7 @@ class TicketStatus extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'color', 'is_default'
+        'name', 'color', 'is_default', 'order'
     ];
 
     public function tickets(): HasMany

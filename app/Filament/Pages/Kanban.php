@@ -54,7 +54,8 @@ class Kanban extends Page
 
     public function getStatuses(): Collection
     {
-        return TicketStatus::all()
+        return TicketStatus::orderBy('order')
+            ->get()
             ->map(function ($item) {
                 $query = Ticket::query();
                 if ($this->project) {

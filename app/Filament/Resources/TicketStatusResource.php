@@ -51,6 +51,12 @@ class TicketStatusResource extends Resource
                                     ->helperText(
                                         __('If checked, this status will be automatically affected to new projects')
                                     ),
+
+                                Forms\Components\TextInput::make('order')
+                                    ->label(__('Status order'))
+                                    ->integer()
+                                    ->default(fn () => 1)
+                                    ->required(),
                             ])
                     ])
             ]);
@@ -60,6 +66,11 @@ class TicketStatusResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('order')
+                    ->label(__('Status order'))
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\ColorColumn::make('color')
                     ->label(__('Status color'))
                     ->sortable()
@@ -90,7 +101,8 @@ class TicketStatusResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('order');
     }
 
     public static function getRelations(): array
