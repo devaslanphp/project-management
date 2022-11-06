@@ -52,6 +52,7 @@ class TicketResource extends Resource
                                             return $query->where('users.id', auth()->user()->id);
                                         })->pluck('name', 'id')->toArray()
                                     )
+                                    ->default(fn () => request()->get('project'))
                                     ->required(),
 
                                 Forms\Components\Grid::make()

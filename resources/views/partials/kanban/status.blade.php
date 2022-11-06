@@ -16,7 +16,7 @@
 
         @if($status['add_ticket'])
             <a class="create-record"
-               href="{{ route('filament.resources.tickets.create') }}"
+               href="{{ route('filament.resources.tickets.create', ['project' => request()->get('project')]) }}"
                target="_blank">
                 <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
             </a>
