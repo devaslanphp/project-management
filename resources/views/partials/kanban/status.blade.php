@@ -8,7 +8,8 @@
     </div>
     <div class="status-container"
          data-status="{{ $status['id'] }}"
-         id="status-records-{{ $status['id'] }}">
+         id="status-records-{{ $status['id'] }}"
+         style="border-color: {{ $status['color'] }}66;">
         @foreach($this->getRecords()->where('status', $status['id']) as $record)
             @include('partials.kanban.record')
         @endforeach
