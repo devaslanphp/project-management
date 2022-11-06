@@ -47,12 +47,33 @@ class TicketResource extends Resource
                                 Forms\Components\Select::make('project_id')
                                     ->label(__('Project'))
                                     ->searchable()
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($get, $set) {
+                                        $project = Project::where('id', $get('project_id'))->first();
+                                        if ($project?->status_type === 'custom') {
+                                            $set(
+                                                'status_id',
+                                                TicketStatus::where('project_id', $project->id)
+                                                    ->where('is_default', true)
+                                                    ->first()
+                                                    ?->id
+                                            );
+                                        } else {
+                                            $set(
+                                                'status_id',
+                                                TicketStatus::whereNull('project_id')
+                                                    ->where('is_default', true)
+                                                    ->first()
+                                                    ?->id
+                                            );
+                                        }
+                                    })
                                     ->options(fn() => Project::where('owner_id', auth()->user()->id)
                                         ->orWhereHas('users', function ($query) {
                                             return $query->where('users.id', auth()->user()->id);
                                         })->pluck('name', 'id')->toArray()
                                     )
-                                    ->default(fn () => request()->get('project'))
+                                    ->default(fn() => request()->get('project'))
                                     ->required(),
 
                                 Forms\Components\Grid::make()
@@ -61,7 +82,7 @@ class TicketResource extends Resource
                                     ->schema([
                                         Forms\Components\TextInput::make('code')
                                             ->label(__('Ticket code'))
-                                            ->visible(fn ($livewire) => !($livewire instanceof CreateRecord))
+                                            ->visible(fn($livewire) => !($livewire instanceof CreateRecord))
                                             ->columnSpan(2)
                                             ->disabled(),
 
@@ -69,7 +90,7 @@ class TicketResource extends Resource
                                             ->label(__('Ticket name'))
                                             ->required()
                                             ->columnSpan(
-                                                fn ($livewire) => !($livewire instanceof CreateRecord) ? 10 : 12
+                                                fn($livewire) => !($livewire instanceof CreateRecord) ? 10 : 12
                                             )
                                             ->maxLength(255),
                                     ]),
@@ -93,8 +114,34 @@ class TicketResource extends Resource
                                         Forms\Components\Select::make('status_id')
                                             ->label(__('Ticket status'))
                                             ->searchable()
-                                            ->options(fn() => TicketStatus::all()->pluck('name', 'id')->toArray())
-                                            ->default(fn() => TicketStatus::where('is_default', true)->first()?->id)
+                                            ->options(function ($get) {
+                                                $project = Project::where('id', $get('project_id'))->first();
+                                                if ($project?->status_type === 'custom') {
+                                                    return TicketStatus::where('project_id', $project->id)
+                                                        ->get()
+                                                        ->pluck('name', 'id')
+                                                        ->toArray();
+                                                } else {
+                                                    return TicketStatus::whereNull('project_id')
+                                                        ->get()
+                                                        ->pluck('name', 'id')
+                                                        ->toArray();
+                                                }
+                                            })
+                                            ->default(function ($get) {
+                                                $project = Project::where('id', $get('project_id'))->first();
+                                                if ($project?->status_type === 'custom') {
+                                                    return TicketStatus::where('project_id', $project->id)
+                                                        ->where('is_default', true)
+                                                        ->first()
+                                                        ?->id;
+                                                } else {
+                                                    return TicketStatus::whereNull('project_id')
+                                                        ->where('is_default', true)
+                                                        ->first()
+                                                        ?->id;
+                                                }
+                                            })
                                             ->required(),
 
                                         Forms\Components\Select::make('type_id')
@@ -137,7 +184,7 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('owner.name')
                     ->label(__('Owner'))
                     ->sortable()
-                    ->formatStateUsing(fn ($record) => new HtmlString('
+                    ->formatStateUsing(fn($record) => new HtmlString('
                         <img src="' . $record->owner->avatar_url . '"
                              alt="' . $record->owner->name . '"
                              class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
@@ -148,7 +195,7 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('responsible.name')
                     ->label(__('Responsible'))
                     ->sortable()
-                    ->formatStateUsing(fn ($record) => $record->responsible ? new HtmlString('
+                    ->formatStateUsing(fn($record) => $record->responsible ? new HtmlString('
                         <img src="' . $record->responsible->avatar_url . '"
                              alt="' . $record->responsible->name . '"
                              class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
