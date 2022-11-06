@@ -1,0 +1,55 @@
+.kanban-container {
+    @apply w-full flex gap-2 overflow-x-auto;
+
+    .kanban-statuses {
+        @apply w-full flex flex-col gap-2;
+
+        min-width: 250px;
+
+        .status-header {
+            @apply w-full flex gap-1 items-center bg-white p-3 mb-3 text-xs font-medium text-gray-400 uppercase rounded-t border-b-4;
+        }
+
+        .status-container {
+            @apply relative w-full flex flex-col gap-2 bg-white pt-2 px-2 pb-16 rounded overflow-y-auto overflow-x-hidden;
+
+            height: calc(100vh - 320px);
+
+            .create-record {
+                @apply flex items-center gap-1 text-xs text-gray-500 absolute bottom-4 left-1 right-1 p-3 bg-transparent hover:text-gray-600 hover:bg-gray-100 rounded;
+            }
+
+            .kanban-record {
+                @apply w-full flex flex-col gap-4 rounded bg-gray-50 border border-gray-200 p-3 hover:cursor-pointer hover:shadow hover:bg-gray-100;
+
+                .record-info {
+                    @apply w-full flex flex-col gap-0;
+
+                    .record-subtitle {
+                        @apply text-xs text-gray-400;
+                    }
+
+                    .record-title {
+                        @apply text-base text-gray-600 hover:cursor-pointer hover:underline;
+                    }
+                }
+
+                .record-footer {
+                    @apply w-full flex justify-between items-center;
+
+                    .record-type-code {
+                        @apply flex items-center gap-2;
+
+                        span {
+                            @apply text-xs font-medium text-gray-400;
+                        }
+                    }
+
+                    .avatar {
+                        @apply w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center;
+                    }
+                }
+            }
+        }
+    }
+}

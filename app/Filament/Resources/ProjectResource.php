@@ -55,11 +55,22 @@ class ProjectResource extends Resource
                                 Forms\Components\Grid::make()
                                     ->columnSpan(2)
                                     ->schema([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label(__('Project name'))
-                                            ->required()
-                                            ->maxLength(255)
-                                            ->columnSpan(2),
+                                        Forms\Components\Grid::make()
+                                            ->columnSpan(2)
+                                            ->columns(12)
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label(__('Project name'))
+                                                    ->required()
+                                                    ->columnSpan(10)
+                                                    ->maxLength(255),
+
+                                                Forms\Components\TextInput::make('ticket_prefix')
+                                                    ->label(__('Ticket prefix'))
+                                                    ->maxLength(3)
+                                                    ->columnSpan(2)
+                                                    ->required()
+                                            ]),
 
                                         Forms\Components\Select::make('owner_id')
                                             ->label(__('Project owner'))
@@ -143,7 +154,7 @@ class ProjectResource extends Resource
                     ->label('')
                     ->icon('heroicon-o-adjustments')
                     ->color('warning')
-                    ->url(fn ($record) => route('filament.pages.kanban/{project}', $record)),
+                    ->url(fn ($record) => route('filament.pages.kanban', ['project' => $record->id])),
 
                 Tables\Actions\Action::make('favorite')
                     ->label('')

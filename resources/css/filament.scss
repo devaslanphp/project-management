@@ -1,5 +1,7 @@
 @import '../../vendor/filament/filament/resources/css/app.css';
 
+@import './kanban';
+
 // KANBAN
 .kanban-container {
     @apply w-full h-full flex space-x-4 overflow-x-auto pb-5;

@@ -41,11 +41,21 @@ class TicketResource extends Resource
                     ->schema([
                         Forms\Components\Grid::make()
                             ->schema([
-                                Forms\Components\TextInput::make('name')
-                                    ->label(__('Ticket name'))
-                                    ->required()
+                                Forms\Components\Grid::make()
+                                    ->columns(12)
                                     ->columnSpan(2)
-                                    ->maxLength(255),
+                                    ->schema([
+                                        Forms\Components\TextInput::make('code')
+                                            ->label(__('Ticket code'))
+                                            ->columnSpan(2)
+                                            ->disabled(),
+
+                                        Forms\Components\TextInput::make('name')
+                                            ->label(__('Ticket name'))
+                                            ->required()
+                                            ->columnSpan(10)
+                                            ->maxLength(255),
+                                    ]),
 
                                 Forms\Components\Select::make('owner_id')
                                     ->label(__('Ticket owner'))

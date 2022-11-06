@@ -17,7 +17,7 @@ class Project extends Model implements HasMedia
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
-        'name', 'description', 'status_id', 'owner_id'
+        'name', 'description', 'status_id', 'owner_id', 'ticket_prefix'
     ];
 
     protected $appends = [

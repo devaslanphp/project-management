@@ -5,98 +5,104 @@ namespace App\Filament\Pages;
 use App\Models\Project;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
+use Filament\Facades\Filament;
+use Filament\Pages\Page;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use InvadersXX\FilamentKanbanBoard\Pages\FilamentKanbanBoard;
 
-class Kanban extends FilamentKanbanBoard
+class Kanban extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments';
+    protected static ?string $navigationIcon = 'heroicon-o-view-boards';
 
-    protected static ?string $slug = 'kanban/{project}';
+    protected static ?string $slug = 'kanban';
+
+    protected static string $view = 'filament.pages.kanban';
+
+    protected static ?int $navigationSort = 3;
 
     public bool $sortable = true;
 
-    public bool $sortableBetweenStatuses = true;
+    public Project|null $project = null;
 
-    protected static bool $shouldRegisterNavigation = false;
+    protected $listeners = [
+        'recordUpdated'
+    ];
 
-    public bool $recordClickEnabled = true;
-
-    public Project $project;
-
-    public function mount(Project $project)
+    public function mount()
     {
-        $this->project = $project;
-    }
-
-    protected function styles(): array
-    {
-        return [
-            'wrapper' => 'kanban-container',
-            'kanbanWrapper' => 'kanban-wrapper',
-            'kanban' => 'kanban',
-            'kanbanHeader' => 'kanban-header',
-            'kanbanFooter' => 'kanban-footer',
-            'kanbanRecords' => 'kanban-records',
-            'record' => 'record',
-            'recordContent' => 'record-content',
-        ];
-    }
-
-    protected function statuses(): Collection
-    {
-        return TicketStatus::all()
-            ->map(fn($item) => [
-                'id' => $item->id,
-                'title' => $item->name,
-                'bg-color' => $item->color . '11',
-                'border-color' => $item->color . '55'
-            ]);
-    }
-
-    protected function records(): Collection
-    {
-        return Ticket::where('project_id', $this->project->id)
-            ->get()
-            ->map(fn($item) => [
-                'id' => $item->id,
-                'title' => new HtmlString('
-                    <div class="w-full flex flex-col gap-2 p-2">
-                        <span class="text-lg font-medium text-gray-700">' . $item->name . '</span>
-                        <div class="w-full flex justify-between items-center">
-                            <span class="text-xs text-gray-700 font-normal">
-                                ' . $item->project->name . '
-                            </span>
-                            ' . ($item->responsible ? '
-                                <div class="w-8 h-8 rounded-full bg-gray-200 bg-cover bg-center"
-                                     style="background-image: url(' . $item->responsible->avatarUrl . ')">
-                                </div>
-                            ' : '') . '
-                        </div>
-                    </div>
-                '),
-                'status' => $item->status_id
-            ]);
-    }
-
-    public function onStatusChanged($recordId, $statusId, $fromOrderedIds, $toOrderedIds): void
-    {
-        $user = auth()->user();
-        $ticket = Ticket::where('id', $recordId)->first();
-        if (
-            $user->can('Update ticket')
-            &&
-            $ticket
-            && (
-                $ticket->owner_id === $user->id
-                ||
-                $ticket->responsible_id === $user->id
-            )
-        ) {
-            $ticket->status_id = $statusId;
-            $ticket->save();
-            $this->notify('success', __('Ticket updated'));
+        if (request()->has('project')) {
+            $this->project = Project::find(request()->get('project'));
         }
     }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('Management');
+    }
+
+    protected function getHeading(): string|Htmlable
+    {
+        $heading = __('Kanban');
+        if ($this->project) {
+            $heading .= ' - ' . $this->project->name;
+        }
+        return $heading;
+    }
+
+    public function getStatuses(): Collection
+    {
+        return TicketStatus::all()
+            ->map(function ($item) {
+                $query = Ticket::query();
+                if ($this->project) {
+                    $query->where('project_id', $this->project->id);
+                }
+                $query->where('status_id', $item->id);
+                return [
+                    'id' => $item->id,
+                    'title' => $item->name,
+                    'color' => $item->color,
+                    'size' => $query->count(),
+                    'add_ticket' => $item->is_default && auth()->user()->can('Create ticket')
+                ];
+            });
+    }
+
+    public function getRecords(): Collection
+    {
+        $query = Ticket::query();
+        $query->with(['project', 'owner', 'responsible', 'status', 'type']);
+        if ($this->project) {
+            $query->where('project_id', $this->project->id);
+        }
+        $query->orderBy('order');
+        return $query->get()
+            ->map(fn($item) => [
+                'id' => $item->id,
+                'code' => $item->code,
+                'title' => $item->name,
+                'owner' => $item->owner,
+                'type' => $item->type,
+                'responsible' => $item->responsible,
+                'project' => $item->project,
+                'status' => $item->status->id
+            ]);
+    }
+
+    public function recordUpdated(int $record, int $newIndex, int $newStatus): void
+    {
+        $ticket = Ticket::find($record);
+        if ($ticket) {
+            $ticket->order = $newIndex;
+            $ticket->status_id = $newStatus;
+            $ticket->save();
+            Filament::notify('success', __('Ticket updated'));
+        }
+    }
+
+    public function isMultiProject(): bool
+    {
+        return $this->project === null;
+    }
+
 }
