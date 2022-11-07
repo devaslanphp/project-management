@@ -7,6 +7,8 @@ use App\Models\TicketComment;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -19,6 +21,8 @@ class ViewTicket extends ViewRecord implements HasForms
     protected static string $view = 'filament.resources.tickets.view';
 
     public string $tab = 'comments';
+
+    protected $listeners = ['doDeleteComment'];
 
     public function mount($record): void
     {
@@ -67,5 +71,48 @@ class ViewTicket extends ViewRecord implements HasForms
         $this->record->refresh();
         $this->form->fill();
         $this->notify('success', __('Comment saved'));
+    }
+
+    public function isAdministrator(): bool
+    {
+        return $this->record
+                ->project
+                ->users()
+                ->where('users.id', auth()->user()->id)
+                ->where('role', 'administrator')
+                ->count() != 0;
+    }
+
+    public function editComment(int $commentId): void
+    {
+
+    }
+
+    public function deleteComment(int $commentId): void
+    {
+        Notification::make()
+            ->warning()
+            ->title(__('Delete confirmation'))
+            ->body(__('Are you sure you want to delete this comment?'))
+            ->actions([
+                Action::make('confirm')
+                    ->label(__('Confirm'))
+                    ->color('danger')
+                    ->button()
+                    ->close()
+                    ->emit('doDeleteComment', compact('commentId')),
+                Action::make('cancel')
+                    ->label(__('Cancel'))
+                    ->close()
+            ])
+            ->persistent()
+            ->send();
+    }
+
+    public function doDeleteComment(int $commentId): void
+    {
+        TicketComment::where('id', $commentId)->delete();
+        $this->record->refresh();
+        $this->notify('success', __('Comment deleted'));
     }
 }

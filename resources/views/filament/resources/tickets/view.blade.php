@@ -129,18 +129,33 @@
                     </button>
                 </form>
                 @foreach($record->comments->sortByDesc('created_at') as $comment)
-                    <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
-                        <span class="flex items-center gap-1 text-gray-500 text-sm">
-                            <span class="font-medium flex items-center gap-1">
-                                <img src="{{ $comment->user->avatar_url }}"
-                                     alt="{{ $comment->user->name }}"
-                                     class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
-                                {{ $comment->user->name }}
+                    <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif ticket-comment">
+                        <div class="w-full flex justify-between">
+                            <span class="flex items-center gap-1 text-gray-500 text-sm">
+                                <span class="font-medium flex items-center gap-1">
+                                    <img src="{{ $comment->user->avatar_url }}"
+                                         alt="{{ $comment->user->name }}"
+                                         class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                                    {{ $comment->user->name }}
+                                </span>
+                                <span class="text-gray-400 px-2">|</span>
+                                {{ $comment->created_at->format('Y-m-d g:i A') }}
+                                ({{ $comment->created_at->diffForHumans() }})
                             </span>
-                            <span class="text-gray-400 px-2">|</span>
-                            {{ $comment->created_at->format('Y-m-d g:i A') }}
-                            ({{ $comment->created_at->diffForHumans() }})
-                        </span>
+                            @if($this->isAdministrator() || $comment->user_id === auth()->user()->id)
+                                <div class="actions flex items-center gap-2">
+                                    <button type="button" wire:click="editComment({{ $comment->id }})"
+                                            class="text-primary-500 text-xs hover:text-primary-600 hover:underline">
+                                        {{ __('Edit') }}
+                                    </button>
+                                    <span class="text-gray-300">|</span>
+                                    <button type="button" wire:click="deleteComment({{ $comment->id }})"
+                                            class="text-danger-500 text-xs hover:text-danger-600 hover:underline">
+                                        {{ __('Delete') }}
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                         <div class="w-full prose">
                             {!! $comment->content !!}
                         </div>
@@ -181,6 +196,7 @@
                 </div>
             @endif
         </x-filament::card>
+
         <div class="md:w-1/3 w-full flex flex-col"></div>
 
     </div>
