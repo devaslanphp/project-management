@@ -103,13 +103,27 @@
     <div class="w-full flex md:flex-row flex-col gap-5">
 
         <x-filament::card class="md:w-2/3 w-full flex flex-col">
-            <span class="text-xl text-gray-700">
-                {{ __('Activities') }}
-            </span>
-            <div class="w-full flex flex-col pt-5">
-                @if($record->activities->count())
-                    @foreach($record->activities->sortByDesc('created_at') as $activity)
-                        <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
+            <div class="w-full flex items-center gap-2">
+                <button wire:click="selectTab('comments')"
+                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500 flex items-center
+                        gap-1 @if($tab === 'comments') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                    {{ __('Comments') }}
+                </button>
+                <button wire:click="selectTab('activities')"
+                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500
+                        @if($tab === 'activities') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                    {{ __('Activities') }}
+                </button>
+            </div>
+            @if($tab === 'comments')
+
+            @endif
+            @if($tab === 'activities')
+                <div class="w-full flex flex-col pt-5">
+                    @if($record->activities->count())
+                        @foreach($record->activities->sortByDesc('created_at') as $activity)
+                            <div class="w-full flex flex-col gap-2
+                                 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
                             <span class="flex items-center gap-1 text-gray-500 text-sm">
                                 <span class="font-medium flex items-center gap-1">
                                     <img src="{{ $activity->user->avatar_url }}"
@@ -121,21 +135,22 @@
                                 {{ $activity->created_at->format('Y-m-d g:i A') }}
                                 ({{ $activity->created_at->diffForHumans() }})
                             </span>
-                            <div class="w-full flex items-center gap-10">
-                                <span class="text-gray-400">{{ $activity->oldStatus->name }}</span>
-                                <x-heroicon-o-arrow-right class="w-6 h-6" />
-                                <span style="color: {{ $activity->newStatus->color }}">
+                                <div class="w-full flex items-center gap-10">
+                                    <span class="text-gray-400">{{ $activity->oldStatus->name }}</span>
+                                    <x-heroicon-o-arrow-right class="w-6 h-6" />
+                                    <span style="color: {{ $activity->newStatus->color }}">
                                     {{ $activity->newStatus->name }}
                                 </span>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                @else
-                    <span class="text-gray-400 text-sm font-medium">
+                        @endforeach
+                    @else
+                        <span class="text-gray-400 text-sm font-medium">
                         {{ __('No activities yet!') }}
                     </span>
-                @endif
-            </div>
+                    @endif
+                </div>
+            @endif
         </x-filament::card>
 
     </div>

@@ -12,6 +12,8 @@ class ViewTicket extends ViewRecord
 
     protected static string $view = 'filament.resources.tickets.view';
 
+    public string $tab = 'comments';
+
     protected function getActions(): array
     {
         return [
@@ -25,5 +27,10 @@ class ViewTicket extends ViewRecord
                 ])),
             Actions\EditAction::make(),
         ];
+    }
+
+    public function selectTab(string $tab): void
+    {
+        $this->tab = $tab;
     }
 }
