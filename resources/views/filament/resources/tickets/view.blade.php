@@ -125,8 +125,14 @@
                     {{ $this->form }}
                     <button type="submit"
                             class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded mt-3">
-                        {{ __('Add comment') }}
+                        {{ __($selectedCommentId ? 'Edit comment' : 'Add comment') }}
                     </button>
+                    @if($selectedCommentId)
+                        <button type="button" wire:click="cancelEditComment"
+                                class="px-3 py-2 bg-warning-500 hover:bg-warning-600 text-white rounded mt-3">
+                            {{ __('Cancel') }}
+                        </button>
+                    @endif
                 </form>
                 @foreach($record->comments->sortByDesc('created_at') as $comment)
                     <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif ticket-comment">

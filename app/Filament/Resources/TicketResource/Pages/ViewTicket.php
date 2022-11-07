@@ -24,6 +24,8 @@ class ViewTicket extends ViewRecord implements HasForms
 
     protected $listeners = ['doDeleteComment'];
 
+    public $selectedCommentId;
+
     public function mount($record): void
     {
         parent::mount($record);
@@ -63,13 +65,20 @@ class ViewTicket extends ViewRecord implements HasForms
     public function submitComment(): void
     {
         $data = $this->form->getState();
-        TicketComment::create([
-            'user_id' => auth()->user()->id,
-            'ticket_id' => $this->record->id,
-            'content' => $data['comment']
-        ]);
+        if ($this->selectedCommentId) {
+            TicketComment::where('id', $this->selectedCommentId)
+                ->update([
+                    'content' => $data['comment']
+                ]);
+        } else {
+            TicketComment::create([
+                'user_id' => auth()->user()->id,
+                'ticket_id' => $this->record->id,
+                'content' => $data['comment']
+            ]);
+        }
         $this->record->refresh();
-        $this->form->fill();
+        $this->cancelEditComment();
         $this->notify('success', __('Comment saved'));
     }
 
@@ -85,7 +94,10 @@ class ViewTicket extends ViewRecord implements HasForms
 
     public function editComment(int $commentId): void
     {
-
+        $this->form->fill([
+            'comment' => $this->record->comments->where('id', $commentId)->first()?->content
+        ]);
+        $this->selectedCommentId = $commentId;
     }
 
     public function deleteComment(int $commentId): void
@@ -114,5 +126,11 @@ class ViewTicket extends ViewRecord implements HasForms
         TicketComment::where('id', $commentId)->delete();
         $this->record->refresh();
         $this->notify('success', __('Comment deleted'));
+    }
+
+    public function cancelEditComment(): void
+    {
+        $this->form->fill();
+        $this->selectedCommentId = null;
     }
 }
