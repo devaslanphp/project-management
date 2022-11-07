@@ -4,16 +4,26 @@ namespace App\Filament\Pages;
 
 use App\Models\Project;
 use App\Models\Ticket;
+use App\Models\TicketPriority;
 use App\Models\TicketStatus;
+use App\Models\TicketType;
+use App\Models\User;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 
-class Kanban extends Page
+class Kanban extends Page implements HasForms
 {
+    use InteractsWithForms;
+
     protected static ?string $navigationIcon = 'heroicon-o-view-boards';
 
     protected static ?string $slug = 'kanban';
@@ -25,6 +35,10 @@ class Kanban extends Page
     public bool $sortable = true;
 
     public Project|null $project = null;
+
+    public $users = [];
+    public $types = [];
+    public $priorities = [];
 
     protected $listeners = [
         'recordUpdated'
@@ -38,6 +52,50 @@ class Kanban extends Page
                 abort(403);
             }
         }
+        $this->form->fill();
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            Grid::make([
+                'default' => 2,
+                'md' => 6
+            ])
+                ->schema([
+                    Select::make('users')
+                        ->label(__('Owners / Responsibles'))
+                        ->multiple()
+                        ->options(User::all()->pluck('name', 'id')),
+
+                    Select::make('types')
+                        ->label(__('Ticket types'))
+                        ->multiple()
+                        ->options(TicketType::all()->pluck('name', 'id')),
+
+                    Select::make('priorities')
+                        ->label(__('Ticket priorities'))
+                        ->multiple()
+                        ->options(TicketPriority::all()->pluck('name', 'id')),
+
+                    Placeholder::make('search')
+                        ->label(new HtmlString('&nbsp;'))
+                        ->content(new HtmlString('
+                            <button type="button"
+                                    wire:click="filter" wire:loading.attr="disabled"
+                                    class="bg-primary-500 px-3 py-2 text-white rounded hover:bg-primary-600
+                                    disabled:bg-primary-300">
+                                ' . __('Filter') . '
+                            </button>
+                            <button type="button"
+                                    wire:click="resetFilters" wire:loading.attr="disabled"
+                                    class="ml-2 bg-gray-800 px-3 py-2 text-white rounded hover:bg-gray-900
+                                    disabled:bg-gray-300">
+                                ' . __('Reset filters') . '
+                            </button>
+                        ')),
+                ]),
+        ];
     }
 
     protected function getActions(): array
@@ -109,6 +167,18 @@ class Kanban extends Page
         } else {
             $query->whereHas('project', fn($query) => $query->where('status_type', 'default'));
         }
+        if (sizeof($this->users)) {
+            $query->where(function ($query) {
+                return $query->whereIn('owner_id', $this->users)
+                    ->orWhereIn('responsible_id', $this->users);
+            });
+        }
+        if (sizeof($this->types)) {
+            $query->whereIn('type_id', $this->types);
+        }
+        if (sizeof($this->priorities)) {
+            $query->whereIn('priority_id', $this->priorities);
+        }
         $query->where(function ($query) {
             return $query->where('owner_id', auth()->user()->id)
                 ->orWhere('responsible_id', auth()->user()->id)
@@ -147,6 +217,17 @@ class Kanban extends Page
     public function isMultiProject(): bool
     {
         return $this->project === null;
+    }
+
+    public function filter(): void
+    {
+        $this->getRecords();
+    }
+
+    public function resetFilters(): void
+    {
+        $this->form->fill();
+        $this->filter();
     }
 
 }
