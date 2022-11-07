@@ -181,6 +181,7 @@
                 </div>
             @endif
         </x-filament::card>
+        <div class="md:w-1/3 w-full flex flex-col"></div>
 
     </div>
 
