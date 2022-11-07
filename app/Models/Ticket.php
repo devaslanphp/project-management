@@ -77,4 +77,9 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketActivity::class, 'ticket_id', 'id');
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(TicketComment::class, 'ticket_id', 'id');
+    }
 }

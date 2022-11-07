@@ -116,7 +116,31 @@
                 </button>
             </div>
             @if($tab === 'comments')
-
+                <form wire:submit.prevent="submitComment" class="pb-5">
+                    {{ $this->form }}
+                    <button type="submit"
+                            class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded mt-3">
+                        {{ __('Add comment') }}
+                    </button>
+                </form>
+                @foreach($record->comments->sortByDesc('created_at') as $comment)
+                    <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
+                        <span class="flex items-center gap-1 text-gray-500 text-sm">
+                            <span class="font-medium flex items-center gap-1">
+                                <img src="{{ $comment->user->avatar_url }}"
+                                     alt="{{ $comment->user->name }}"
+                                     class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                                {{ $comment->user->name }}
+                            </span>
+                            <span class="text-gray-400 px-2">|</span>
+                            {{ $comment->created_at->format('Y-m-d g:i A') }}
+                            ({{ $comment->created_at->diffForHumans() }})
+                        </span>
+                        <div class="w-full prose">
+                            {!! $comment->content !!}
+                        </div>
+                    </div>
+                @endforeach
             @endif
             @if($tab === 'activities')
                 <div class="w-full flex flex-col pt-5">
@@ -124,23 +148,23 @@
                         @foreach($record->activities->sortByDesc('created_at') as $activity)
                             <div class="w-full flex flex-col gap-2
                                  @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
-                            <span class="flex items-center gap-1 text-gray-500 text-sm">
-                                <span class="font-medium flex items-center gap-1">
-                                    <img src="{{ $activity->user->avatar_url }}"
-                                         alt="{{ $activity->user->name }}"
-                                         class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
-                                    {{ $activity->user->name }}
+                                <span class="flex items-center gap-1 text-gray-500 text-sm">
+                                    <span class="font-medium flex items-center gap-1">
+                                        <img src="{{ $activity->user->avatar_url }}"
+                                             alt="{{ $activity->user->name }}"
+                                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                                        {{ $activity->user->name }}
+                                    </span>
+                                    <span class="text-gray-400 px-2">|</span>
+                                    {{ $activity->created_at->format('Y-m-d g:i A') }}
+                                    ({{ $activity->created_at->diffForHumans() }})
                                 </span>
-                                <span class="text-gray-400 px-2">|</span>
-                                {{ $activity->created_at->format('Y-m-d g:i A') }}
-                                ({{ $activity->created_at->diffForHumans() }})
-                            </span>
                                 <div class="w-full flex items-center gap-10">
                                     <span class="text-gray-400">{{ $activity->oldStatus->name }}</span>
-                                    <x-heroicon-o-arrow-right class="w-6 h-6" />
-                                    <span style="color: {{ $activity->newStatus->color }}">
-                                    {{ $activity->newStatus->name }}
-                                </span>
+                                        <x-heroicon-o-arrow-right class="w-6 h-6" />
+                                        <span style="color: {{ $activity->newStatus->color }}">
+                                        {{ $activity->newStatus->name }}
+                                    </span>
                                 </div>
                             </div>
                         @endforeach
