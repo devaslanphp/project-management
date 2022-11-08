@@ -21,10 +21,7 @@
             <span>{{ $record['code'] }}</span>
         </div>
         @if($record['responsible'])
-            <img src="{{ $record['responsible']->avatar_url }}"
-                 alt="{{ $record['responsible']->name }}"
-                 class="avatar"
-                 title="{{ $record['responsible']->name }}" />
+            <x-user-avatar :user="$record['responsible']" />
         @endif
     </div>
 </div>

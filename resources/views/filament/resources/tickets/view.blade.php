@@ -52,27 +52,23 @@
         </x-filament::card>
 
         <x-filament::card class="md:w-1/3 w-full flex flex-col">
-            <div class="w-full flex flex-col gap-1">
+            <div class="w-full flex flex-col gap-1" wire:ignore>
                 <span class="text-gray-500 text-sm font-medium">
                     {{ __('Owner') }}
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
-                    <img src="{{ $record->owner->avatar_url }}"
-                         alt="{{ $record->owner->name }}"
-                         class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                    <x-user-avatar :user="$record->owner" />
                     {{ $record->owner->name }}
                 </div>
             </div>
 
-            <div class="w-full flex flex-col gap-1 pt-3">
+            <div class="w-full flex flex-col gap-1 pt-3" wire:ignore>
                 <span class="text-gray-500 text-sm font-medium">
                     {{ __('Responsible') }}
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
                     @if($record->responsible)
-                        <img src="{{ $record->responsible->avatar_url }}"
-                             alt="{{ $record->responsible->name }}"
-                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                        <x-user-avatar :user="$record->responsible" />
                     @endif
                     {{ $record->responsible?->name ?? '-' }}
                 </div>
@@ -85,33 +81,7 @@
                 <div class="w-full flex items-center gap-1 text-gray-500">
                     @if($record->subscribers->count())
                         @foreach($record->subscribers as $subscriber)
-                            <img src="{{ $subscriber->avatar_url }}"
-                                 alt="{{ $subscriber->name }}"
-                                 data-popover-target="popover-user-{{ $subscriber->id }}"
-                                 class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
-
-                            <div data-popover id="popover-user-{{ $subscriber->id }}" role="tooltip"
-                                 class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500
-                                        bg-white rounded-lg border border-gray-200 shadow-sm opacity-0
-                                        transition-opacity duration-300 dark:text-gray-400 dark:bg-gray-800
-                                        dark:border-gray-600">
-                                <div class="p-3">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <img class="w-10 h-10 rounded-full"
-                                             src="{{ $subscriber->avatar_url }}" alt="{{ $subscriber->name }}">
-                                    </div>
-                                    <p class="text-base font-semibold leading-none text-gray-900 dark:text-white">
-                                        <a>{{ $subscriber->name }}</a>
-                                    </p>
-                                    <p class="mb-3 text-sm font-normal">
-                                        <a href="mailto:{{ $subscriber->email }}"
-                                           class="hover:underline">
-                                            {{ $subscriber->email }}
-                                        </a>
-                                    </p>
-                                </div>
-                                <div data-popper-arrow></div>
-                            </div>
+                            <x-user-avatar :user="$subscriber" />
                         @endforeach
                     @else
                         {{ '-' }}
