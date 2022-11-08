@@ -15,3 +15,9 @@
     }
 
 }
+
+.filament-forms-repeater-component {
+    & > .relative.flex.justify-center {
+        @apply justify-start;
+    }
+}

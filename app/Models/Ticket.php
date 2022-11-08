@@ -114,4 +114,9 @@ class Ticket extends Model
             }
         );
     }
+
+    public function relations(): HasMany
+    {
+        return $this->hasMany(TicketRelation::class, 'ticket_id', 'id');
+    }
 }

@@ -7,12 +7,14 @@ use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Models\Project;
 use App\Models\Ticket;
 use App\Models\TicketPriority;
+use App\Models\TicketRelation;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -163,6 +165,45 @@ class TicketResource extends Resource
                         Forms\Components\RichEditor::make('content')
                             ->label(__('Ticket content'))
                             ->columnSpan(2),
+
+                        Forms\Components\Repeater::make('relations')
+                            ->itemLabel(function (array $state) {
+                                $ticketRelation = TicketRelation::find($state['id'] ?? 0);
+                                if ($ticketRelation) {
+                                    return __(config('system.tickets.relations.list.' . $ticketRelation->type))
+                                        . ' '
+                                        . $ticketRelation->relation->name
+                                        . ' (' . $ticketRelation->relation->code . ')';
+                                }
+                                return null;
+                            })
+                            ->relationship()
+                            ->collapsible()
+                            ->collapsed()
+                            ->orderable()
+                            ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\Select::make('relation_id')
+                                            ->label(__('Related ticket'))
+                                            ->required()
+                                            ->searchable()
+                                            ->options(function ($livewire) {
+                                                $query = Ticket::query();
+                                                if ($livewire instanceof EditRecord && $livewire->record) {
+                                                    $query->where('id', '<>', $livewire->record->id);
+                                                }
+                                                return $query->get()->pluck('name', 'id')->toArray();
+                                            }),
+
+                                        Forms\Components\Select::make('type')
+                                            ->label(__('Relation type'))
+                                            ->required()
+                                            ->searchable()
+                                            ->options(config('system.tickets.relations.list'))
+                                            ->default(fn() => config('system.tickets.relations.default')),
+                                    ]),
+                            ]),
                     ]),
             ]);
     }
@@ -208,7 +249,7 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('type.name')
                     ->label(__('Type'))
                     ->formatStateUsing(
-                        fn ($record) => view('partials.filament.resources.ticket-type', ['state' => $record->type])
+                        fn($record) => view('partials.filament.resources.ticket-type', ['state' => $record->type])
                     )
                     ->sortable()
                     ->searchable(),
