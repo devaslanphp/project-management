@@ -27,7 +27,8 @@ class LatestTickets extends BaseWidget
                                 return $query->where('users.id', auth()->user()->id);
                             });
                     });
-            });
+            })
+            ->latest();
     }
 
     protected function getTableColumns(): array
