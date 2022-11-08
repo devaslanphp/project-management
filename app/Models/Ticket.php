@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Notifications\TicketCreated;
+use App\Notifications\TicketStatusUpdated;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,13 +35,7 @@ class Ticket extends Model
         });
 
         static::created(function (Ticket $item) {
-            $users = $item->project->users;
-            $users->push($item->owner);
-            if ($item->responsible) {
-                $users->push($item->responsible);
-            }
-            $users = $users->unique('id');
-            foreach ($users as $user) {
+            foreach ($item->watchers as $user) {
                 $user->notify(new TicketCreated($item));
             }
         });
@@ -53,6 +49,9 @@ class Ticket extends Model
                     'new_status_id' => $item->status_id,
                     'user_id' => auth()->user()->id
                 ]);
+                foreach ($item->watchers as $user) {
+                    $user->notify(new TicketStatusUpdated($item));
+                }
             }
         });
     }
@@ -100,5 +99,19 @@ class Ticket extends Model
     public function subscribers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'ticket_subscribers', 'ticket_id', 'user_id');
+    }
+
+    public function watchers(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $users = $this->project->users;
+                $users->push($this->owner);
+                if ($this->responsible) {
+                    $users->push($this->responsible);
+                }
+                return $users->unique('id');
+            }
+        );
     }
 }
