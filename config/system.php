@@ -12,20 +12,22 @@ return [
             'roles' => [
 
                 // Default role
-                'default' => 'collaborator',
+                'default' => 'employee',
 
                 // Role that can manage
                 'can_manage' => 'administrator',
 
                 // Roles list
                 'list' => [
-                    'collaborator' => 'Collaborator',
+                    'employee' => 'Employee',
+                    'customer' => 'Customer',
                     'administrator' => 'Administrator'
                 ],
 
                 // Roles colors
                 'colors' => [
-                    'primary' => 'collaborator',
+                    'primary' => 'employee',
+                    'warning' => 'customer',
                     'danger' => 'administrator'
                 ],
 
