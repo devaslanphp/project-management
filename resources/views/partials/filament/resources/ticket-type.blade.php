@@ -1,7 +1,7 @@
 <div class="inline-flex items-center space-x-2 rtl:space-x-reverse px-4">
     <div class="w-5 h-5 rounded flex items-center justify-center text-center"
-         style="background-color: {{ $getState()->color }};" title="{{ $getState()->name }}">
-        <x-icon class="h-3 text-white" name="{{ $getState()->icon }}" />
+         style="background-color: {{ $state->color }};" title="{{ $state->name }}">
+        <x-icon class="h-3 text-white" name="{{ $state->icon }}" />
     </div>
-    <span>{{ $getState()->name }}</span>
+    <span>{{ $state->name }}</span>
 </div>

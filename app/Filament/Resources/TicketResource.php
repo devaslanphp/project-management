@@ -184,29 +184,19 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('owner.name')
                     ->label(__('Owner'))
                     ->sortable()
-                    ->formatStateUsing(fn($record) => new HtmlString('
-                        <img src="' . $record->owner->avatar_url . '"
-                             alt="' . $record->owner->name . '"
-                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
-                             title="' . $record->owner->name . '" />
-                    '))
+                    ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('responsible.name')
                     ->label(__('Responsible'))
                     ->sortable()
-                    ->formatStateUsing(fn($record) => $record->responsible ? new HtmlString('
-                        <img src="' . $record->responsible->avatar_url . '"
-                             alt="' . $record->responsible->name . '"
-                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"
-                             title="' . $record->responsible->name . '" />
-                    ') : '')
+                    ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('status.name')
                     ->label(__('Status'))
                     ->formatStateUsing(fn($record) => new HtmlString('
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>
                                 <span>' . $record->status->name . '</span>
@@ -215,16 +205,18 @@ class TicketResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('type')
+                Tables\Columns\TextColumn::make('type.name')
                     ->label(__('Type'))
-                    ->view('partials.filament.resources.ticket-type')
+                    ->formatStateUsing(
+                        fn ($record) => view('partials.filament.resources.ticket-type', ['state' => $record->type])
+                    )
                     ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('priority.name')
                     ->label(__('Priority'))
                     ->formatStateUsing(fn($record) => new HtmlString('
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->priority->color . '"></span>
                                 <span>' . $record->priority->name . '</span>

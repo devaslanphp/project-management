@@ -9,8 +9,6 @@ use Illuminate\View\Component;
 class UserAvatar extends Component
 {
     public Authenticatable|User $user;
-    public int $tickets;
-    public int $projects;
 
     /**
      * Create a new component instance.
@@ -20,8 +18,6 @@ class UserAvatar extends Component
     public function __construct(Authenticatable|User $user)
     {
         $this->user = $user;
-        $this->tickets = collect($user->ticketsOwned->merge($user->ticketsResponsible))->unique('id')->count();
-        $this->projects = collect($user->projectsOwning->merge($user->projectsAffected))->unique('id')->count();
     }
 
     /**
