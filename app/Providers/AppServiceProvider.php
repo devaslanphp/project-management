@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Settings\GeneralSettings;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Configure application
+        $this->configureApp();
+
         // Register custom Filament theme
         Filament::serving(function () {
             Filament::registerTheme(
@@ -42,11 +48,31 @@ class AppServiceProvider extends ServiceProvider
             app(Vite::class)('resources/js/filament.js'),
         ]);
 
+        // Add custom meta (favicon)
+        Filament::pushMeta([
+            new HtmlString('<link rel="icon"
+                                       type="image/x-icon"
+                                       href="' . config('app.logo') . '">'),
+        ]);
+
         // Register navigation groups
         Filament::registerNavigationGroups([
             __('Management'),
             __('Configuration'),
             __('Security'),
+            __('Settings'),
         ]);
+    }
+
+    private function configureApp(): void
+    {
+        $settings = app(GeneralSettings::class);
+        Config::set('app.name', $settings->site_name ?? env('APP_NAME'));
+        Config::set('filament.brand', $settings->site_name ?? env('APP_NAME'));
+        Config::set(
+            'app.logo',
+            $settings->site_logo ? asset('storage/' . $settings->site_logo) : asset('favicon.ico')
+        );
+        Config::set('filament-breezy.enable_registration', $settings->enable_registration ?? false);
     }
 }

@@ -10,6 +10,7 @@
         "doctrine/dbal": "^3.5",
         "filament/filament": "^2.16",
         "filament/spatie-laravel-media-library-plugin": "^2.16",
+        "filament/spatie-laravel-settings-plugin": "^2.16",
         "guava/filament-icon-picker": "^1.3",
         "guzzlehttp/guzzle": "^7.2",
         "jeffgreco13/filament-breezy": "^1.4",
