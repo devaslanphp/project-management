@@ -15,11 +15,13 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'EL OUFIR Hatim',
-            'email' => 'eloufirhatim@gmail.com',
-            'password' => bcrypt('Passw@rd'),
-            'email_verified_at' => now()
-        ]);
+        if (User::where('email', 'eloufirhatim@gmail.com')->count() == 0) {
+            User::create([
+                'name' => 'EL OUFIR Hatim',
+                'email' => 'eloufirhatim@gmail.com',
+                'password' => bcrypt('Passw@rd'),
+                'email_verified_at' => now()
+            ]);
+        }
     }
 }
