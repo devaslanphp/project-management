@@ -112,6 +112,28 @@
                     </span>
                 </div>
             </div>
+
+            @if($record->relations->count())
+                <div class="w-full flex flex-col gap-1 pt-3">
+                    <span class="text-gray-500 text-sm font-medium">
+                        {{ __('Ticket relations') }}
+                    </span>
+                    <div class="w-full text-gray-500">
+                        @foreach($record->relations as $relation)
+                            <div class="w-full flex items-center gap-1 text-xs">
+                                <span class="rounded px-2 py-1 text-white
+                                             bg-{{ config('system.tickets.relations.colors.' . $relation->type) }}-600">
+                                    {{ __(config('system.tickets.relations.list.' . $relation->type)) }}
+                                </span>
+                                <a target="_blank" class="font-medium hover:underline"
+                                   href="{{ route('filament.resources.tickets.share', $relation->relation->code) }}">
+                                    {{ $relation->relation->code }}
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </x-filament::card>
 
     </div>

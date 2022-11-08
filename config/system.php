@@ -53,6 +53,13 @@ return [
                 'duplicate_of' => 'Duplicate of'
             ],
 
+            // Types colors
+            'colors' => [
+                'related_to' => 'primary',
+                'blocked_by' => 'warning',
+                'duplicate_of' => 'danger',
+            ],
+
         ],
 
     ],

@@ -24,4 +24,19 @@
             <x-user-avatar :user="$record['responsible']" />
         @endif
     </div>
+    @if($record['relations']?->count())
+        <div class="record-relations">
+            @foreach($record['relations'] as $relation)
+                <div>
+                    <span class="type text-{{ config('system.tickets.relations.colors.' . $relation->type) }}-600">
+                        {{ __(config('system.tickets.relations.list.' . $relation->type)) }}
+                    </span>
+                    <a target="_blank" class="relation"
+                        href="{{ route('filament.resources.tickets.share', $relation->relation->code) }}">
+                        {{ $relation->relation->code }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>

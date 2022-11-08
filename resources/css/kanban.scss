@@ -59,6 +59,18 @@
                         @apply w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center;
                     }
                 }
+
+                .record-relations {
+                    @apply w-full flex flex-col gap-1;
+
+                    & > div {
+                        @apply flex items-center gap-1 text-sm text-gray-600;
+
+                        a {
+                            @apply font-medium hover:underline;
+                        }
+                    }
+                }
             }
         }
     }

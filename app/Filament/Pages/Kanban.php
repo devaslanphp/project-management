@@ -190,7 +190,7 @@ class Kanban extends Page implements HasForms
                 });
         });
         return $query->get()
-            ->map(fn($item) => [
+            ->map(fn(Ticket $item) => [
                 'id' => $item->id,
                 'code' => $item->code,
                 'title' => $item->name,
@@ -199,7 +199,8 @@ class Kanban extends Page implements HasForms
                 'responsible' => $item->responsible,
                 'project' => $item->project,
                 'status' => $item->status->id,
-                'priority' => $item->priority
+                'priority' => $item->priority,
+                'relations' => $item->relations
             ]);
     }
 
