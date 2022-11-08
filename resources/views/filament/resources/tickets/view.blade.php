@@ -150,9 +150,7 @@
                         <div class="w-full flex justify-between">
                             <span class="flex items-center gap-1 text-gray-500 text-sm">
                                 <span class="font-medium flex items-center gap-1">
-                                    <img src="{{ $comment->user->avatar_url }}"
-                                         alt="{{ $comment->user->name }}"
-                                         class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                                    <x-user-avatar :user="$comment->user" />
                                     {{ $comment->user->name }}
                                 </span>
                                 <span class="text-gray-400 px-2">|</span>
@@ -187,9 +185,7 @@
                                  @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
                                 <span class="flex items-center gap-1 text-gray-500 text-sm">
                                     <span class="font-medium flex items-center gap-1">
-                                        <img src="{{ $activity->user->avatar_url }}"
-                                             alt="{{ $activity->user->name }}"
-                                             class="w-6 h-6 rounded-full bg-gray-200 bg-cover bg-center"/>
+                                        <x-user-avatar :user="$activity->user" />
                                         {{ $activity->user->name }}
                                     </span>
                                     <span class="text-gray-400 px-2">|</span>
