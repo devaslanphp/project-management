@@ -15,6 +15,11 @@ class LatestTickets extends BaseWidget
         self::$heading = __('Latest tickets');
     }
 
+    public static function canView(): bool
+    {
+        return auth()->user()->can('List tickets');
+    }
+
     protected function getTableQuery(): Builder
     {
         return Ticket::query()
@@ -90,6 +95,18 @@ class LatestTickets extends BaseWidget
                         '))
                 ->sortable()
                 ->searchable(),
+        ];
+    }
+
+    protected function getTableActions(): array
+    {
+        return [
+            Tables\Actions\Action::make('view')
+                ->label(__('View'))
+                ->icon('heroicon-s-eye')
+                ->color('secondary')
+                ->link()
+                ->url(fn ($record) => route('filament.resources.tickets.view', $record), true)
         ];
     }
 }
