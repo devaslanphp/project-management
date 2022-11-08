@@ -50,6 +50,17 @@ class Project extends Model implements HasMedia
         return $this->hasMany(TicketStatus::class, 'project_id', 'id');
     }
 
+    public function contributors(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $users = $this->users;
+                $users->push($this->owner);
+                return $users->unique('id');
+            }
+        );
+    }
+
     public function cover(): Attribute
     {
         return new Attribute(
