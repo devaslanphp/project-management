@@ -6,6 +6,7 @@ module.exports = {
         './resources/**/*.blade.php',
         './app/Filament/**/*.php',
         './vendor/filament/**/*.blade.php',
+        './node_modules/flowbite/**/*.js'
     ],
     darkMode: 'class',
     theme: {
@@ -21,5 +22,6 @@ module.exports = {
     plugins: [
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
+        require('flowbite/plugin')
     ],
 }

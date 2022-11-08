@@ -37,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
             'https://unpkg.com/tippy.js@6/dist/tippy.css',
         ]);
 
+        // Register scripts
+        Filament::registerScripts([
+            app(Vite::class)('resources/js/filament.js'),
+        ]);
+
         // Register navigation groups
         Filament::registerNavigationGroups([
             __('Management'),

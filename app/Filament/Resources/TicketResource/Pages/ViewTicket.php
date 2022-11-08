@@ -4,6 +4,7 @@ namespace App\Filament\Resources\TicketResource\Pages;
 
 use App\Filament\Resources\TicketResource;
 use App\Models\TicketComment;
+use App\Models\TicketSubscriber;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -35,6 +36,38 @@ class ViewTicket extends ViewRecord implements HasForms
     protected function getActions(): array
     {
         return [
+            Actions\Action::make('toggleSubscribe')
+                ->label(
+                    fn () =>
+                    $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
+                        __('Unsubscribe')
+                        : __('Subscribe')
+                )
+                ->color(
+                    fn () =>
+                    $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
+                        'danger'
+                        : 'success'
+                )
+                ->icon('heroicon-o-bell')
+                ->button()
+                ->action(function () {
+                    if (
+                        $sub = TicketSubscriber::where('user_id', auth()->user()->id)
+                            ->where('ticket_id', $this->record->id)
+                            ->first()
+                    ) {
+                        $sub->delete();
+                        $this->notify('success', __('You unsubscribed from the ticket'));
+                    } else {
+                        TicketSubscriber::create([
+                            'user_id' => auth()->user()->id,
+                            'ticket_id' => $this->record->id
+                        ]);
+                        $this->notify('success', __('You subscribed to the ticket'));
+                    }
+                    $this->record->refresh();
+                }),
             Actions\Action::make('share')
                 ->label(__('Share'))
                 ->color('secondary')
