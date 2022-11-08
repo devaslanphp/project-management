@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\TicketCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,6 +30,18 @@ class Ticket extends Model
             $order = $project->tickets?->last()?->order ?? -1;
             $item->code = $project->ticket_prefix . '-' . ($count + 1);
             $item->order = $order + 1;
+        });
+
+        static::created(function (Ticket $item) {
+            $users = $item->project->users;
+            $users->push($item->owner);
+            if ($item->responsible) {
+                $users->push($item->responsible);
+            }
+            $users = $users->unique('id');
+            foreach ($users as $user) {
+                $user->notify(new TicketCreated($item));
+            }
         });
 
         static::updating(function (Ticket $item) {

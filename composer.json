@@ -17,6 +17,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "owenvoke/blade-fontawesome": "^2.1",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
