@@ -17,6 +17,6 @@ class TicketType extends Model
 
     public function tickets(): HasMany
     {
-        return $this->hasMany(Ticket::class, 'status_id', 'id')->withTrashed();
+        return $this->hasMany(Ticket::class, 'type_id', 'id')->withTrashed();
     }
 }

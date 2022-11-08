@@ -10,6 +10,9 @@ use Illuminate\Support\HtmlString;
 
 class LatestTickets extends BaseWidget
 {
+    protected static ?int $sort = 5;
+    protected int | string | array $columnSpan = 3;
+
     public function mount(): void
     {
         self::$heading = __('Latest tickets');

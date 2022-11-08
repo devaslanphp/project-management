@@ -8,6 +8,9 @@ use Illuminate\Support\HtmlString;
 
 class FavoriteProjects extends BaseWidget
 {
+    protected static ?int $sort = 1;
+    protected int | string | array $columnSpan = 6;
+
     protected function getColumns(): int
     {
         return 4;
