@@ -69,6 +69,7 @@ class ProjectResource extends Resource
                                                     ->label(__('Ticket prefix'))
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
+                                                    ->disabled(fn ($record) => $record->tickets()->count() != 0)
                                                     ->required()
                                             ]),
 
@@ -116,7 +117,7 @@ class ProjectResource extends Resource
                     ->label(__('Cover image'))
                     ->formatStateUsing(fn ($state) => new HtmlString('
                             <div style=\'background-image: url("' . $state . '")\'
-                                 class="w-8 h-8 rounded bg-cover bg-center bg-no-repeat bg-gray-50"></div>
+                                 class="w-8 h-8 bg-cover bg-center bg-no-repeat"></div>
                         ')),
 
                 Tables\Columns\TextColumn::make('name')
