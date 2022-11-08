@@ -76,6 +76,12 @@ class LatestProjects extends BaseWidget
     protected function getTableActions(): array
     {
         return [
+            Tables\Actions\Action::make('kanban')
+                ->label('')
+                ->icon('heroicon-o-adjustments')
+                ->color('warning')
+                ->url(fn ($record) => route('filament.pages.kanban', ['project' => $record->id]), true),
+
             Tables\Actions\Action::make('view')
                 ->label(__('View'))
                 ->icon('heroicon-s-eye')
