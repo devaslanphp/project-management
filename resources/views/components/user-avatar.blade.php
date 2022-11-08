@@ -32,20 +32,20 @@
             </p>
             <ul class="flex text-sm font-light">
                 <li class="mr-2">
-                    <a href="#" class="hover:underline">
+                    <div>
                         <span class="font-semibold text-gray-900 dark:text-white">
                             {{ $tickets }}
                         </span>
                         <span>{{ __('Tickets') }}</span>
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline">
+                    <div>
                         <span class="font-semibold text-gray-900 dark:text-white">
                             {{ $projects }}
                         </span>
                         <span>{{ __('Projects') }}</span>
-                    </a>
+                    </div>
                 </li>
             </ul>
         </div>
