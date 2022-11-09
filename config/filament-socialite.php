@@ -29,10 +29,10 @@ return [
             'label' => 'Google',
             'icon' => 'fab-google',
         ],
-//        'twitter' => [
-//            'label' => 'Twitter',
-//            'icon' => 'fab-twitter',
-//        ],
+        'twitter' => [
+            'label' => 'Twitter',
+            'icon' => 'fab-twitter',
+        ],
     ],
 
     'user_model' => \App\Models\User::class,
