@@ -10,6 +10,7 @@ class GeneralSettings extends Settings
     public string $site_name;
     public bool $enable_registration;
     public string|null $site_logo;
+    public string|null $enable_social_login;
 
     public static function group(): string
     {

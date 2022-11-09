@@ -81,6 +81,8 @@ class AppServiceProvider extends ServiceProvider
                 $settings->site_logo ? asset('storage/' . $settings->site_logo) : asset('favicon.ico')
             );
             Config::set('filament-breezy.enable_registration', $settings->enable_registration ?? false);
+            Config::set('filament-socialite.registration', $settings->enable_registration ?? false);
+            Config::set('filament-socialite.enabled', $settings->enable_social_login ?? false);
         } catch (QueryException $e) {
             // Error: No database configured yet
         }

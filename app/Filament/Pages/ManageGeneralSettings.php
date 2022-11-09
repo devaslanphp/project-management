@@ -53,6 +53,11 @@ class ManageGeneralSettings extends SettingsPage
                                         ->label(__('Enable registration?'))
                                         ->helperText(__('If enabled, any user can create an account in this platform.
                                                         But an administration need to give them permissions.')),
+
+                                    Checkbox::make('enable_social_login')
+                                        ->label(__('Enable social login?'))
+                                        ->helperText(__('If enabled, configured users can login via their
+                                                     social accounts.')),
                                 ]),
                         ]),
                 ]),

@@ -48,7 +48,12 @@ class UserResource extends Resource
                                     ->label(__('Email address'))
                                     ->email()
                                     ->required()
-                                    ->unique(table: User::class, column: 'email', ignorable: fn ($record) => $record)
+                                    ->rule(
+                                        fn($record) =>
+                                            'unique:users,email,'
+                                            . ($record ? $record->id : 'NULL')
+                                            . ',id,deleted_at,NULL'
+                                    )
                                     ->maxLength(255),
 
                                 Forms\Components\TextInput::make('password')
