@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Devaslanphp\FilamentAvatar\Core\HasAvatarUrl;
+use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -71,5 +72,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ticketsResponsible(): HasMany
     {
         return $this->hasMany(Ticket::class, 'responsible_id', 'id');
+    }
+
+    public function socials(): HasMany
+    {
+        return $this->hasMany(SocialiteUser::class, 'user_id', 'id');
     }
 }

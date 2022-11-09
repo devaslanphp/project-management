@@ -96,6 +96,10 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable(),
 
+                Tables\Columns\TextColumn::make('socials')
+                    ->label(__('Linked social networks'))
+                    ->view('partials.filament.resources.social-icon'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Created at'))
                     ->dateTime()

@@ -21,3 +21,23 @@
         @apply justify-start;
     }
 }
+
+.social-icon {
+    @apply w-6 h-6 rounded-full p-1 bg-gray-100 text-white;
+
+    &.google {
+        background-color: #ff0000;
+    }
+
+    &.facebook {
+        background-color: #3b5998;
+    }
+
+    &.github {
+        background-color: #000000;
+    }
+
+    &.twitter {
+        background-color: #55acee;
+    }
+}
