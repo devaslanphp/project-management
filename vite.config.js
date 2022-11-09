@@ -6,7 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/filament.scss',
-                'resources/css/filament.js'
+                'resources/js/filament.js'
             ],
             refresh: true,
         }),

@@ -46,9 +46,13 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         // Register scripts
-        Filament::registerScripts([
-            app(Vite::class)('resources/js/filament.js'),
-        ]);
+        try {
+            Filament::registerScripts([
+                app(Vite::class)('resources/js/filament.js'),
+            ]);
+        } catch (\Exception $e) {
+            // Manifest not built yet!
+        }
 
         // Add custom meta (favicon)
         Filament::pushMeta([

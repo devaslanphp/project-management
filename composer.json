@@ -43,6 +43,26 @@
         }
     },
     "scripts": {
+        "install-project-win": [
+            "npm install",
+            "composer install",
+            "npm run build",
+            "composer dump-autoload",
+            "copy .env.example .env",
+            "php artisan key:generate",
+            "php artisan migrate",
+            "php artisan db:seed"
+        ],
+        "install-project": [
+            "npm install",
+            "composer install",
+            "npm run build",
+            "composer dump-autoload",
+            "cp .env.example .env",
+            "php artisan key:generate",
+            "php artisan migrate",
+            "php artisan db:seed"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
