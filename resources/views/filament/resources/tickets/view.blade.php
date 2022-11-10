@@ -94,16 +94,23 @@
                 @if($record->hours()->count())
                     @if($record->estimation)
                         <div class="flex justify-between mb-1">
-                        <span class="text-base font-medium text-blue-700 dark:text-white">
-                            {{ $record->totalLoggedHours }}
-                        </span>
-                            <span class="text-sm font-medium text-blue-700 dark:text-white">
+                            <span class="text-base font-medium
+                                         text-{{ $record->estimationProgress > 100 ? 'danger' : 'primary' }}-700
+                                         dark:text-white">
+                                {{ $record->totalLoggedHours }}
+                            </span>
+                            <span class="text-sm font-medium
+                                         text-{{ $record->estimationProgress > 100 ? 'danger' : 'primary' }}-700
+                                         dark:text-white">
                             {{ round($record->estimationProgress) }}%
                         </span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-2.5 rounded-full"
-                                 style="width: {{ $record->estimationProgress }}%">
+                            <div class="bg-{{ $record->estimationProgress > 100 ? 'danger' : 'primary' }}-600
+                                        h-2.5 rounded-full"
+                                 style="width: {{ $record->estimationProgress > 100 ?
+                                                    100
+                                                    : $record->estimationProgress }}%">
                             </div>
                         </div>
                     @else

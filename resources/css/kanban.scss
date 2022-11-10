@@ -71,6 +71,10 @@
                         }
                     }
                 }
+
+                .record-logged-hours {
+                    @apply flex items-center gap-1 text-gray-500 text-xs;
+                }
             }
         }
     }

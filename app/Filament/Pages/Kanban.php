@@ -200,7 +200,8 @@ class Kanban extends Page implements HasForms
                 'project' => $item->project,
                 'status' => $item->status->id,
                 'priority' => $item->priority,
-                'relations' => $item->relations
+                'relations' => $item->relations,
+                'totalLoggedHours' => $item->totalLoggedSeconds ? $item->totalLoggedHours : null
             ]);
     }
 

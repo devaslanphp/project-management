@@ -39,4 +39,9 @@
             @endforeach
         </div>
     @endif
+    @if($record['totalLoggedHours'])
+        <div class="record-logged-hours">
+            <x-heroicon-o-clock class="w-4 h-4" /> {{ $record['totalLoggedHours'] }}
+        </div>
+    @endif
 </div>
