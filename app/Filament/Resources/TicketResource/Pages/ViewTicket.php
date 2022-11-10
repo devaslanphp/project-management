@@ -4,14 +4,17 @@ namespace App\Filament\Resources\TicketResource\Pages;
 
 use App\Filament\Resources\TicketResource;
 use App\Models\TicketComment;
+use App\Models\TicketHour;
 use App\Models\TicketSubscriber;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ViewRecord;
+use Illuminate\Support\Collection;
 
 class ViewTicket extends ViewRecord implements HasForms
 {
@@ -36,16 +39,42 @@ class ViewTicket extends ViewRecord implements HasForms
     protected function getActions(): array
     {
         return [
+            Actions\Action::make('logHours')
+                ->label(__('Log time'))
+                ->button()
+                ->icon('heroicon-o-clock')
+                ->color('warning')
+                ->modalWidth('sm')
+                ->modalHeading(__('Log worked time'))
+                ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
+                ->modalButton(__('Log'))
+                ->form([
+                    TimePicker::make('time')
+                        ->label(__('Time to log'))
+                        ->required()
+                ])
+                ->action(function (Collection $records, array $data): void {
+                    $time = explode(':', $data['time']);
+                    $hours = intval($time[0]);
+                    $minutes = intval($time[1]) / 60;
+                    $seconds = intval($time[2]) / 3600;
+                    $value = $hours + $minutes + $seconds;
+                    TicketHour::create([
+                        'ticket_id' => $this->record->id,
+                        'user_id' => auth()->user()->id,
+                        'value' => $value
+                    ]);
+                    $this->record->refresh();
+                    $this->notify('success', __('Time logged into ticket'));
+                }),
             Actions\Action::make('toggleSubscribe')
                 ->label(
-                    fn () =>
-                    $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
+                    fn() => $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
                         __('Unsubscribe')
                         : __('Subscribe')
                 )
                 ->color(
-                    fn () =>
-                    $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
+                    fn() => $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
                         'danger'
                         : 'success'
                 )

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Notifications\TicketCreated;
 use App\Notifications\TicketStatusUpdated;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -118,5 +120,20 @@ class Ticket extends Model
     public function relations(): HasMany
     {
         return $this->hasMany(TicketRelation::class, 'ticket_id', 'id');
+    }
+
+    public function hours(): HasMany
+    {
+        return $this->hasMany(TicketHour::class, 'ticket_id', 'id');
+    }
+
+    public function totalLoggedHours(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $seconds = $this->hours->sum('value') * 3600;
+                return CarbonInterval::seconds($seconds)->cascade()->forHumans();
+            }
+        );
     }
 }

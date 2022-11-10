@@ -74,6 +74,15 @@
                 </div>
             </div>
 
+            <div class="w-full flex flex-col gap-1 pt-3" wire:ignore>
+                <span class="text-gray-500 text-sm font-medium">
+                    {{ __('Total time logged') }}
+                </span>
+                <div class="w-full flex items-center gap-1 text-gray-500">
+                    {{ $record->totalLoggedHours }}
+                </div>
+            </div>
+
             <div class="w-full flex flex-col gap-1 pt-3">
                 <span class="text-gray-500 text-sm font-medium">
                     {{ __('Subscribers') }}
@@ -152,6 +161,11 @@
                         @if($tab === 'activities') border-primary-500 text-primary-500 @else text-gray-700 @endif">
                     {{ __('Activities') }}
                 </button>
+                <button wire:click="selectTab('time')"
+                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500
+                        @if($tab === 'time') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                    {{ __('Time logged') }}
+                </button>
             </div>
             @if($tab === 'comments')
                 <form wire:submit.prevent="submitComment" class="pb-5">
@@ -226,6 +240,36 @@
                     @else
                         <span class="text-gray-400 text-sm font-medium">
                         {{ __('No activities yet!') }}
+                    </span>
+                    @endif
+                </div>
+            @endif
+            @if($tab === 'time')
+                <div class="w-full flex flex-col pt-5">
+                    @if($record->hours->count())
+                        @foreach($record->hours->sortByDesc('created_at') as $item)
+                            <div class="w-full flex flex-col gap-2
+                                 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
+                                <span class="flex items-center gap-1 text-gray-500 text-sm">
+                                    <span class="font-medium flex items-center gap-1">
+                                        <x-user-avatar :user="$item->user" />
+                                        {{ $item->user->name }}
+                                    </span>
+                                    <span class="text-gray-400 px-2">|</span>
+                                    {{ $item->created_at->format('Y-m-d g:i A') }}
+                                    ({{ $item->created_at->diffForHumans() }})
+                                </span>
+                                <div class="w-full flex items-center gap-1">
+                                    <span class="text-gray-400">{{ __('Logged:') }}</span>
+                                    <span class="text-primary-500 font-medium">
+                                        {{ $item->forHumans }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <span class="text-gray-400 text-sm font-medium">
+                        {{ __('No time logged yet!') }}
                     </span>
                     @endif
                 </div>

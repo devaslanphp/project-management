@@ -78,4 +78,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(SocialiteUser::class, 'user_id', 'id');
     }
+
+    public function hours(): HasMany
+    {
+        return $this->hasMany(TicketHour::class, 'user_id', 'id');
+    }
 }
