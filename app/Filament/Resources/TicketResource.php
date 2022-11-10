@@ -166,6 +166,15 @@ class TicketResource extends Resource
                             ->label(__('Ticket content'))
                             ->columnSpan(2),
 
+                        Forms\Components\Grid::make()
+                            ->columnSpan(2)
+                            ->columns(12)
+                            ->schema([
+                                Forms\Components\TimePicker::make('estimation')
+                                    ->label(__('Estimation time'))
+                                    ->columnSpan(2),
+                            ]),
+
                         Forms\Components\Repeater::make('relations')
                             ->itemLabel(function (array $state) {
                                 $ticketRelation = TicketRelation::find($state['id'] ?? 0);

@@ -21,7 +21,7 @@ class Ticket extends Model
     protected $fillable = [
         'name', 'content', 'owner_id', 'responsible_id',
         'status_id', 'project_id', 'code', 'order', 'type_id',
-        'priority_id'
+        'priority_id', 'estimation'
     ];
 
     public static function boot()
@@ -133,6 +133,63 @@ class Ticket extends Model
             get: function () {
                 $seconds = $this->hours->sum('value') * 3600;
                 return CarbonInterval::seconds($seconds)->cascade()->forHumans();
+            }
+        );
+    }
+
+    public function totalLoggedSeconds(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return $this->hours->sum('value') * 3600;
+            }
+        );
+    }
+
+    public function estimationForHumans(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return CarbonInterval::seconds($this->estimationInSeconds)->cascade()->forHumans();
+            }
+        );
+    }
+
+    public function estimationInSeconds(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $time = explode(':', $this->estimation);
+                $hours = intval($time[0]);
+                $minutes = intval($time[1]) / 60;
+                $seconds = intval($time[2]) / 3600;
+                return ($hours + $minutes + $seconds) * 3600;
+            }
+        );
+    }
+
+    public function estimationProgress(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return (($this->totalLoggedSeconds ?? 0) / $this->estimationInSeconds ?? 1) * 100;
+            }
+        );
+    }
+
+    public function estimation(): Attribute
+    {
+        return new Attribute(
+            get: function ($value) {
+                $seconds = $value * 3600;
+                return sprintf('%02d:%02d:%02d', ($seconds / 3600), ($seconds / 60 % 60), $seconds % 60);
+            },
+            set: function ($value) {
+                $time = explode(':', $value);
+                $hours = intval($time[0]);
+                $minutes = intval($time[1]) / 60;
+                $seconds = intval($time[2]) / 3600;
+                return $hours + $minutes + $seconds;
             }
         );
     }

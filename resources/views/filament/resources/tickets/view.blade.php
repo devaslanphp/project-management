@@ -3,7 +3,7 @@
 
     <a href="{{ route('filament.pages.kanban', ['project' => $record->project->id]) }}"
        class="flex items-center gap-1 text-gray-500 hover:text-gray-700 font-medium text-xs">
-        <x-heroicon-o-arrow-left class="w-4 h-4" /> {{ __('Back to kanban board') }}
+        <x-heroicon-o-arrow-left class="w-4 h-4"/> {{ __('Back to kanban board') }}
     </a>
 
     <div class="w-full flex md:flex-row flex-col gap-5">
@@ -57,7 +57,7 @@
                     {{ __('Owner') }}
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
-                    <x-user-avatar :user="$record->owner" />
+                    <x-user-avatar :user="$record->owner"/>
                     {{ $record->owner->name }}
                 </div>
             </div>
@@ -68,19 +68,44 @@
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
                     @if($record->responsible)
-                        <x-user-avatar :user="$record->responsible" />
+                        <x-user-avatar :user="$record->responsible"/>
                     @endif
                     {{ $record->responsible?->name ?? '-' }}
                 </div>
             </div>
 
-            <div class="w-full flex flex-col gap-1 pt-3" wire:ignore>
+            <div class="w-full flex flex-col gap-1 pt-3">
+                <span class="text-gray-500 text-sm font-medium">
+                    {{ __('Estimation') }}
+                </span>
+                <div class="w-full flex items-center gap-1 text-gray-500">
+                    {{ $record->estimationForHumans }}
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col gap-1 pt-3">
                 <span class="text-gray-500 text-sm font-medium">
                     {{ __('Total time logged') }}
                 </span>
-                <div class="w-full flex items-center gap-1 text-gray-500">
-                    {{ $record->totalLoggedHours }}
-                </div>
+                @if($record->estimation)
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-blue-700 dark:text-white">
+                            {{ $record->totalLoggedHours }}
+                        </span>
+                        <span class="text-sm font-medium text-blue-700 dark:text-white">
+                            {{ round($record->estimationProgress) }}%
+                        </span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div class="bg-blue-600 h-2.5 rounded-full"
+                             style="width: {{ $record->estimationProgress }}%">
+                        </div>
+                    </div>
+                @else
+                    <div class="w-full flex items-center gap-1 text-gray-500">
+                        {{ $record->totalLoggedHours }}
+                    </div>
+                @endif
             </div>
 
             <div class="w-full flex flex-col gap-1 pt-3">
@@ -90,7 +115,7 @@
                 <div class="w-full flex items-center gap-1 text-gray-500">
                     @if($record->subscribers->count())
                         @foreach($record->subscribers as $subscriber)
-                            <x-user-avatar :user="$subscriber" />
+                            <x-user-avatar :user="$subscriber"/>
                         @endforeach
                     @else
                         {{ '-' }}
@@ -182,11 +207,12 @@
                     @endif
                 </form>
                 @foreach($record->comments->sortByDesc('created_at') as $comment)
-                    <div class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif ticket-comment">
+                    <div
+                        class="w-full flex flex-col gap-2 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif ticket-comment">
                         <div class="w-full flex justify-between">
                             <span class="flex items-center gap-1 text-gray-500 text-sm">
                                 <span class="font-medium flex items-center gap-1">
-                                    <x-user-avatar :user="$comment->user" />
+                                    <x-user-avatar :user="$comment->user"/>
                                     {{ $comment->user->name }}
                                 </span>
                                 <span class="text-gray-400 px-2">|</span>
@@ -221,7 +247,7 @@
                                  @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
                                 <span class="flex items-center gap-1 text-gray-500 text-sm">
                                     <span class="font-medium flex items-center gap-1">
-                                        <x-user-avatar :user="$activity->user" />
+                                        <x-user-avatar :user="$activity->user"/>
                                         {{ $activity->user->name }}
                                     </span>
                                     <span class="text-gray-400 px-2">|</span>
@@ -230,8 +256,8 @@
                                 </span>
                                 <div class="w-full flex items-center gap-10">
                                     <span class="text-gray-400">{{ $activity->oldStatus->name }}</span>
-                                        <x-heroicon-o-arrow-right class="w-6 h-6" />
-                                        <span style="color: {{ $activity->newStatus->color }}">
+                                    <x-heroicon-o-arrow-right class="w-6 h-6"/>
+                                    <span style="color: {{ $activity->newStatus->color }}">
                                         {{ $activity->newStatus->name }}
                                     </span>
                                 </div>
@@ -252,7 +278,7 @@
                                  @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
                                 <span class="flex items-center gap-1 text-gray-500 text-sm">
                                     <span class="font-medium flex items-center gap-1">
-                                        <x-user-avatar :user="$item->user" />
+                                        <x-user-avatar :user="$item->user"/>
                                         {{ $item->user->name }}
                                     </span>
                                     <span class="text-gray-400 px-2">|</span>
