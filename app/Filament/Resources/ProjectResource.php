@@ -69,7 +69,7 @@ class ProjectResource extends Resource
                                                     ->label(__('Ticket prefix'))
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
-                                                    ->disabled(fn ($record) => $record->tickets()->count() != 0)
+                                                    ->disabled(fn($record) => $record->tickets()->count() != 0)
                                                     ->required()
                                             ]),
 
@@ -103,6 +103,7 @@ class ProjectResource extends Resource
                                         'custom' => __('Custom configuration')
                                     ])
                                     ->default(fn() => 'default')
+                                    ->disabled(fn($record) => $record && $record->tickets()->count())
                                     ->required(),
                             ]),
                     ]),
@@ -115,7 +116,7 @@ class ProjectResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('cover')
                     ->label(__('Cover image'))
-                    ->formatStateUsing(fn ($state) => new HtmlString('
+                    ->formatStateUsing(fn($state) => new HtmlString('
                             <div style=\'background-image: url("' . $state . '")\'
                                  class="w-8 h-8 bg-cover bg-center bg-no-repeat"></div>
                         ')),
@@ -168,14 +169,13 @@ class ProjectResource extends Resource
                     ->label('')
                     ->icon('heroicon-o-adjustments')
                     ->color('warning')
-                    ->url(fn ($record) => route('filament.pages.kanban', ['project' => $record->id])),
+                    ->url(fn($record) => route('filament.pages.kanban', ['project' => $record->id])),
 
                 Tables\Actions\Action::make('favorite')
                     ->label('')
                     ->icon('heroicon-o-star')
-                    ->color(fn ($record) =>
-                        auth()->user()->favoriteProjects()
-                            ->where('projects.id', $record->id)->count() ? 'success' : 'default')
+                    ->color(fn($record) => auth()->user()->favoriteProjects()
+                        ->where('projects.id', $record->id)->count() ? 'success' : 'default')
                     ->action(function ($record) {
                         $projectId = $record->id;
                         $projectFavorite = ProjectFavorite::where('project_id', $projectId)
