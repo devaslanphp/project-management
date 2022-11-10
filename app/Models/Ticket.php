@@ -159,6 +159,9 @@ class Ticket extends Model
     {
         return new Attribute(
             get: function () {
+                if (!$this->estimation) {
+                    return null;
+                }
                 $time = explode(':', $this->estimation);
                 $hours = intval($time[0]);
                 $minutes = intval($time[1]) / 60;
@@ -172,7 +175,7 @@ class Ticket extends Model
     {
         return new Attribute(
             get: function () {
-                return (($this->totalLoggedSeconds ?? 0) / $this->estimationInSeconds ?? 1) * 100;
+                return (($this->totalLoggedSeconds ?? 0) / ($this->estimationInSeconds ?? 1)) * 100;
             }
         );
     }
@@ -181,6 +184,9 @@ class Ticket extends Model
     {
         return new Attribute(
             get: function ($value) {
+                if (!$value) {
+                    return null;
+                }
                 $seconds = $value * 3600;
                 return sprintf('%02d:%02d:%02d', ($seconds / 3600), ($seconds / 60 % 60), $seconds % 60);
             },

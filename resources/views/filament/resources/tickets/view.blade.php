@@ -79,7 +79,11 @@
                     {{ __('Estimation') }}
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
-                    {{ $record->estimationForHumans }}
+                    @if($record->estimation)
+                        {{ $record->estimationForHumans }}
+                    @else
+                        -
+                    @endif
                 </div>
             </div>
 
@@ -87,24 +91,28 @@
                 <span class="text-gray-500 text-sm font-medium">
                     {{ __('Total time logged') }}
                 </span>
-                @if($record->estimation)
-                    <div class="flex justify-between mb-1">
+                @if($record->hours()->count())
+                    @if($record->estimation)
+                        <div class="flex justify-between mb-1">
                         <span class="text-base font-medium text-blue-700 dark:text-white">
                             {{ $record->totalLoggedHours }}
                         </span>
-                        <span class="text-sm font-medium text-blue-700 dark:text-white">
+                            <span class="text-sm font-medium text-blue-700 dark:text-white">
                             {{ round($record->estimationProgress) }}%
                         </span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                        <div class="bg-blue-600 h-2.5 rounded-full"
-                             style="width: {{ $record->estimationProgress }}%">
                         </div>
-                    </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div class="bg-blue-600 h-2.5 rounded-full"
+                                 style="width: {{ $record->estimationProgress }}%">
+                            </div>
+                        </div>
+                    @else
+                        <div class="w-full flex items-center gap-1 text-gray-500">
+                            {{ $record->totalLoggedHours }}
+                        </div>
+                    @endif
                 @else
-                    <div class="w-full flex items-center gap-1 text-gray-500">
-                        {{ $record->totalLoggedHours }}
-                    </div>
+                    -
                 @endif
             </div>
 
