@@ -181,6 +181,7 @@ class TicketResource extends Resource
                             ->collapsible()
                             ->collapsed()
                             ->orderable()
+                            ->defaultItems(0)
                             ->schema([
                                 Forms\Components\Grid::make()
                                     ->schema([
