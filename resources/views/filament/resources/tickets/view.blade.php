@@ -192,17 +192,17 @@
         <x-filament::card class="md:w-2/3 w-full flex flex-col">
             <div class="w-full flex items-center gap-2">
                 <button wire:click="selectTab('comments')"
-                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500 flex items-center
+                        class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500 flex items-center
                         gap-1 @if($tab === 'comments') border-primary-500 text-primary-500 @else text-gray-700 @endif">
                     {{ __('Comments') }}
                 </button>
                 <button wire:click="selectTab('activities')"
-                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500
+                        class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
                         @if($tab === 'activities') border-primary-500 text-primary-500 @else text-gray-700 @endif">
                     {{ __('Activities') }}
                 </button>
                 <button wire:click="selectTab('time')"
-                        class="text-xl p-3 border-b-2 border-transparent hover:border-primary-500
+                        class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
                         @if($tab === 'time') border-primary-500 text-primary-500 @else text-gray-700 @endif">
                     {{ __('Time logged') }}
                 </button>
