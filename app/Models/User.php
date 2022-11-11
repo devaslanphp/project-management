@@ -5,6 +5,7 @@ namespace App\Models;
 use Devaslanphp\FilamentAvatar\Core\HasAvatarUrl;
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -82,5 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hours(): HasMany
     {
         return $this->hasMany(TicketHour::class, 'user_id', 'id');
+    }
+
+    public function totalLoggedInHours(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return $this->hours->sum('value');
+            }
+        );
     }
 }

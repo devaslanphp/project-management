@@ -146,6 +146,15 @@ class Ticket extends Model
         );
     }
 
+    public function totalLoggedInHours(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return $this->hours->sum('value');
+            }
+        );
+    }
+
     public function estimationForHumans(): Attribute
     {
         return new Attribute(
