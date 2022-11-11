@@ -26,6 +26,7 @@ class LatestTickets extends BaseWidget
     protected function getTableQuery(): Builder
     {
         return Ticket::query()
+            ->limit(5)
             ->where(function ($query) {
                 return $query->where('owner_id', auth()->user()->id)
                     ->orWhere('responsible_id', auth()->user()->id)
@@ -37,6 +38,11 @@ class LatestTickets extends BaseWidget
                     });
             })
             ->latest();
+    }
+
+    protected function isTablePaginationEnabled(): bool
+    {
+        return false;
     }
 
     protected function getTableColumns(): array
@@ -65,9 +71,7 @@ class LatestTickets extends BaseWidget
                         . '</div>
                         </div>' : '') . '
                     </div>
-                '))
-                ->sortable()
-                ->searchable(),
+                ')),
 
             Tables\Columns\TextColumn::make('status.name')
                 ->label(__('Status'))
@@ -77,15 +81,11 @@ class LatestTickets extends BaseWidget
                                     style="background-color: ' . $record->status->color . '"
                                     title="' . $record->status->name . '"></span>
                             </div>
-                        '))
-                ->sortable()
-                ->searchable(),
+                        ')),
 
             Tables\Columns\TextColumn::make('type.name')
                 ->label(__('Type'))
-                ->formatStateUsing(fn($record) => view('components.ticket-type', ['type' => $record->type]))
-                ->sortable()
-                ->searchable(),
+                ->formatStateUsing(fn($record) => view('components.ticket-type', ['type' => $record->type])),
 
             Tables\Columns\TextColumn::make('priority.name')
                 ->label(__('Priority'))
@@ -95,21 +95,7 @@ class LatestTickets extends BaseWidget
                                     style="background-color: ' . $record->priority->color . '"
                                     title="' . $record->priority->name . '"></span>
                             </div>
-                        '))
-                ->sortable()
-                ->searchable(),
-        ];
-    }
-
-    protected function getTableActions(): array
-    {
-        return [
-            Tables\Actions\Action::make('view')
-                ->label(__('View'))
-                ->icon('heroicon-s-eye')
-                ->color('secondary')
-                ->link()
-                ->url(fn ($record) => route('filament.resources.tickets.view', $record), true)
+                        ')),
         ];
     }
 }

@@ -23,9 +23,15 @@ class LatestProjects extends BaseWidget
         return auth()->user()->can('List projects');
     }
 
+    protected function isTablePaginationEnabled(): bool
+    {
+        return false;
+    }
+
     protected function getTableQuery(): Builder
     {
         return Project::query()
+            ->limit(5)
             ->where(function ($query) {
                 return $query->where('owner_id', auth()->user()->id)
                     ->orWhereHas('users', function ($query) {
@@ -38,22 +44,18 @@ class LatestProjects extends BaseWidget
     protected function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('cover')
-                ->label(__('Cover image'))
-                ->formatStateUsing(fn($state) => new HtmlString('
-                            <div style=\'background-image: url("' . $state . '")\'
-                                 class="w-8 h-8 bg-cover bg-center bg-no-repeat"></div>
-                        ')),
-
             Tables\Columns\TextColumn::make('name')
                 ->label(__('Project name'))
-                ->sortable()
-                ->searchable(),
+                ->formatStateUsing(fn($record) => new HtmlString('
+                            <div class="w-full flex items-center gap-2">
+                                <div style=\'background-image: url("' . $record->cover . '")\'
+                                 class="w-8 h-8 bg-cover bg-center bg-no-repeat"></div>
+                                ' . $record->name . '
+                            </div>
+                        ')),
 
             Tables\Columns\TextColumn::make('owner.name')
-                ->label(__('Project owner'))
-                ->sortable()
-                ->searchable(),
+                ->label(__('Project owner')),
 
             Tables\Columns\TextColumn::make('status.name')
                 ->label(__('Project status'))
@@ -63,31 +65,7 @@ class LatestProjects extends BaseWidget
                                     style="background-color: ' . $record->status->color . '"></span>
                                 <span>' . $record->status->name . '</span>
                             </div>
-                        '))
-                ->sortable()
-                ->searchable(),
-
-            Tables\Columns\TagsColumn::make('users.name')
-                ->label(__('Affected users'))
-                ->limit(2),
-        ];
-    }
-
-    protected function getTableActions(): array
-    {
-        return [
-            Tables\Actions\Action::make('kanban')
-                ->label('')
-                ->icon('heroicon-o-adjustments')
-                ->color('warning')
-                ->url(fn ($record) => route('filament.pages.kanban', ['project' => $record->id]), true),
-
-            Tables\Actions\Action::make('view')
-                ->label(__('View'))
-                ->icon('heroicon-s-eye')
-                ->color('secondary')
-                ->link()
-                ->url(fn ($record) => route('filament.resources.projects.view', $record), true)
+                        ')),
         ];
     }
 }
