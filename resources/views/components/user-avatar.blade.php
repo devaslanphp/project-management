@@ -27,7 +27,7 @@
                 </p>
                 <p class="mb-4 text-sm font-light">
                     {{ __('Member since') }}
-                    <a class="text-blue-600 dark:text-blue-500 hover:underline">
+                    <a class="text-blue-600 dark:text-blue-500">
                         {{ $user->created_at->format('Y-m-d') }}
                     </a>
                 </p>
