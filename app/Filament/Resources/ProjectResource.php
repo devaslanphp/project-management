@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Exports\ProjectHoursExport;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
@@ -16,6 +17,8 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectResource extends Resource
 {
@@ -165,6 +168,18 @@ class ProjectResource extends Resource
                     ->options(fn() => ProjectStatus::all()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
+                Tables\Actions\Action::make('exportLogHours')
+                    ->label('')
+                    ->icon('heroicon-o-document-download')
+                    ->color('warning')
+                    ->action(fn($record) => Excel::download(
+                        new ProjectHoursExport($record),
+                        'time_' . Str::slug($record->name) . '.csv',
+                        \Maatwebsite\Excel\Excel::CSV,
+                        ['Content-Type' => 'text/csv']
+                    )
+                    ),
+
                 Tables\Actions\Action::make('kanban')
                     ->label('')
                     ->icon('heroicon-o-adjustments')

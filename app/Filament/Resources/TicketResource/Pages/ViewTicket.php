@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TicketResource\Pages;
 
+use App\Exports\TicketHoursExport;
 use App\Filament\Resources\TicketResource;
 use App\Models\TicketComment;
 use App\Models\TicketHour;
@@ -15,6 +16,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ViewTicket extends ViewRecord implements HasForms
 {
@@ -48,7 +50,7 @@ class ViewTicket extends ViewRecord implements HasForms
                 ->modalHeading(__('Log worked time'))
                 ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
                 ->modalButton(__('Log'))
-                ->visible(fn () => in_array(
+                ->visible(fn() => in_array(
                     auth()->user()->id,
                     [$this->record->owner_id, $this->record->responsible_id]
                 ))
@@ -71,6 +73,19 @@ class ViewTicket extends ViewRecord implements HasForms
                     $this->record->refresh();
                     $this->notify('success', __('Time logged into ticket'));
                 }),
+            Actions\Action::make('exportLogHours')
+                ->label(__('Export time logged'))
+                ->button()
+                ->icon('heroicon-o-document-download')
+                ->color('warning')
+                ->visible(fn() => $this->record->hours()->count())
+                ->action(fn() => Excel::download(
+                    new TicketHoursExport($this->record),
+                    'time_' . str_replace('-', '_', $this->record->code) . '.csv',
+                    \Maatwebsite\Excel\Excel::CSV,
+                    ['Content-Type' => 'text/csv']
+                )
+                ),
             Actions\Action::make('toggleSubscribe')
                 ->label(
                     fn() => $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
