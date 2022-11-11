@@ -41,51 +41,6 @@ class ViewTicket extends ViewRecord implements HasForms
     protected function getActions(): array
     {
         return [
-            Actions\Action::make('logHours')
-                ->label(__('Log time'))
-                ->button()
-                ->icon('heroicon-o-clock')
-                ->color('warning')
-                ->modalWidth('sm')
-                ->modalHeading(__('Log worked time'))
-                ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
-                ->modalButton(__('Log'))
-                ->visible(fn() => in_array(
-                    auth()->user()->id,
-                    [$this->record->owner_id, $this->record->responsible_id]
-                ))
-                ->form([
-                    TimePicker::make('time')
-                        ->label(__('Time to log'))
-                        ->required()
-                ])
-                ->action(function (Collection $records, array $data): void {
-                    $time = explode(':', $data['time']);
-                    $hours = intval($time[0]);
-                    $minutes = intval($time[1]) / 60;
-                    $seconds = intval($time[2]) / 3600;
-                    $value = $hours + $minutes + $seconds;
-                    TicketHour::create([
-                        'ticket_id' => $this->record->id,
-                        'user_id' => auth()->user()->id,
-                        'value' => $value
-                    ]);
-                    $this->record->refresh();
-                    $this->notify('success', __('Time logged into ticket'));
-                }),
-            Actions\Action::make('exportLogHours')
-                ->label(__('Export time logged'))
-                ->button()
-                ->icon('heroicon-o-document-download')
-                ->color('warning')
-                ->visible(fn() => $this->record->hours()->count())
-                ->action(fn() => Excel::download(
-                    new TicketHoursExport($this->record),
-                    'time_' . str_replace('-', '_', $this->record->code) . '.csv',
-                    \Maatwebsite\Excel\Excel::CSV,
-                    ['Content-Type' => 'text/csv']
-                )
-                ),
             Actions\Action::make('toggleSubscribe')
                 ->label(
                     fn() => $this->record->subscribers()->where('users.id', auth()->user()->id)->count() ?
@@ -125,6 +80,61 @@ class ViewTicket extends ViewRecord implements HasForms
                     'url' => route('filament.resources.tickets.share', $this->record->code)
                 ])),
             Actions\EditAction::make(),
+            Actions\ActionGroup::make([
+                Actions\Action::make('logHours')
+                    ->label(__('Log time'))
+                    ->icon('heroicon-o-clock')
+                    ->color('warning')
+                    ->modalWidth('sm')
+                    ->modalHeading(__('Log worked time'))
+                    ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
+                    ->modalButton(__('Log'))
+                    ->visible(fn() => in_array(
+                        auth()->user()->id,
+                        [$this->record->owner_id, $this->record->responsible_id]
+                    ))
+                    ->form([
+                        TimePicker::make('time')
+                            ->label(__('Time to log'))
+                            ->required()
+                    ])
+                    ->action(function (Collection $records, array $data): void {
+                        $time = explode(':', $data['time']);
+                        $hours = intval($time[0]);
+                        $minutes = intval($time[1]) / 60;
+                        $seconds = intval($time[2]) / 3600;
+                        $value = $hours + $minutes + $seconds;
+                        TicketHour::create([
+                            'ticket_id' => $this->record->id,
+                            'user_id' => auth()->user()->id,
+                            'value' => $value
+                        ]);
+                        $this->record->refresh();
+                        $this->notify('success', __('Time logged into ticket'));
+                    }),
+                Actions\Action::make('exportLogHours')
+                    ->label(__('Export time logged'))
+                    ->icon('heroicon-o-document-download')
+                    ->color('warning')
+                    ->visible(
+                        fn() => $this->record->watchers->where('id', auth()->user()->id)->count()
+                            && $this->record->hours()->count()
+                    )
+                    ->action(fn() => Excel::download(
+                        new TicketHoursExport($this->record),
+                        'time_' . str_replace('-', '_', $this->record->code) . '.csv',
+                        \Maatwebsite\Excel\Excel::CSV,
+                        ['Content-Type' => 'text/csv']
+                    )),
+            ])
+                ->visible(fn() => (in_array(
+                        auth()->user()->id,
+                        [$this->record->owner_id, $this->record->responsible_id]
+                    )) || (
+                        $this->record->watchers->where('id', auth()->user()->id)->count()
+                        && $this->record->hours()->count()
+                    ))
+                ->color('secondary'),
         ];
     }
 
