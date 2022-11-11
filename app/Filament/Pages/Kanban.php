@@ -9,9 +9,11 @@ use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Actions\Action;
@@ -19,6 +21,7 @@ use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
+use Closure;
 
 class Kanban extends Page implements HasForms
 {
@@ -39,6 +42,7 @@ class Kanban extends Page implements HasForms
     public $users = [];
     public $types = [];
     public $priorities = [];
+    public $includeNotAffectedTickets = false;
 
     protected $listeners = [
         'recordUpdated'
@@ -77,6 +81,10 @@ class Kanban extends Page implements HasForms
                         ->label(__('Ticket priorities'))
                         ->multiple()
                         ->options(TicketPriority::all()->pluck('name', 'id')),
+
+                    Toggle::make('includeNotAffectedTickets')
+                        ->label(__('Include not affected tickets'))
+                        ->columnSpan(2),
 
                     Placeholder::make('search')
                         ->label(new HtmlString('&nbsp;'))
@@ -178,6 +186,9 @@ class Kanban extends Page implements HasForms
         }
         if (sizeof($this->priorities)) {
             $query->whereIn('priority_id', $this->priorities);
+        }
+        if ($this->includeNotAffectedTickets) {
+            $query->orWhereNull('responsible_id');
         }
         $query->where(function ($query) {
             return $query->where('owner_id', auth()->user()->id)
