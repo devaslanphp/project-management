@@ -182,5 +182,7 @@
     "You have a pending email verification for :email.": "You have a pending email verification for :email.",
     "You subscribed to the ticket": "You subscribed to the ticket",
     "You unsubscribed from the ticket": "You unsubscribed from the ticket",
-    "Save": "Save"
+    "Save": "Save",
+    "Contributors": "Contributors",
+    "Contributor": "Contributor"
 }
