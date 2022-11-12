@@ -76,7 +76,7 @@ class ManageGeneralSettings extends SettingsPage
                                         ->label(__('Site language'))
                                         ->helperText(__('The language used by the platform.'))
                                         ->searchable()
-                                        ->options(config('system.locales.list')),
+                                        ->options($this->getLanguages()),
                                 ]),
                         ]),
                 ]),
@@ -86,5 +86,12 @@ class ManageGeneralSettings extends SettingsPage
     protected function getSaveFormAction(): Action
     {
         return parent::getSaveFormAction()->label(__('Save'));
+    }
+
+    private function getLanguages(): array
+    {
+        $languages = config('system.locales.list');
+        asort($languages);
+        return $languages;
     }
 }
