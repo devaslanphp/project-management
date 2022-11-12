@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\UserCreatedNotification;
 use Devaslanphp\FilamentAvatar\Core\HasAvatarUrl;
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -14,6 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use JeffGreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -29,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'creation_token'
     ];
 
     /**
@@ -49,6 +52,20 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (User $item) {
+            $item->password = bcrypt(uniqid());
+            $item->creation_token = Uuid::uuid4()->toString();
+        });
+
+        static::created(function (User $item) {
+            $item->notify(new UserCreatedNotification($item));
+        });
+    }
 
     public function projectsOwning(): HasMany
     {

@@ -11,6 +11,7 @@ use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Support\HtmlString;
 
 class UserResource extends Resource
 {
@@ -49,18 +50,11 @@ class UserResource extends Resource
                                     ->email()
                                     ->required()
                                     ->rule(
-                                        fn($record) =>
-                                            'unique:users,email,'
+                                        fn($record) => 'unique:users,email,'
                                             . ($record ? $record->id : 'NULL')
                                             . ',id,deleted_at,NULL'
                                     )
                                     ->maxLength(255),
-
-                                Forms\Components\TextInput::make('password')
-                                    ->label(__('Password'))
-                                    ->password()
-                                    ->required(fn($livewire) => $livewire instanceof CreateRecord)
-                                    ->visible(fn($livewire) => $livewire instanceof CreateRecord),
 
                                 Forms\Components\CheckboxList::make('roles')
                                     ->label(__('Permission roles'))
