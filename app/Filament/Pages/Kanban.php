@@ -59,6 +59,11 @@ class Kanban extends Page implements HasForms
         $this->form->fill();
     }
 
+    protected static function getNavigationLabel(): string
+    {
+        return __('Kanban');
+    }
+
     protected function getFormSchema(): array
     {
         return [
