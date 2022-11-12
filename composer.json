@@ -23,7 +23,9 @@
         "protonemedia/laravel-verify-new-email": "^1.6",
         "psr/simple-cache": "^1.0",
         "pusher/pusher-php-server": "^7.2",
-        "spatie/laravel-permission": "^5.5"
+        "spatie/laravel-permission": "^5.5",
+        "stichoza/google-translate-php": "^4.1",
+        "ext-iconv": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
