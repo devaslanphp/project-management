@@ -16,6 +16,11 @@ class ManageGeneralSettings extends SettingsPage
 
     protected static string $settings = GeneralSettings::class;
 
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->can('Manage general settings');
+    }
+
     protected static function getNavigationLabel(): string
     {
         return __('General');

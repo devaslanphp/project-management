@@ -24,6 +24,10 @@ class PermissionsSeeder extends Seeder
         'View', 'Create', 'Update', 'Delete'
     ];
 
+    private array $extraPermissions = [
+        'Manage general settings'
+    ];
+
     private string $defaultRole = 'Default role';
 
     /**
@@ -47,6 +51,12 @@ class PermissionsSeeder extends Seeder
                     'name' => $action . ' ' . $singular
                 ]);
             }
+        }
+
+        foreach ($this->extraPermissions as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission
+            ]);
         }
 
         // Create default role
