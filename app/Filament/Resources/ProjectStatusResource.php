@@ -24,9 +24,14 @@ class ProjectStatusResource extends Resource
         return __('Project statuses');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
-        return __('Configuration');
+        return __('Referential');
     }
 
     public static function form(Form $form): Form

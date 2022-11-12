@@ -26,6 +26,11 @@ class UserResource extends Resource
         return __('Users');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
         return __('Permissions');

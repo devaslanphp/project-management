@@ -7,8 +7,11 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\Actions\Action;
 use Filament\Pages\SettingsPage;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ManageGeneralSettings extends SettingsPage
 {
@@ -19,6 +22,11 @@ class ManageGeneralSettings extends SettingsPage
     protected static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->can('Manage general settings');
+    }
+
+    protected function getHeading(): string|Htmlable
+    {
+        return __('Manage general settings');
     }
 
     protected static function getNavigationLabel(): string
@@ -40,7 +48,7 @@ class ManageGeneralSettings extends SettingsPage
                         ->schema([
                             FileUpload::make('site_logo')
                                 ->label(__('Site logo'))
-                                ->helperText(__('This is the plaform logo (e.g. Used in site favicon)'))
+                                ->helperText(__('This is the platform logo (e.g. Used in site favicon)'))
                                 ->image()
                                 ->columnSpan(1)
                                 ->maxSize(config('system.max_file_size')),
@@ -63,9 +71,20 @@ class ManageGeneralSettings extends SettingsPage
                                         ->label(__('Enable social login?'))
                                         ->helperText(__('If enabled, configured users can login via their
                                                      social accounts.')),
+
+                                    Select::make('site_language')
+                                        ->label(__('Site language'))
+                                        ->helperText(__('The language used by the platform.'))
+                                        ->searchable()
+                                        ->options(config('system.locales.list')),
                                 ]),
                         ]),
                 ]),
         ];
+    }
+
+    protected function getSaveFormAction(): Action
+    {
+        return parent::getSaveFormAction()->label(__('Save'));
     }
 }

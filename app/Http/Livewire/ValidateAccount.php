@@ -40,7 +40,7 @@ class ValidateAccount extends Component implements HasForms
                 ->password()
                 ->required()
                 ->label(__('Password confirmation'))
-                ->placeholder(__('Confirm your choosen password')),
+                ->placeholder(__('Confirm your chosen password')),
         ];
     }
 

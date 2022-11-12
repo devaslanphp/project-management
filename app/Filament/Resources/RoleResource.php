@@ -25,6 +25,11 @@ class RoleResource extends Resource
         return __('Roles');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
         return __('Permissions');

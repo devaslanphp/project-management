@@ -33,6 +33,11 @@ class TicketResource extends Resource
         return __('Tickets');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
         return __('Management');

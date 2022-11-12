@@ -2,6 +2,15 @@
 
 @import './kanban';
 
+.filament-header-heading {
+    display: block;
+    text-transform: lowercase;
+}
+
+.filament-header-heading:first-letter {
+    text-transform: uppercase;
+}
+
 .ticket-comment {
 
     .actions {

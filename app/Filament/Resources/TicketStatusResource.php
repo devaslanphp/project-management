@@ -24,9 +24,14 @@ class TicketStatusResource extends Resource
         return __('Ticket statuses');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
-        return __('Configuration');
+        return __('Referential');
     }
 
     public static function form(Form $form): Form

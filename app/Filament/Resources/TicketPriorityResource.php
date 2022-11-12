@@ -27,9 +27,14 @@ class TicketPriorityResource extends Resource
         return __('Ticket priorities');
     }
 
+    public static function getPluralLabel(): ?string
+    {
+        return static::getNavigationLabel();
+    }
+
     protected static function getNavigationGroup(): ?string
     {
-        return __('Configuration');
+        return __('Referential');
     }
 
     public static function form(Form $form): Form
@@ -52,7 +57,7 @@ class TicketPriorityResource extends Resource
                                 Forms\Components\Checkbox::make('is_default')
                                     ->label(__('Default priority'))
                                     ->helperText(
-                                        __('If checked, this priority will be automatically affected to new projects')
+                                        __('If checked, this priority will be automatically affected to new tickets')
                                     ),
                             ])
                     ])

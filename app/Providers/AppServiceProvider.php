@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Settings\GeneralSettings;
 use Filament\Facades\Filament;
+use Filament\Navigation\UserMenuItem;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Config;
@@ -64,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
         // Register navigation groups
         Filament::registerNavigationGroups([
             __('Management'),
-            __('Configuration'),
+            __('Referential'),
             __('Security'),
             __('Settings'),
         ]);
@@ -74,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
     {
         try {
             $settings = app(GeneralSettings::class);
+            Config::set('app.locale', $settings->site_language ?? config('app.fallback_locale'));
             Config::set('app.name', $settings->site_name ?? env('APP_NAME'));
             Config::set('filament.brand', $settings->site_name ?? env('APP_NAME'));
             Config::set(

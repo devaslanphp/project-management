@@ -2,6 +2,18 @@
 
 return [
 
+    // Locales
+    'locales' => [
+
+        // Locales list
+        'list' => [
+            'en' => 'English',
+            'fr' => 'Français',
+            'ar' => 'العربية'
+        ],
+
+    ],
+
     // Projects configuration
     'projects' => [
 
