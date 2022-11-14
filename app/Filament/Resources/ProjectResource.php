@@ -77,7 +77,10 @@ class ProjectResource extends Resource
                                                     ->label(__('Ticket prefix'))
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
-                                                    ->disabled(fn($record) => $record->tickets()->count() != 0)
+                                                    ->disabled(
+                                                        fn($record) =>
+                                                            !$record || $record->tickets()->count() != 0
+                                                    )
                                                     ->required()
                                             ]),
 
