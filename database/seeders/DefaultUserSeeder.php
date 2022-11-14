@@ -15,10 +15,10 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
-        if (User::where('email', 'eloufirhatim@gmail.com')->count() == 0) {
+        if (User::where('email', 'john.doe@helper.app')->count() == 0) {
             User::create([
-                'name' => 'EL OUFIR Hatim',
-                'email' => 'eloufirhatim@gmail.com',
+                'name' => 'John DOE',
+                'email' => 'john.doe@helper.app',
                 'password' => '$2a$12$h/.Jq3QGHYoJBLBo8hw1mOtJOmtU.BVJFbBWFC7XAVXmE5gOjdXV.', // Passw@rd
                 'email_verified_at' => now()
             ]);
