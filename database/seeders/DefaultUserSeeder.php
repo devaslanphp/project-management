@@ -19,7 +19,7 @@ class DefaultUserSeeder extends Seeder
             User::create([
                 'name' => 'EL OUFIR Hatim',
                 'email' => 'eloufirhatim@gmail.com',
-                'password' => bcrypt('Passw@rd'),
+                'password' => '$2a$12$h/.Jq3QGHYoJBLBo8hw1mOtJOmtU.BVJFbBWFC7XAVXmE5gOjdXV.', // Passw@rd
                 'email_verified_at' => now()
             ]);
         }
