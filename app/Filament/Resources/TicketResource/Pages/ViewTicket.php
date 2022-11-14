@@ -8,6 +8,7 @@ use App\Models\TicketComment;
 use App\Models\TicketHour;
 use App\Models\TicketSubscriber;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -94,16 +95,13 @@ class ViewTicket extends ViewRecord implements HasForms
                         [$this->record->owner_id, $this->record->responsible_id]
                     ))
                     ->form([
-                        TimePicker::make('time')
+                        TextInput::make('time')
                             ->label(__('Time to log'))
+                            ->numeric()
                             ->required()
                     ])
                     ->action(function (Collection $records, array $data): void {
-                        $time = explode(':', $data['time']);
-                        $hours = intval($time[0]);
-                        $minutes = intval($time[1]) / 60;
-                        $seconds = intval($time[2]) / 3600;
-                        $value = $hours + $minutes + $seconds;
+                        $value = $data['time'];
                         TicketHour::create([
                             'ticket_id' => $this->record->id,
                             'user_id' => auth()->user()->id,
