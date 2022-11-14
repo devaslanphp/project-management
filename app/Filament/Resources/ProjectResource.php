@@ -79,7 +79,7 @@ class ProjectResource extends Resource
                                                     ->columnSpan(2)
                                                     ->disabled(
                                                         fn($record) =>
-                                                            !$record || $record->tickets()->count() != 0
+                                                            $record && $record->tickets()->count() != 0
                                                     )
                                                     ->required()
                                             ]),
