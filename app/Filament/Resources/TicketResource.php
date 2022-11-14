@@ -199,11 +199,20 @@ class TicketResource extends Resource
                             ->defaultItems(0)
                             ->schema([
                                 Forms\Components\Grid::make()
+                                    ->columns(3)
                                     ->schema([
+                                        Forms\Components\Select::make('type')
+                                            ->label(__('Relation type'))
+                                            ->required()
+                                            ->searchable()
+                                            ->options(config('system.tickets.relations.list'))
+                                            ->default(fn() => config('system.tickets.relations.default')),
+
                                         Forms\Components\Select::make('relation_id')
                                             ->label(__('Related ticket'))
                                             ->required()
                                             ->searchable()
+                                            ->columnSpan(2)
                                             ->options(function ($livewire) {
                                                 $query = Ticket::query();
                                                 if ($livewire instanceof EditRecord && $livewire->record) {
@@ -211,13 +220,6 @@ class TicketResource extends Resource
                                                 }
                                                 return $query->get()->pluck('name', 'id')->toArray();
                                             }),
-
-                                        Forms\Components\Select::make('type')
-                                            ->label(__('Relation type'))
-                                            ->required()
-                                            ->searchable()
-                                            ->options(config('system.tickets.relations.list'))
-                                            ->default(fn() => config('system.tickets.relations.default')),
                                     ]),
                             ]),
                     ]),
