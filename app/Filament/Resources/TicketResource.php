@@ -175,8 +175,9 @@ class TicketResource extends Resource
                             ->columnSpan(2)
                             ->columns(12)
                             ->schema([
-                                Forms\Components\TimePicker::make('estimation')
+                                Forms\Components\TextInput::make('estimation')
                                     ->label(__('Estimation time'))
+                                    ->numeric()
                                     ->columnSpan(2),
                             ]),
 

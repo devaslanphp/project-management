@@ -171,11 +171,7 @@ class Ticket extends Model
                 if (!$this->estimation) {
                     return null;
                 }
-                $time = explode(':', $this->estimation);
-                $hours = intval($time[0]);
-                $minutes = intval($time[1]) / 60;
-                $seconds = intval($time[2]) / 3600;
-                return ($hours + $minutes + $seconds) * 3600;
+                return $this->estimation * 3600;
             }
         );
     }
