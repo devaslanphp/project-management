@@ -52,7 +52,11 @@ class Kanban extends Page implements HasForms
     {
         if (request()->has('project')) {
             $this->project = Project::find(request()->get('project'));
-            if (!$this->project->users->where('id', auth()->user()->id)->count()) {
+            if (
+                $this->project->owner_id != auth()->user()->id
+                &&
+                !$this->project->users->where('id', auth()->user()->id)->count()
+            ) {
                 abort(403);
             }
         }
