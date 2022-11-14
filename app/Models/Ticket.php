@@ -184,28 +184,4 @@ class Ticket extends Model
             }
         );
     }
-
-    public function estimation(): Attribute
-    {
-        return new Attribute(
-            get: function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                $seconds = $value * 3600;
-                return sprintf('%02d:%02d:%02d', ($seconds / 3600), ($seconds / 60 % 60), $seconds % 60);
-            },
-            set: function ($value) {
-                if ($value) {
-                    $time = explode(':', $value);
-                    $hours = intval($time[0]);
-                    $minutes = intval($time[1]) / 60;
-                    $seconds = intval($time[2]) / 3600;
-                    return $hours + $minutes + $seconds;
-                } else {
-                    return null;
-                }
-            }
-        );
-    }
 }
