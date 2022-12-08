@@ -14,7 +14,7 @@ This documentation will allow you to install and configure the Helper platform o
 
 ## Documentation
 
-Full documentation can be viewed online: [https://project-helper.com/docs](https://project-helper.com/docs)
+Full documentation can be viewed online: [https://project-helper.net/docs](https://project-helper.net/docs)
 
 ## Online Demo
 
