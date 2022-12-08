@@ -18,4 +18,4 @@ Full documentation can be viewed online: [https://project-helper.com/docs](https
 
 ## Online Demo
 
-You can see the application in action here: [https://project-helper.com](https://project-helper.com)
+You can see the application in action here: [https://project-helper.net](https://project-helper.net)
