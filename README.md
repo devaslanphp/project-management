@@ -25,15 +25,43 @@
 
 ![logo](readme-logo.png)
 
-> First of all, thank you for choosing the **Helper** platform.
+Helper, is a great tool if you want to manage your projects, tickets and be here for your clients
 
-This documentation will allow you to install and configure the Helper platform on a **production** environment but also on a **development** environment if you want to evolve it according to your needs.
+It comes also with more than 60 languages ready to use.
+
+All this made with the best technologies.
 
 ## Prerequisites
 
 - PHP 8+
 - MySQL 8+
 - [Pusher](https://pusher.com/) account
+
+## Screenshots
+
+<div>
+    <img src="github-contents/1.png" width="20%"></img> 
+    <img src="github-contents/2.png" width="20%"></img> 
+    <img src="github-contents/3.png" width="20%"></img> 
+    <img src="github-contents/4.png" width="20%"></img> 
+    <img src="github-contents/5.png" width="20%"></img> 
+    <img src="github-contents/6.png" width="20%"></img> 
+    <img src="github-contents/7.png" width="20%"></img> 
+    <img src="github-contents/8.png" width="20%"></img> 
+    <img src="github-contents/9.png" width="20%"></img> 
+    <img src="github-contents/10.png" width="20%"></img> 
+    <img src="github-contents/11.png" width="20%"></img> 
+    <img src="github-contents/12.png" width="20%"></img> 
+    <img src="github-contents/13.png" width="20%"></img> 
+    <img src="github-contents/14.png" width="20%"></img> 
+    <img src="github-contents/15.png" width="20%"></img> 
+    <img src="github-contents/16.png" width="20%"></img> 
+    <img src="github-contents/17.png" width="20%"></img> 
+    <img src="github-contents/18.png" width="20%"></img> 
+    <img src="github-contents/19.png" width="20%"></img> 
+    <img src="github-contents/20.png" width="20%"></img> 
+    <img src="github-contents/21.png" width="20%"></img> 
+</div>
 
 ## Documentation
 
