@@ -1,6 +1,17 @@
 <x-filament::page>
 
-    <div class="relative gantt" id="gantt-chart"></div>
+    <x-filament::card>
+
+        <form wire:submit.prevent="filter" class="flex items-center gap-2 min-w-[16rem]">
+            {{ $this->form }}
+            <button type="submit"
+                    class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
+                <x-heroicon-o-search class="w-6 h-6" />
+            </button>
+        </form>
+
+        <div class="relative gantt" id="gantt-chart" wire:ignore></div>
+    </x-filament::card>
 
 </x-filament::page>
 
@@ -35,5 +46,11 @@
         g.setScrollTo(new Date(2022, 2, 26)); // Scroll to first object
         // Draw gantt chart
         g.Draw();
+
+        window.addEventListener('projectChanged', (e) => {
+            g.ClearTasks();
+            JSGantt.parseJSON('/gantt-' + e.detail.project + '.json', g);
+            g.Draw();
+        });
     </script>
 @endpush
