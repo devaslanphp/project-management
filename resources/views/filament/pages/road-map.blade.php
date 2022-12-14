@@ -35,6 +35,15 @@
             vShowEndWeekDate: 0,
             vUseSingleCell: 10000,
             vFormatArr: ['Day', 'Week', 'Month'],
+            vEvents: {
+                taskname: (task) => {
+                    const data = task.getAllData();
+                    const meta = data.pDataObject.meta;
+                    if (meta.epic) {
+                        console.log(meta);
+                    }
+                }
+            }
         });
         // Parse json
         JSGantt.parseJSON('{{ asset('gantt.json') }}', g);

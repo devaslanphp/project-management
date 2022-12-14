@@ -15,7 +15,11 @@
         "pDepend": "",
         "pCaption": "",
         "pNotes": "",
-        "pBarText": ""
+        "pBarText": "",
+        "meta": {
+            "id": 1,
+            "epic": true
+        }
     },
     {
         "pID": 341,
@@ -33,7 +37,11 @@
         "pDepend": "",
         "pCaption": "",
         "pNotes": "",
-        "pBarText": ""
+        "pBarText": "",
+        "meta": {
+            "id": 2,
+            "epic": false
+        }
     },
     {
         "pID": 342,
@@ -51,7 +59,11 @@
         "pDepend": "",
         "pCaption": "",
         "pNotes": "",
-        "pBarText": ""
+        "pBarText": "",
+        "meta": {
+            "id": 3,
+            "epic": false
+        }
     },
     {
         "pID": 343,
@@ -69,7 +81,11 @@
         "pDepend": "",
         "pCaption": "",
         "pNotes": "",
-        "pBarText": ""
+        "pBarText": "",
+        "meta": {
+            "id": 4,
+            "epic": false
+        }
     },
     {
         "pID": 344,
@@ -87,6 +103,10 @@
         "pDepend": "",
         "pCaption": "",
         "pNotes": "",
-        "pBarText": ""
+        "pBarText": "",
+        "meta": {
+            "id": 5,
+            "epic": false
+        }
     }
 ]
