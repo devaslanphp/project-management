@@ -330,10 +330,10 @@ span.gfoldercollapse {
 .gtaskpurple,
 .gtaskpink,
 .g-custom-task{
-    height: 13px;
+    height: 25px;
     filter: alpha(opacity=90);
     opacity: 0.9;
-    margin-top: 1px;
+    margin-top: -6px;
 }
 
 /* Task bars - ggroupblack is set as the default class on the task if it is undefined */
@@ -447,7 +447,7 @@ span.gfoldercollapse {
 .g-custom-taskcomplete {
     float: left;
     overflow: hidden;
-    height: 13px;
+    height: 25px;
     background-color: #22c55e;
 }
 
