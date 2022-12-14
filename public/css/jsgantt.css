@@ -153,9 +153,9 @@ td.gspanning {
     /* needed for IE8 */
 
 .gtaskname {
-    min-width: 220px;
-    max-width: 250px;
-    width: 250px;
+    min-width: 170px;
+    max-width: 220px;
+    width: 220px;
     font-size: 14px;
     border-left: none;
 }
@@ -266,6 +266,10 @@ span.gfoldercollapse {
 .ggroupcaption,
 .gcaption {
     right: -126px;
+}
+
+.ggroupcaption {
+    display: none;
 }
 
 /* Task complete %age bar shared attributes */
@@ -438,14 +442,12 @@ span.gfoldercollapse {
 .gtaskgreencomplete,
 .gtaskyellowcomplete,
 .gtaskpurplecomplete,
-.gtaskpinkcomplete {
+.gtaskpinkcomplete,
+.g-custom-taskcomplete {
     float: left;
     overflow: hidden;
-    height: 5px;
-    filter: alpha(opacity=40);
-    opacity: 0.4;
-    background-color: #000000;
-    margin-top: 4px;
+    height: 13px;
+    background-color: #22c55e;
 }
 
 /*  END Task bar styles */

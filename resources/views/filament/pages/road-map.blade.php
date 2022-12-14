@@ -28,9 +28,6 @@
         JSGantt.parseJSON('{{ asset('gantt.json') }}', g);
         // Customize gantt chart
         g.setShowDur(false); // Hide duration from columns
-        g.setShowComp(false); // Hide complete % from columns
-        g.setShowStartDate(false); // Hide start date from columns
-        g.setShowEndDate(false); // Hide end date from columns
         g.setUseToolTip(false); // Remove tooltip on object hover
         g.setMinDate(new Date(2022, 0, 1)); // Set min date
         g.setMaxDate(new Date(2022, 11, 31)); // Set max date
