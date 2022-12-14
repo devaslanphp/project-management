@@ -11,7 +11,11 @@ class UserTimeLogged extends BarChartWidget
     protected static ?string $heading = 'Chart';
     protected static ?int $sort = 5;
     protected static ?string $maxHeight = '300px';
-    protected int | string | array $columnSpan = 3;
+    protected int|string|array $columnSpan = [
+        'sm' => 1,
+        'md' => 6,
+        'lg' => 3
+    ];
 
     public static function canView(): bool
     {
