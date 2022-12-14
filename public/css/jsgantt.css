@@ -268,7 +268,8 @@ span.gfoldercollapse {
     right: -126px;
 }
 
-.ggroupcaption {
+.ggroupcaption,
+.gcaption {
     display: none;
 }
 

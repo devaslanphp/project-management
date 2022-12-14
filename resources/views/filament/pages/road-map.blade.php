@@ -15,6 +15,7 @@
             vCaptionType: 'Complete',
             vDayColWidth: 26,
             vWeekColWidth: 52,
+            vMonthColWidth: 52,
             vDateTaskDisplayFormat: 'day dd month yyyy',
             vDayMajorDateDisplayFormat: 'mon yyyy - Week ww',
             vWeekMinorDateDisplayFormat: 'dd mon',
