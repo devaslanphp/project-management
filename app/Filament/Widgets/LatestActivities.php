@@ -17,7 +17,11 @@ use Illuminate\Support\Str;
 class LatestActivities extends BaseWidget
 {
     protected static ?int $sort = 9;
-    protected int|string|array $columnSpan = 3;
+    protected int|string|array $columnSpan = [
+        'sm' => 1,
+        'md' => 6,
+        'lg' => 3
+    ];
 
     public function mount(): void
     {
