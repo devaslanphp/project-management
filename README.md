@@ -14,7 +14,7 @@ This documentation will allow you to install and configure the Helper platform o
 
 ## Documentation
 
-Full documentation can be viewed online: [https://project-helper.net/docs](https://project-helper.net/docs)
+Full documentation can be viewed online: [Docs](https://devaslanphp.github.io/project-management)
 
 ## Online Demo
 
