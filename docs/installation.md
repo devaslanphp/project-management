@@ -9,6 +9,33 @@ In addition of the main [prerequisites](/?id=prerequisites), you must have this 
 - Composer
 - NPM
 
+## Screenshots
+
+<div>
+    <img src="_media/1.png" width="20%"></img> 
+    <img src="_media/2.png" width="20%"></img> 
+    <img src="_media/3.png" width="20%"></img> 
+    <img src="_media/4.png" width="20%"></img> 
+    <img src="_media/5.png" width="20%"></img> 
+    <img src="_media/6.png" width="20%"></img> 
+    <img src="_media/7.png" width="20%"></img> 
+    <img src="_media/8.png" width="20%"></img> 
+    <img src="_media/9.png" width="20%"></img> 
+    <img src="_media/10.png" width="20%"></img> 
+    <img src="_media/11.png" width="20%"></img> 
+    <img src="_media/12.png" width="20%"></img> 
+    <img src="_media/13.png" width="20%"></img> 
+    <img src="_media/14.png" width="20%"></img> 
+    <img src="_media/15.png" width="20%"></img> 
+    <img src="_media/16.png" width="20%"></img> 
+    <img src="_media/17.png" width="20%"></img> 
+    <img src="_media/18.png" width="20%"></img> 
+    <img src="_media/19.png" width="20%"></img> 
+    <img src="_media/20.png" width="20%"></img> 
+    <img src="_media/21.png" width="20%"></img> 
+</div>
+
+
 ## Installing the project
 
 First thing to do is to clone the project by using the git command: 
