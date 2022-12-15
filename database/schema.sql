@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 14 nov. 2022 à 15:05
+-- Généré le : jeu. 15 déc. 2022 à 17:58
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `helper`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `epics`
+--
+
+CREATE TABLE `epics` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `starts_at` date NOT NULL,
+  `ends_at` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -71,10 +88,10 @@ CREATE TABLE `media` (
   `disk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `conversions_disk` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `size` bigint(20) UNSIGNED NOT NULL,
-  `manipulations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`manipulations`)),
-  `custom_properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`custom_properties`)),
-  `generated_conversions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`generated_conversions`)),
-  `responsive_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`responsive_images`)),
+  `manipulations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `custom_properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `generated_conversions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `responsive_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `order_column` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -293,7 +310,7 @@ CREATE TABLE `settings` (
   `group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `locked` tinyint(1) NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`payload`)),
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -334,7 +351,8 @@ CREATE TABLE `tickets` (
   `type_id` bigint(20) UNSIGNED NOT NULL,
   `order` int(11) NOT NULL DEFAULT 0,
   `priority_id` bigint(20) UNSIGNED NOT NULL,
-  `estimation` double(8,2) DEFAULT NULL
+  `estimation` double(8,2) DEFAULT NULL,
+  `epic_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -468,6 +486,39 @@ CREATE TABLE `ticket_types` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `time_sheets`
+--
+
+CREATE TABLE `time_sheets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `task` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `time_sheet_cells`
+--
+
+CREATE TABLE `time_sheet_cells` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `time_sheet_id` bigint(20) UNSIGNED NOT NULL,
+  `value` double(8,2) NOT NULL,
+  `is_trip` tinyint(1) NOT NULL DEFAULT 0,
+  `comment` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -490,6 +541,13 @@ CREATE TABLE `users` (
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `epics`
+--
+ALTER TABLE `epics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `epics_project_id_foreign` (`project_id`);
 
 --
 -- Index pour la table `failed_jobs`
@@ -638,7 +696,8 @@ ALTER TABLE `tickets`
   ADD KEY `tickets_status_id_foreign` (`status_id`),
   ADD KEY `tickets_project_id_foreign` (`project_id`),
   ADD KEY `tickets_type_id_foreign` (`type_id`),
-  ADD KEY `tickets_priority_id_foreign` (`priority_id`);
+  ADD KEY `tickets_priority_id_foreign` (`priority_id`),
+  ADD KEY `tickets_epic_id_foreign` (`epic_id`);
 
 --
 -- Index pour la table `ticket_activities`
@@ -702,6 +761,21 @@ ALTER TABLE `ticket_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `time_sheets`
+--
+ALTER TABLE `time_sheets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `time_sheets_user_id_foreign` (`user_id`),
+  ADD KEY `time_sheets_project_id_foreign` (`project_id`);
+
+--
+-- Index pour la table `time_sheet_cells`
+--
+ALTER TABLE `time_sheet_cells`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `time_sheet_cells_time_sheet_id_foreign` (`time_sheet_id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -711,6 +785,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `epics`
+--
+ALTER TABLE `epics`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `failed_jobs`
@@ -851,6 +931,18 @@ ALTER TABLE `ticket_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `time_sheets`
+--
+ALTER TABLE `time_sheets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `time_sheet_cells`
+--
+ALTER TABLE `time_sheet_cells`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
@@ -859,6 +951,12 @@ ALTER TABLE `users`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `epics`
+--
+ALTER TABLE `epics`
+  ADD CONSTRAINT `epics_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`);
 
 --
 -- Contraintes pour la table `model_has_permissions`
@@ -904,6 +1002,7 @@ ALTER TABLE `role_has_permissions`
 -- Contraintes pour la table `tickets`
 --
 ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_epic_id_foreign` FOREIGN KEY (`epic_id`) REFERENCES `epics` (`id`),
   ADD CONSTRAINT `tickets_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `tickets_priority_id_foreign` FOREIGN KEY (`priority_id`) REFERENCES `ticket_priorities` (`id`),
   ADD CONSTRAINT `tickets_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`),
@@ -953,6 +1052,19 @@ ALTER TABLE `ticket_statuses`
 ALTER TABLE `ticket_subscribers`
   ADD CONSTRAINT `ticket_subscribers_ticket_id_foreign` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`),
   ADD CONSTRAINT `ticket_subscribers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `time_sheets`
+--
+ALTER TABLE `time_sheets`
+  ADD CONSTRAINT `time_sheets_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`),
+  ADD CONSTRAINT `time_sheets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `time_sheet_cells`
+--
+ALTER TABLE `time_sheet_cells`
+  ADD CONSTRAINT `time_sheet_cells_time_sheet_id_foreign` FOREIGN KEY (`time_sheet_id`) REFERENCES `time_sheets` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
