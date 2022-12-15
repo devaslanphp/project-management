@@ -14,16 +14,18 @@
                 </button>
             </form>
             <div class="flex items-center gap-2">
-                <button wire:click="createEpic" wire:loading.attr="disabled"
-                        class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
-                        text-white rounded">
-                    <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
-                </button>
-                <button wire:click="createTicket" wire:loading.attr="disabled"
-                        class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
-                        text-white rounded">
-                    <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
-                </button>
+                @if(auth()->user()->can('Create ticket'))
+                    <button wire:click="createEpic" wire:loading.attr="disabled"
+                            class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
+                            text-white rounded">
+                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
+                    </button>
+                    <button wire:click="createTicket" wire:loading.attr="disabled"
+                            class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
+                            text-white rounded">
+                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
+                    </button>
+                @endif
             </div>
         </div>
 
