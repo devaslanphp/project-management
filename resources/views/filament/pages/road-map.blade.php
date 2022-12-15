@@ -2,16 +2,39 @@
 
     <x-filament::card>
 
-        <form wire:submit.prevent="filter" class="flex items-center gap-2 min-w-[16rem]">
-            {{ $this->form }}
-            <button type="submit"
-                    class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
-                <x-heroicon-o-search class="w-6 h-6" />
+        <div class="w-full flex justify-between items-center">
+            <form wire:submit.prevent="filter" class="flex items-center gap-2 min-w-[16rem]">
+                {{ $this->form }}
+                <button type="submit"
+                        class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
+                    <x-heroicon-o-search class="w-6 h-6" wire:loading.remove />
+                    <div wire:loading.flex>
+                        <div class="lds-dual-ring w-4 h-4"></div>
+                    </div>
+                </button>
+            </form>
+            <button wire:click="createEpic" wire:loading.attr="disabled"
+                    class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1 text-white rounded">
+                <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
             </button>
-        </form>
+        </div>
 
-        <div class="relative gantt" id="gantt-chart" wire:ignore></div>
+        <div wire:init="filter" class="relative gantt" id="gantt-chart" wire:ignore></div>
     </x-filament::card>
+
+    @if($epic)
+        <!-- Epic modal -->
+        <div class="dialog-container">
+            <div class="dialog dialog-lg">
+                <div class="dialog-header">
+                    {{ __($epic && $epic->id ? 'Update Epic' : 'Create Epic') }}
+                </div>
+                <div class="dialog-content">
+                    @livewire('road-map.epic-form', ['epic' => $epic])
+                </div>
+            </div>
+        </div>
+    @endif
 
 </x-filament::page>
 
@@ -20,7 +43,7 @@
     <script src="{{ asset('js/jsgantt.js') }}"></script>
 
     <script>
-        const g = new JSGantt.GanttChart(document.getElementById('gantt-chart'), 'day');
+        const g = new JSGantt.GanttChart(document.getElementById('gantt-chart'), 'week');
         // Set settings
         g.setOptions({
             vCaptionType: 'Complete',
@@ -40,25 +63,26 @@
                     const data = task.getAllData();
                     const meta = data.pDataObject.meta;
                     if (meta.epic) {
-                        console.log(meta);
+                        @this.updateEpic(meta.id);
                     }
                 }
             }
         });
-        // Parse json
-        JSGantt.parseJSON('{{ asset('gantt.json') }}', g);
         // Customize gantt chart
         g.setShowDur(false); // Hide duration from columns
         g.setUseToolTip(false); // Remove tooltip on object hover
-        g.setMinDate(new Date(2022, 0, 1)); // Set min date
-        g.setMaxDate(new Date(2022, 11, 31)); // Set max date
-        g.setScrollTo(new Date(2022, 2, 26)); // Scroll to first object
         // Draw gantt chart
         g.Draw();
 
         window.addEventListener('projectChanged', (e) => {
             g.ClearTasks();
-            JSGantt.parseJSON('/gantt-' + e.detail.project + '.json', g);
+            JSGantt.parseJSON(e.detail.url, g);
+            const minDate = e.detail.start_date.split('-');
+            const maxDate = e.detail.end_date.split('-');
+            const scrollToDate = e.detail.scroll_to.split('-');
+            g.setMinDate(new Date(minDate[0], (+minDate[1]) - 1, minDate['2']));
+            g.setMaxDate(new Date(maxDate[0], (+maxDate[1]) - 1, maxDate['2']));
+            g.setScrollTo(new Date(scrollToDate[0], (+scrollToDate[1]) - 1, scrollToDate['2']));
             g.Draw();
         });
     </script>

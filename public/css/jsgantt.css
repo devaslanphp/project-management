@@ -104,6 +104,10 @@ td.gspanning {
     border: #efefef 1px solid;
 }
 
+.gtaskname:hover {
+    cursor: pointer;
+}
+
 .gtaskheading div,
 .gname div,
 .gtaskname div,
