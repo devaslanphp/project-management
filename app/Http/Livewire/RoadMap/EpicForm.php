@@ -69,6 +69,6 @@ class EpicForm extends Component implements HasForms
 
     public function cancel($refresh = false): void
     {
-        $this->emit('cancelCreateEpic', $refresh);
+        $this->emit('closeEpicDialog', $refresh);
     }
 }

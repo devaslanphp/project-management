@@ -186,5 +186,6 @@
     "Epic name": "Nom de l'Epic",
     "Starts at": "Date de début",
     "Ends at": "Date de fin",
-    "Epic successfully saved": "Epic enregistré avec succès"
+    "Epic successfully saved": "Epic enregistré avec succès",
+    "Ticket successfully saved": "Ticket enregistré avec succès"
 }

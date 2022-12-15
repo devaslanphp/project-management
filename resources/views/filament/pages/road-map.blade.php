@@ -13,10 +13,18 @@
                     </div>
                 </button>
             </form>
-            <button wire:click="createEpic" wire:loading.attr="disabled"
-                    class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1 text-white rounded">
-                <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
-            </button>
+            <div class="flex items-center gap-2">
+                <button wire:click="createEpic" wire:loading.attr="disabled"
+                        class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
+                        text-white rounded">
+                    <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
+                </button>
+                <button wire:click="createTicket" wire:loading.attr="disabled"
+                        class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
+                        text-white rounded">
+                    <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
+                </button>
+            </div>
         </div>
 
         <div wire:init="filter" class="relative gantt" id="gantt-chart" wire:ignore></div>
@@ -31,6 +39,20 @@
                 </div>
                 <div class="dialog-content">
                     @livewire('road-map.epic-form', ['epic' => $epic])
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if($ticket)
+        <!-- Epic modal -->
+        <div class="dialog-container">
+            <div class="dialog dialog-xl">
+                <div class="dialog-header">
+                    {{ __('Create ticket') }}
+                </div>
+                <div class="dialog-content">
+                    @livewire('road-map.issue-form', ['project' => $project])
                 </div>
             </div>
         </div>
@@ -64,6 +86,8 @@
                     const meta = data.pDataObject.meta;
                     if (meta.epic) {
                         @this.updateEpic(meta.id);
+                    } else {
+                        window.open('/tickets/share/' + meta.slug, '_blank');
                     }
                 }
             }

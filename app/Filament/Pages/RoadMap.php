@@ -27,8 +27,11 @@ class RoadMap extends Page implements HasForms
 
     public Epic|null $epic = null;
 
+    public bool $ticket = false;
+
     protected $listeners = [
-        'cancelCreateEpic'
+        'closeEpicDialog' => 'closeDialog',
+        'closeTicketDialog' => 'closeDialog'
     ];
 
     protected static function getNavigationLabel(): string
@@ -92,6 +95,11 @@ class RoadMap extends Page implements HasForms
         ]);
     }
 
+    public function createTicket(): void
+    {
+        $this->ticket = true;
+    }
+
     public function createEpic(): void
     {
         $this->epic = new Epic();
@@ -103,9 +111,10 @@ class RoadMap extends Page implements HasForms
         $this->epic = Epic::where('id', $epicId)->first();
     }
 
-    public function cancelCreateEpic(bool $refresh): void
+    public function closeDialog(bool $refresh): void
     {
         $this->epic = null;
+        $this->ticket = false;
         if ($refresh) {
             $this->filter();
         }

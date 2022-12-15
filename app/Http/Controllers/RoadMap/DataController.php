@@ -52,7 +52,9 @@ class DataController extends Controller
                 "pBarText" => "",
                 "meta" => [
                     "id" => $epic->id,
-                    "epic" => true
+                    "epic" => true,
+                    "parent" => null,
+                    "slug" => null
                 ]
             ]));
             foreach ($epic->tickets as $ticket) {
@@ -65,7 +67,7 @@ class DataController extends Controller
                     "pClass" => "g-custom-task",
                     "pLink" => "",
                     "pMile" => 0,
-                    "pRes" => "",
+                    "pRes" => $ticket->responsible?->name ?? "",
                     "pComp" => min($pComp, 100),
                     "pGroup" => 0,
                     "pParent" => $epic->id,
@@ -77,7 +79,8 @@ class DataController extends Controller
                     "meta" => [
                         "id" => $ticket->id,
                         "epic" => false,
-                        "parent" => $epic->id
+                        "parent" => $epic->id,
+                        "slug" => $ticket->code
                     ]
                 ]));
             }
