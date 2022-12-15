@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Notifications\TicketCreated;
 use App\Notifications\TicketStatusUpdated;
-use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,7 +20,7 @@ class Ticket extends Model
     protected $fillable = [
         'name', 'content', 'owner_id', 'responsible_id',
         'status_id', 'project_id', 'code', 'order', 'type_id',
-        'priority_id', 'estimation'
+        'priority_id', 'estimation', 'epic_id'
     ];
 
     public static function boot()
@@ -127,6 +126,11 @@ class Ticket extends Model
         return $this->hasMany(TicketHour::class, 'ticket_id', 'id');
     }
 
+    public function epic(): BelongsTo
+    {
+        return $this->belongsTo(Epic::class, 'epic_id', 'id');
+    }
+
     public function totalLoggedHours(): Attribute
     {
         return new Attribute(
@@ -182,6 +186,13 @@ class Ticket extends Model
             get: function () {
                 return (($this->totalLoggedSeconds ?? 0) / ($this->estimationInSeconds ?? 1)) * 100;
             }
+        );
+    }
+
+    public function completudePercentage(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->estimationProgress
         );
     }
 }

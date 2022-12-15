@@ -178,7 +178,7 @@ class Kanban extends Page implements HasForms
     public function getRecords(): Collection
     {
         $query = Ticket::query();
-        $query->with(['project', 'owner', 'responsible', 'status', 'type', 'priority']);
+        $query->with(['project', 'owner', 'responsible', 'status', 'type', 'priority', 'epic']);
         if ($this->project) {
             $query->where('project_id', $this->project->id);
         } else {
@@ -220,6 +220,7 @@ class Kanban extends Page implements HasForms
                 'project' => $item->project,
                 'status' => $item->status->id,
                 'priority' => $item->priority,
+                'epic' => $item->epic,
                 'relations' => $item->relations,
                 'totalLoggedHours' => $item->totalLoggedSeconds ? $item->totalLoggedHours : null
             ]);
