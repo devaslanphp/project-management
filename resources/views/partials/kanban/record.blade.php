@@ -16,6 +16,13 @@
     </div>
     <div class="record-footer">
         <div class="record-type-code">
+            @php($epic = $record['epic'])
+            @if($epic && $epic != "")
+                <div class="px-2 py-1 rounded flex items-center justify-center text-center text-xs text-white
+                            bg-purple-500" title="{{ __('Epic') }}">
+                    {{ $epic->name }}
+                </div>
+            @endif
             <x-ticket-priority :priority="$record['priority']" />
             <x-ticket-type :type="$record['type']" />
             <span>{{ $record['code'] }}</span>
