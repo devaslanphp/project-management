@@ -133,12 +133,12 @@ php artisan db:seed
 > 
 > This user has **all permissions** link to it's account
 
-And voilà! You can now serve the platform as a **Laravel** application by running this command `php artisan serve` or use your favorite **WEB** server to serve it.
-
-> By default the `helper-dev.zip` contains the assets `public/build` folder, but if you want you can use the following command to generate it:
+> Last thing before you can server the project you need to use the following command to generate vite assets:
 > 
 > - Generate assets for production: `npm run build`
 > - Generate assets for development: `npm run dev` or `vite`
+
+And voilà! You can now serve the platform as a **Laravel** application by running this command `php artisan serve` or use your favorite **WEB** server to serve it.
 
 Last thing to do, run the below command to clear all caches:
 
