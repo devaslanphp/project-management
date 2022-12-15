@@ -61,6 +61,7 @@ All this made with the best technologies.
     <img src="github-contents/19.png" width="20%"></img> 
     <img src="github-contents/20.png" width="20%"></img> 
     <img src="github-contents/21.png" width="20%"></img> 
+    <img src="github-contents/22.png" width="20%"></img> 
 </div>
 
 ## Documentation
@@ -82,6 +83,13 @@ We are always working to make Project Management a better application, all contr
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Releases
+
+- **Release 1.0.0**
+  - First Release
+- **Release 1.1.0**
+  - Add Road Map functionality
 
 ## Support us
 
