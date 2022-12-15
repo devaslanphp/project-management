@@ -89,7 +89,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 - **Release 1.0.0**
   - First Release
 - **Release 1.1.0**
-  - Add _Road Map_ functionality
+  - Add _Road Map_ feature
   - Manage _Epics_ by project
 
 ## Support us
