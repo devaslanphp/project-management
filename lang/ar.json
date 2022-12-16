@@ -186,5 +186,6 @@
     "Starts at": "يبدأ عند",
     "Ends at": "ينتهي عند",
     "Epic successfully saved": "تم حفظ الملحمة بنجاح",
-    "Ticket successfully saved": "تم حفظ التذكرة بنجاح"
+    "Ticket successfully saved": "تم حفظ التذكرة بنجاح",
+    "Parent epic": "ملحمة الوالدين"
 }

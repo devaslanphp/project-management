@@ -186,5 +186,6 @@
     "Starts at": "Սկսվում է",
     "Ends at": "Ավարտվում է",
     "Epic successfully saved": "Epic-ը հաջողությամբ պահպանվեց",
-    "Ticket successfully saved": "Տոմսը հաջողությամբ պահպանվեց"
+    "Ticket successfully saved": "Տոմսը հաջողությամբ պահպանվեց",
+    "Parent epic": "Ծնողական էպոս"
 }

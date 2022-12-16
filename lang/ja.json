@@ -186,5 +186,6 @@
     "Starts at": "で始まる",
     "Ends at": "で終了",
     "Epic successfully saved": "エピックが正常に保存されました",
-    "Ticket successfully saved": "チケットが正常に保存されました"
+    "Ticket successfully saved": "チケットが正常に保存されました",
+    "Parent epic": "親エピック"
 }

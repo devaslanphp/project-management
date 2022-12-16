@@ -186,5 +186,6 @@
     "Starts at": "Starter kl",
     "Ends at": "Slutter kl",
     "Epic successfully saved": "Episk er lagret",
-    "Ticket successfully saved": "Billetten er lagret"
+    "Ticket successfully saved": "Billetten er lagret",
+    "Parent epic": "Foreldre-epos"
 }

@@ -186,5 +186,6 @@
     "Starts at": "Incepe la",
     "Ends at": "Se termină la",
     "Epic successfully saved": "Epic salvat cu succes",
-    "Ticket successfully saved": "Biletul a fost salvat"
+    "Ticket successfully saved": "Biletul a fost salvat",
+    "Parent epic": "Epopeea părintelui"
 }

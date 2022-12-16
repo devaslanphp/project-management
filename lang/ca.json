@@ -186,5 +186,6 @@
     "Starts at": "Comença a les",
     "Ends at": "Acaba a les",
     "Epic successfully saved": "Epic desat correctament",
-    "Ticket successfully saved": "El bitllet s'ha desat correctament"
+    "Ticket successfully saved": "El bitllet s'ha desat correctament",
+    "Parent epic": "Èpica dels pares"
 }

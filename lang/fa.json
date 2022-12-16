@@ -186,5 +186,6 @@
     "Starts at": "شروع میشود از",
     "Ends at": "به پایان می رسد",
     "Epic successfully saved": "Epic با موفقیت ذخیره شد",
-    "Ticket successfully saved": "بلیط با موفقیت ذخیره شد"
+    "Ticket successfully saved": "بلیط با موفقیت ذخیره شد",
+    "Parent epic": "حماسه پدر و مادر"
 }

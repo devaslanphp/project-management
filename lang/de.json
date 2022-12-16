@@ -186,5 +186,6 @@
     "Starts at": "Startet um",
     "Ends at": "Endet am",
     "Epic successfully saved": "Epic erfolgreich gespeichert",
-    "Ticket successfully saved": "Ticket erfolgreich gespeichert"
+    "Ticket successfully saved": "Ticket erfolgreich gespeichert",
+    "Parent epic": "Elterliches Epos"
 }

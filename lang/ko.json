@@ -186,5 +186,6 @@
     "Starts at": "시작",
     "Ends at": "종료 시간",
     "Epic successfully saved": "에픽이 성공적으로 저장되었습니다.",
-    "Ticket successfully saved": "티켓이 성공적으로 저장되었습니다."
+    "Ticket successfully saved": "티켓이 성공적으로 저장되었습니다.",
+    "Parent epic": "부모 서사시"
 }

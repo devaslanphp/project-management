@@ -186,5 +186,6 @@
     "Starts at": "Nagsisimula sa",
     "Ends at": "Nagtatapos sa",
     "Epic successfully saved": "Matagumpay na na-save ang epic",
-    "Ticket successfully saved": "Matagumpay na na-save ang tiket"
+    "Ticket successfully saved": "Matagumpay na na-save ang tiket",
+    "Parent epic": "Epiko ng magulang"
 }
