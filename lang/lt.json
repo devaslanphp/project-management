@@ -186,5 +186,6 @@
     "Starts at": "Prasideda val",
     "Ends at": "Baigiasi val",
     "Epic successfully saved": "Epas sėkmingai išsaugotas",
-    "Ticket successfully saved": "Bilietas sėkmingai išsaugotas"
+    "Ticket successfully saved": "Bilietas sėkmingai išsaugotas",
+    "Parent epic": "Tėvų epas"
 }

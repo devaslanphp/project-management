@@ -186,5 +186,6 @@
     "Starts at": "Começa em",
     "Ends at": "Termina em",
     "Epic successfully saved": "Épico salvo com sucesso",
-    "Ticket successfully saved": "Bilhete salvo com sucesso"
+    "Ticket successfully saved": "Bilhete salvo com sucesso",
+    "Parent epic": "pai épico"
 }

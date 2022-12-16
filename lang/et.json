@@ -186,5 +186,6 @@
     "Starts at": "Algus kell",
     "Ends at": "Lõpeb kell",
     "Epic successfully saved": "Eepos edukalt salvestatud",
-    "Ticket successfully saved": "Pilet edukalt salvestatud"
+    "Ticket successfully saved": "Pilet edukalt salvestatud",
+    "Parent epic": "Vanemaeepos"
 }

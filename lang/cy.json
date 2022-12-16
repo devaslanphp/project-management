@@ -186,5 +186,6 @@
     "Starts at": "Yn dechrau am",
     "Ends at": "Yn gorffen am",
     "Epic successfully saved": "Arbedwyd Epic yn llwyddiannus",
-    "Ticket successfully saved": "Llwyddwyd i gadw'r tocyn"
+    "Ticket successfully saved": "Llwyddwyd i gadw'r tocyn",
+    "Parent epic": "Rhiant epig"
 }

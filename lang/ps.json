@@ -186,5 +186,6 @@
     "Starts at": "په پیل کیږي",
     "Ends at": "پای ته رسیږي",
     "Epic successfully saved": "ایپیک په بریالیتوب سره خوندي شو",
-    "Ticket successfully saved": "ټکټ په بریالیتوب سره خوندي شو"
+    "Ticket successfully saved": "ټکټ په بریالیتوب سره خوندي شو",
+    "Parent epic": "د مور او پلار اختراع"
 }

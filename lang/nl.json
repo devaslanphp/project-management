@@ -186,5 +186,6 @@
     "Starts at": "Begint om",
     "Ends at": "Eindigt bij",
     "Epic successfully saved": "Episch succesvol opgeslagen",
-    "Ticket successfully saved": "Ticket succesvol opgeslagen"
+    "Ticket successfully saved": "Ticket succesvol opgeslagen",
+    "Parent epic": "Ouderlijk epos"
 }

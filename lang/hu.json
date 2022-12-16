@@ -186,5 +186,6 @@
     "Starts at": "Kezdődik",
     "Ends at": "órakor ér véget",
     "Epic successfully saved": "Az Epic sikeresen mentve",
-    "Ticket successfully saved": "A jegy sikeresen elmentve"
+    "Ticket successfully saved": "A jegy sikeresen elmentve",
+    "Parent epic": "Szülő eposz"
 }

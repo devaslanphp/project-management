@@ -186,5 +186,6 @@
     "Starts at": "Alkaa",
     "Ends at": "Päättyy klo",
     "Epic successfully saved": "Epic tallennettu onnistuneesti",
-    "Ticket successfully saved": "Lippu tallennettu onnistuneesti"
+    "Ticket successfully saved": "Lippu tallennettu onnistuneesti",
+    "Parent epic": "Vanhempien eepos"
 }

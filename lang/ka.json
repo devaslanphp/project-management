@@ -186,5 +186,6 @@
     "Starts at": "Იწყება",
     "Ends at": "მთავრდება",
     "Epic successfully saved": "Epic წარმატებით შენახულია",
-    "Ticket successfully saved": "ბილეთი წარმატებით შენახულია"
+    "Ticket successfully saved": "ბილეთი წარმატებით შენახულია",
+    "Parent epic": "მშობლის ეპოსი"
 }

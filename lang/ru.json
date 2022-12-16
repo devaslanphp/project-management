@@ -186,5 +186,6 @@
     "Starts at": "Начинается в",
     "Ends at": "Заканчивается в",
     "Epic successfully saved": "Эпик успешно сохранен",
-    "Ticket successfully saved": "Билет успешно сохранен"
+    "Ticket successfully saved": "Билет успешно сохранен",
+    "Parent epic": "Родительский эпос"
 }

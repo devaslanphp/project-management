@@ -186,5 +186,6 @@
     "Starts at": "Začína o",
     "Ends at": "Končí o",
     "Epic successfully saved": "Epos úspešne uložený",
-    "Ticket successfully saved": "Lístok bol úspešne uložený"
+    "Ticket successfully saved": "Lístok bol úspešne uložený",
+    "Parent epic": "Rodičovský epos"
 }

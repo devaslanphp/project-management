@@ -186,5 +186,6 @@
     "Starts at": "Başlayır",
     "Ends at": "bitir",
     "Epic successfully saved": "Epic uğurla yadda saxlanıldı",
-    "Ticket successfully saved": "Bilet uğurla yadda saxlanıldı"
+    "Ticket successfully saved": "Bilet uğurla yadda saxlanıldı",
+    "Parent epic": "Valideyn epik"
 }

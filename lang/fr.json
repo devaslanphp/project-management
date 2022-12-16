@@ -186,5 +186,6 @@
     "Starts at": "Date de début",
     "Ends at": "Date de fin",
     "Epic successfully saved": "Epic enregistré avec succès",
-    "Ticket successfully saved": "Ticket enregistré avec succès"
+    "Ticket successfully saved": "Ticket enregistré avec succès",
+    "Parent epic": "Epic parent"
 }

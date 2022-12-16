@@ -186,5 +186,6 @@
     "Starts at": "Empieza a",
     "Ends at": "Termina en",
     "Epic successfully saved": "Épica guardada con éxito",
-    "Ticket successfully saved": "Ticket guardado con éxito"
+    "Ticket successfully saved": "Ticket guardado con éxito",
+    "Parent epic": "Epopeya de los padres"
 }

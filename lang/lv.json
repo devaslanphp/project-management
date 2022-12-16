@@ -186,5 +186,6 @@
     "Starts at": "Sākas plkst",
     "Ends at": "Beidzas plkst",
     "Epic successfully saved": "Epic veiksmīgi saglabāts",
-    "Ticket successfully saved": "Biļete veiksmīgi saglabāta"
+    "Ticket successfully saved": "Biļete veiksmīgi saglabāta",
+    "Parent epic": "Vecāku epopeja"
 }
