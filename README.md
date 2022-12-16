@@ -93,6 +93,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
   - Manage _Epics_ by projects
 - **Release 1.1.1**
   - Add issue creation (dialog) into kanban view
+- **Release 1.1.2**
+  - Add Epic parent link (dependencies)
 
 ## Support us
 
