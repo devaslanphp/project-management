@@ -99,6 +99,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
   - Add issue creation (dialog) into kanban view
 - **Release 1.1.2**
   - Add Epic parent link (dependencies)
+- **Release 1.1.3**
+  - Translate missing langs
 
 ## Support us
 
