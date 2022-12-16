@@ -90,7 +90,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
   - First Release
 - **Release 1.1.0**
   - Add _Road Map_ feature
-  - Manage _Epics_ by project
+  - Manage _Epics_ by projects
+- **Release 1.1.1**
+  - Add issue creation (dialog) into kanban view
 
 ## Support us
 
