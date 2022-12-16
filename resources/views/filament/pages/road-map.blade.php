@@ -18,12 +18,12 @@
                     <button wire:click="createEpic" wire:loading.attr="disabled"
                             class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
                             text-white rounded">
-                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create Epic') }}
+                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Epic') }}
                     </button>
                     <button wire:click="createTicket" wire:loading.attr="disabled"
                             class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
                             text-white rounded">
-                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
+                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Ticket') }}
                     </button>
                 @endif
             </div>
