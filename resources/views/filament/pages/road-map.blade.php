@@ -2,34 +2,42 @@
 
     <x-filament::card>
 
-        <div class="w-full flex justify-between items-center">
-            <form wire:submit.prevent="filter" class="flex items-center gap-2 min-w-[16rem]">
-                {{ $this->form }}
-                <button type="submit"
-                        class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
-                    <x-heroicon-o-search class="w-6 h-6" wire:loading.remove />
-                    <div wire:loading.flex>
-                        <div class="lds-dual-ring w-4 h-4"></div>
-                    </div>
-                </button>
-            </form>
-            <div class="flex items-center gap-2">
-                @if(auth()->user()->can('Create ticket'))
-                    <button wire:click="createEpic" wire:loading.attr="disabled"
-                            class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
-                            text-white rounded">
-                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Epic') }}
+        <div class="w-full lg:flex md:hidden sm:hidden hidden flex-col gap-5">
+            <div class="w-full flex justify-between items-center">
+                <form wire:submit.prevent="filter" class="flex items-center gap-2 min-w-[16rem]">
+                    {{ $this->form }}
+                    <button type="submit"
+                            class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
+                        <x-heroicon-o-search class="w-6 h-6" wire:loading.remove />
+                        <div wire:loading.flex>
+                            <div class="lds-dual-ring w-4 h-4"></div>
+                        </div>
                     </button>
-                    <button wire:click="createTicket" wire:loading.attr="disabled"
-                            class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
-                            text-white rounded">
-                        <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Ticket') }}
-                    </button>
-                @endif
+                </form>
+                <div class="flex items-center gap-2">
+                    @if(auth()->user()->can('Create ticket'))
+                        <button wire:click="createEpic" wire:loading.attr="disabled"
+                                class="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 px-3 py-1
+                                text-white rounded">
+                            <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Epic') }}
+                        </button>
+                        <button wire:click="createTicket" wire:loading.attr="disabled"
+                                class="flex items-center gap-2 bg-success-500 hover:bg-success-600 px-3 py-1
+                                text-white rounded">
+                            <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Ticket') }}
+                        </button>
+                    @endif
+                </div>
             </div>
+
+            <div wire:init="filter" class="w-full relative gantt" id="gantt-chart" wire:ignore></div>
         </div>
 
-        <div wire:init="filter" class="relative gantt" id="gantt-chart" wire:ignore></div>
+        <div class="w-full 2xl:hidden xl:hidden lg:hidden md:flex sm:flex flex flex-col gap-2 text-center
+                    items-center justify-center text-gray-500 font-medium">
+            <x-heroicon-o-emoji-sad class="w-10 h-10" />
+            <span>{{ __('Road Map chart is only available on large screen') }}</span>
+        </div>
     </x-filament::card>
 
     @if($epic)
