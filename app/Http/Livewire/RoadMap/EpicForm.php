@@ -18,9 +18,16 @@ class EpicForm extends Component implements HasForms
     use InteractsWithForms;
 
     public Epic $epic;
+    public array $epics = [];
 
     public function mount()
     {
+        $query = Epic::query();
+        $query->where('project_id', $this->epic->project_id);
+        if ($this->epic->id) {
+            $query->where('id', '<>', $this->epic->id);
+        }
+        $this->epics = $query->get()->pluck('name', 'id')->toArray();
         $this->form->fill($this->epic->toArray());
     }
 
@@ -32,10 +39,18 @@ class EpicForm extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Select::make('project_id')
-                ->label(__('Project'))
-                ->disabled()
-                ->options(Project::all()->pluck('name', 'id')),
+            Grid::make()
+                ->schema([
+                    Select::make('project_id')
+                        ->label(__('Project'))
+                        ->disabled()
+                        ->options(Project::all()->pluck('name', 'id')),
+
+                    Select::make('parent_id')
+                        ->label(__('Parent epic'))
+                        ->searchable()
+                        ->options($this->epics),
+                ]),
 
             TextInput::make('name')
                 ->label(__('Epic name'))
@@ -59,6 +74,7 @@ class EpicForm extends Component implements HasForms
     {
         $data = $this->form->getState();
         $this->epic->project_id = $data['project_id'];
+        $this->epic->parent_id = $data['parent_id'];
         $this->epic->name = $data['name'];
         $this->epic->starts_at = $data['starts_at'];
         $this->epic->ends_at = $data['ends_at'];

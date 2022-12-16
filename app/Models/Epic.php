@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +13,8 @@ class Epic extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'project_id', 'starts_at', 'ends_at'
+        'name', 'project_id', 'starts_at', 'ends_at',
+        'parent_id'
     ];
 
     protected $casts = [
@@ -30,5 +30,10 @@ class Epic extends Model
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'epic_id', 'id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Epic::class, 'parent_id', 'id');
     }
 }
