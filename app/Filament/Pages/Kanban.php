@@ -9,7 +9,6 @@ use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
 use Filament\Facades\Filament;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
@@ -21,7 +20,6 @@ use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Closure;
 
 class Kanban extends Page implements HasForms
 {
@@ -44,8 +42,11 @@ class Kanban extends Page implements HasForms
     public $priorities = [];
     public $includeNotAffectedTickets = false;
 
+    public bool $ticket = false;
+
     protected $listeners = [
-        'recordUpdated'
+        'recordUpdated',
+        'closeTicketDialog'
     ];
 
     public function mount()
@@ -251,6 +252,19 @@ class Kanban extends Page implements HasForms
     {
         $this->form->fill();
         $this->filter();
+    }
+
+    public function createTicket(): void
+    {
+        $this->ticket = true;
+    }
+
+    public function closeTicketDialog(bool $refresh): void
+    {
+        $this->ticket = false;
+        if ($refresh) {
+            $this->filter();
+        }
     }
 
 }

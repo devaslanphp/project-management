@@ -18,11 +18,16 @@ class IssueForm extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public Project $project;
+    public Project|null $project = null;
+    public array $epics;
 
     public function mount()
     {
-        $project = Project::where('id', $this->project->id)->first();
+        if ($this->project) {
+            $project = Project::where('id', $this->project->id)->first();
+        } else {
+            $project = null;
+        }
         if ($project?->status_type === 'custom') {
             $defaultStatus = TicketStatus::where('project_id', $project->id)
                 ->where('is_default', true)
@@ -34,8 +39,9 @@ class IssueForm extends Component implements HasForms
                 ->first()
                 ?->id;
         }
+        $this->epics = $this->project ? $this->project->epics->pluck('name', 'id')->toArray() : [];
         $this->form->fill([
-            'project_id' => $this->project->id,
+            'project_id' => $this->project?->id ?? null,
             'owner_id' => auth()->user()->id,
             'status_id' => $defaultStatus,
             'type_id' => TicketType::where('is_default', true)->first()?->id,
@@ -59,8 +65,8 @@ class IssueForm extends Component implements HasForms
                                 ->label(__('Project'))
                                 ->searchable()
                                 ->reactive()
-                                ->disabled()
-                                ->columnSpan(1)
+                                ->disabled($this->project != null)
+                                ->columnSpan(fn () => $this->project == null ? 2 : 1)
                                 ->options(fn() => Project::where('owner_id', auth()->user()->id)
                                     ->orWhereHas('users', function ($query) {
                                         return $query->where('users.id', auth()->user()->id);
@@ -74,7 +80,8 @@ class IssueForm extends Component implements HasForms
                                 ->reactive()
                                 ->columnSpan(1)
                                 ->required()
-                                ->options($this->project->epics->pluck('name', 'id')->toArray()),
+                                ->visible($this->project != null)
+                                ->options($this->epics),
 
                             Forms\Components\TextInput::make('name')
                                 ->label(__('Ticket name'))
