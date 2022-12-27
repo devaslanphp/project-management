@@ -13,7 +13,7 @@ class TicketHour extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'ticket_id', 'value'
+        'user_id', 'ticket_id', 'value', 'comment'
     ];
 
     public function user(): BelongsTo
