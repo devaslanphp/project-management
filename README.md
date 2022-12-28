@@ -101,6 +101,10 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
   - Add Epic parent link (dependencies)
 - **Release 1.1.3**
   - Translate missing langs
+- **Release 1.1.4**
+  - Bug-fix: Ticket content field (required)
+- **Release 1.1.5**
+  - Add comment field to ticket hours logging
 
 ## Support us
 
