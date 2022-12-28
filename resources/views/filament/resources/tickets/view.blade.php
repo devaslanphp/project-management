@@ -306,6 +306,11 @@
                                         {{ $item->forHumans }}
                                     </span>
                                 </div>
+                                @if($item->comment)
+                                    <div class="w-full">
+                                        {!! nl2br(e($item->comment)) !!}
+                                    </div>
+                                @endif
                             </div>
                         @endforeach
                     @else

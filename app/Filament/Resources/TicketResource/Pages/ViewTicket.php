@@ -101,7 +101,8 @@ class ViewTicket extends ViewRecord implements HasForms
                         ->required(),
 
                     Textarea::make('comment')
-                        ->label(__('Comment')),
+                        ->label(__('Comment'))
+                        ->rows(3),
                 ])
                 ->action(function (Collection $records, array $data): void {
                     $value = $data['time'];
