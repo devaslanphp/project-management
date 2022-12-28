@@ -188,5 +188,6 @@
     "Epic successfully saved": "Epic tallennettu onnistuneesti",
     "Ticket successfully saved": "Lippu tallennettu onnistuneesti",
     "Parent epic": "Vanhempien eepos",
-    "Road Map chart is only available on large screen": "Tiekarttakaavio on käytettävissä vain suurella näytöllä"
+    "Road Map chart is only available on large screen": "Tiekarttakaavio on käytettävissä vain suurella näytöllä",
+    "Comment": "Kommentti"
 }
