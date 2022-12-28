@@ -8,6 +8,7 @@ use App\Models\TicketComment;
 use App\Models\TicketHour;
 use App\Models\TicketSubscriber;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -81,35 +82,41 @@ class ViewTicket extends ViewRecord implements HasForms
                     'url' => route('filament.resources.tickets.share', $this->record->code)
                 ])),
             Actions\EditAction::make(),
+            Actions\Action::make('logHours')
+                ->label(__('Log time'))
+                ->icon('heroicon-o-clock')
+                ->color('warning')
+                ->modalWidth('sm')
+                ->modalHeading(__('Log worked time'))
+                ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
+                ->modalButton(__('Log'))
+                ->visible(fn() => in_array(
+                    auth()->user()->id,
+                    [$this->record->owner_id, $this->record->responsible_id]
+                ))
+                ->form([
+                    TextInput::make('time')
+                        ->label(__('Time to log'))
+                        ->numeric()
+                        ->required(),
+
+                    Textarea::make('comment')
+                        ->label(__('Comment'))
+                        ->rows(3),
+                ])
+                ->action(function (Collection $records, array $data): void {
+                    $value = $data['time'];
+                    $comment = $data['comment'];
+                    TicketHour::create([
+                        'ticket_id' => $this->record->id,
+                        'user_id' => auth()->user()->id,
+                        'value' => $value,
+                        'comment' => $comment
+                    ]);
+                    $this->record->refresh();
+                    $this->notify('success', __('Time logged into ticket'));
+                }),
             Actions\ActionGroup::make([
-                Actions\Action::make('logHours')
-                    ->label(__('Log time'))
-                    ->icon('heroicon-o-clock')
-                    ->color('warning')
-                    ->modalWidth('sm')
-                    ->modalHeading(__('Log worked time'))
-                    ->modalSubheading(__('Use the following form to add your worked time in this ticket.'))
-                    ->modalButton(__('Log'))
-                    ->visible(fn() => in_array(
-                        auth()->user()->id,
-                        [$this->record->owner_id, $this->record->responsible_id]
-                    ))
-                    ->form([
-                        TextInput::make('time')
-                            ->label(__('Time to log'))
-                            ->numeric()
-                            ->required()
-                    ])
-                    ->action(function (Collection $records, array $data): void {
-                        $value = $data['time'];
-                        TicketHour::create([
-                            'ticket_id' => $this->record->id,
-                            'user_id' => auth()->user()->id,
-                            'value' => $value
-                        ]);
-                        $this->record->refresh();
-                        $this->notify('success', __('Time logged into ticket'));
-                    }),
                 Actions\Action::make('exportLogHours')
                     ->label(__('Export time logged'))
                     ->icon('heroicon-o-document-download')

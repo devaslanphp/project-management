@@ -50,7 +50,7 @@ class TranslateMissing extends Command
                             $newLocaleTranslations[$kbt] = $localeTranslations[$kbt];
                         }
                     }
-                    File::put($filePath, json_encode($newLocaleTranslations, JSON_UNESCAPED_UNICODE));
+                    File::put($filePath, json_encode($newLocaleTranslations, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
                 }
             }
             $bar->advance();

@@ -398,6 +398,7 @@ CREATE TABLE `ticket_hours` (
   `ticket_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `value` double(8,2) NOT NULL,
+  `comment` longtext COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
