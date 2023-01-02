@@ -76,6 +76,19 @@
 
             <div class="w-full flex flex-col gap-1 pt-3">
                 <span class="text-gray-500 text-sm font-medium">
+                    {{ __('Epic') }}
+                </span>
+                <div class="w-full flex items-center gap-1 text-gray-500">
+                    @if($record->epic)
+                        {{ $record->epic->name }}
+                    @else
+                        -
+                    @endif
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col gap-1 pt-3">
+                <span class="text-gray-500 text-sm font-medium">
                     {{ __('Estimation') }}
                 </span>
                 <div class="w-full flex items-center gap-1 text-gray-500">
