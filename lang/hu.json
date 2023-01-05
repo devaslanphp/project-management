@@ -189,5 +189,10 @@
     "Ticket successfully saved": "A jegy sikeresen elmentve",
     "Parent epic": "Szülő eposz",
     "Road Map chart is only available on large screen": "Az útiterv-diagram csak nagy képernyőn érhető el",
-    "Comment": "Megjegyzés"
+    "Comment": "Megjegyzés",
+    "Attachments": "Mellékletek",
+    "Here you can attach all files needed for this ticket": "Ide csatolhatja az ehhez a jegyhez szükséges összes fájlt",
+    "Submit": "Beküldés",
+    "Ticket attachments saved": "Jegymellékletek mentve",
+    "Important: If a file has the same name, it will be replaced": "Fontos: Ha egy fájlnak ugyanaz a neve, a rendszer lecseréli"
 }

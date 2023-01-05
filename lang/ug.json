@@ -189,5 +189,10 @@
     "Ticket successfully saved": "بېلەت مۇۋەپپەقىيەتلىك ساقلاندى",
     "Parent epic": "ئاتا-ئانا داستانى",
     "Road Map chart is only available on large screen": "يول خەرىتىسى جەدۋىلى پەقەت چوڭ ئېكراندىلا بار",
-    "Comment": "باھا"
+    "Comment": "باھا",
+    "Attachments": "قوشۇمچە ھۆججەتلەر",
+    "Here you can attach all files needed for this ticket": "بۇ يەردە بۇ بېلەتكە كېرەكلىك بارلىق ھۆججەتلەرنى قوشۇمچە قىلالايسىز",
+    "Submit": "يوللاڭ",
+    "Ticket attachments saved": "بېلەت قوشۇمچە ھۆججەتلىرى ساقلاندى",
+    "Important: If a file has the same name, it will be replaced": "مۇھىمى: ئەگەر ھۆججەتنىڭ ئىسمى ئوخشاش بولسا ، ئۇ ئالماشتۇرۇلىدۇ"
 }

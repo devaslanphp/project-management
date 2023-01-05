@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Bilet başarıyla kaydedildi",
     "Parent epic": "Ebeveyn destanı",
     "Road Map chart is only available on large screen": "Yol Haritası tablosu yalnızca büyük ekranda mevcuttur",
-    "Comment": "Yorum Yap"
+    "Comment": "Yorum Yap",
+    "Attachments": "Ekler",
+    "Here you can attach all files needed for this ticket": "Bu bilet için gereken tüm dosyaları buraya ekleyebilirsiniz.",
+    "Submit": "Göndermek",
+    "Ticket attachments saved": "Bilet ekleri kaydedildi",
+    "Important: If a file has the same name, it will be replaced": "Önemli: Bir dosya aynı ada sahipse değiştirilecektir."
 }

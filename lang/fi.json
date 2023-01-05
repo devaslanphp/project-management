@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Lippu tallennettu onnistuneesti",
     "Parent epic": "Vanhempien eepos",
     "Road Map chart is only available on large screen": "Tiekarttakaavio on käytettävissä vain suurella näytöllä",
-    "Comment": "Kommentti"
+    "Comment": "Kommentti",
+    "Attachments": "Liitteet",
+    "Here you can attach all files needed for this ticket": "Tänne voit liittää kaikki tähän lippuun tarvittavat tiedostot",
+    "Submit": "Lähetä",
+    "Ticket attachments saved": "Lippuliitteet tallennettu",
+    "Important: If a file has the same name, it will be replaced": "Tärkeää: Jos tiedostolla on sama nimi, se korvataan"
 }

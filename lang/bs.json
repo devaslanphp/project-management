@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Karta je uspješno sačuvana",
     "Parent epic": "Parent epic",
     "Road Map chart is only available on large screen": "Mapa puta je dostupna samo na velikom ekranu",
-    "Comment": "Komentar"
+    "Comment": "Komentar",
+    "Attachments": "Prilozi",
+    "Here you can attach all files needed for this ticket": "Ovdje možete priložiti sve datoteke potrebne za ovu kartu",
+    "Submit": "Submit",
+    "Ticket attachments saved": "Prilozi ulaznica su sačuvani",
+    "Important: If a file has the same name, it will be replaced": "Važno: Ako datoteka ima isto ime, bit će zamijenjena"
 }

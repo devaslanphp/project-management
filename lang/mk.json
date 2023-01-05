@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Билетот е успешно зачуван",
     "Parent epic": "Родителски еп",
     "Road Map chart is only available on large screen": "Табелата на патната карта е достапна само на голем екран",
-    "Comment": "Коментар"
+    "Comment": "Коментар",
+    "Attachments": "Прилози",
+    "Here you can attach all files needed for this ticket": "Овде можете да ги прикачите сите датотеки потребни за овој билет",
+    "Submit": "Поднесете",
+    "Ticket attachments saved": "Прилозите за билети се зачувани",
+    "Important: If a file has the same name, it will be replaced": "Важно: ако датотеката го има истото име, таа ќе биде заменета"
 }

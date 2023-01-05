@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Pilet edukalt salvestatud",
     "Parent epic": "Vanemaeepos",
     "Road Map chart is only available on large screen": "Teekaardi diagramm on saadaval ainult suurel ekraanil",
-    "Comment": "Kommenteeri"
+    "Comment": "Kommenteeri",
+    "Attachments": "Manused",
+    "Here you can attach all files needed for this ticket": "Siin saate manustada kõik selle pileti jaoks vajalikud failid",
+    "Submit": "Esita",
+    "Ticket attachments saved": "Pileti manused salvestatud",
+    "Important: If a file has the same name, it will be replaced": "Tähtis. Kui failil on sama nimi, asendatakse see"
 }

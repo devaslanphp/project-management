@@ -189,5 +189,10 @@
     "Ticket successfully saved": "तिकीट यशस्वीरित्या जतन केले",
     "Parent epic": "पालक महाकाव्य",
     "Road Map chart is only available on large screen": "रोड मॅप चार्ट फक्त मोठ्या स्क्रीनवर उपलब्ध आहे",
-    "Comment": "टिप्पणी"
+    "Comment": "टिप्पणी",
+    "Attachments": "संलग्नक",
+    "Here you can attach all files needed for this ticket": "येथे तुम्ही या तिकिटासाठी आवश्यक असलेल्या सर्व फाइल्स संलग्न करू शकता",
+    "Submit": "प्रस्तुत करणे",
+    "Ticket attachments saved": "तिकीट संलग्नके जतन केली",
+    "Important: If a file has the same name, it will be replaced": "महत्त्वाचे: फाइलचे नाव समान असल्यास, ती बदलली जाईल"
 }

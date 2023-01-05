@@ -189,5 +189,10 @@
     "Ticket successfully saved": "הכרטיס נשמר בהצלחה",
     "Parent epic": "אפוס הורים",
     "Road Map chart is only available on large screen": "תרשים מפת הדרכים זמין רק במסך גדול",
-    "Comment": "תגובה"
+    "Comment": "תגובה",
+    "Attachments": "קבצים מצורפים",
+    "Here you can attach all files needed for this ticket": "כאן תוכל לצרף את כל הקבצים הדרושים לכרטיס זה",
+    "Submit": "שלח",
+    "Ticket attachments saved": "קבצים מצורפים לכרטיסים נשמרו",
+    "Important: If a file has the same name, it will be replaced": "חשוב: אם לקובץ יש אותו שם, הוא יוחלף"
 }

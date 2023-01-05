@@ -189,5 +189,10 @@
     "Ticket successfully saved": "تم حفظ التذكرة بنجاح",
     "Parent epic": "ملحمة الوالدين",
     "Road Map chart is only available on large screen": "مخطط خريطة الطريق متاح فقط على الشاشة الكبيرة",
-    "Comment": "تعليق"
+    "Comment": "تعليق",
+    "Attachments": "المرفقات",
+    "Here you can attach all files needed for this ticket": "هنا يمكنك إرفاق جميع الملفات المطلوبة لهذه التذكرة",
+    "Submit": "يُقدِّم",
+    "Ticket attachments saved": "تم حفظ مرفقات التذاكر",
+    "Important: If a file has the same name, it will be replaced": "هام: إذا كان الملف يحمل نفس الاسم ، فسيتم استبداله"
 }

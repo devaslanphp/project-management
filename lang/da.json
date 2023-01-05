@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Billetten blev gemt",
     "Parent epic": "Forældre-epos",
     "Road Map chart is only available on large screen": "Vejkort er kun tilgængeligt på storskærm",
-    "Comment": "Kommentar"
+    "Comment": "Kommentar",
+    "Attachments": "Vedhæftede filer",
+    "Here you can attach all files needed for this ticket": "Her kan du vedhæfte alle nødvendige filer til denne billet",
+    "Submit": "Indsend",
+    "Ticket attachments saved": "Billetvedhæftede filer er gemt",
+    "Important: If a file has the same name, it will be replaced": "Vigtigt: Hvis en fil har samme navn, vil den blive erstattet"
 }

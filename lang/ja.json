@@ -189,5 +189,10 @@
     "Ticket successfully saved": "チケットが正常に保存されました",
     "Parent epic": "親エピック",
     "Road Map chart is only available on large screen": "ロードマップチャートは大画面でのみ利用可能です",
-    "Comment": "コメント"
+    "Comment": "コメント",
+    "Attachments": "付属品",
+    "Here you can attach all files needed for this ticket": "ここで、このチケットに必要なすべてのファイルを添付できます",
+    "Submit": "送信",
+    "Ticket attachments saved": "チケットの添付ファイルを保存しました",
+    "Important: If a file has the same name, it will be replaced": "重要: ファイルが同じ名前の場合、置き換えられます"
 }

@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Bilet pomyślnie zapisany",
     "Parent epic": "Epopeja rodzicielska",
     "Road Map chart is only available on large screen": "Wykres mapy drogowej jest dostępny tylko na dużym ekranie",
-    "Comment": "Komentarz"
+    "Comment": "Komentarz",
+    "Attachments": "Załączniki",
+    "Here you can attach all files needed for this ticket": "Tutaj możesz dołączyć wszystkie pliki potrzebne do tego biletu",
+    "Submit": "Składać",
+    "Ticket attachments saved": "Załączniki do zgłoszeń zostały zapisane",
+    "Important: If a file has the same name, it will be replaced": "Ważne: jeśli plik ma taką samą nazwę, zostanie zastąpiony"
 }

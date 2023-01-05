@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Lístok bol úspešne uložený",
     "Parent epic": "Rodičovský epos",
     "Road Map chart is only available on large screen": "Cestovná mapa je k dispozícii iba na veľkej obrazovke",
-    "Comment": "Komentujte"
+    "Comment": "Komentujte",
+    "Attachments": "Prílohy",
+    "Here you can attach all files needed for this ticket": "Tu môžete pripojiť všetky súbory potrebné pre tento lístok",
+    "Submit": "Predložiť",
+    "Ticket attachments saved": "Prílohy lístkov boli uložené",
+    "Important: If a file has the same name, it will be replaced": "Dôležité: Ak má súbor rovnaký názov, bude nahradený"
 }

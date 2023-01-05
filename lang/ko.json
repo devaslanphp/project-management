@@ -189,5 +189,10 @@
     "Ticket successfully saved": "티켓이 성공적으로 저장되었습니다.",
     "Parent epic": "부모 서사시",
     "Road Map chart is only available on large screen": "로드맵 차트는 큰 화면에서만 볼 수 있습니다.",
-    "Comment": "논평"
+    "Comment": "논평",
+    "Attachments": "첨부파일",
+    "Here you can attach all files needed for this ticket": "여기에서 이 티켓에 필요한 모든 파일을 첨부할 수 있습니다.",
+    "Submit": "제출하다",
+    "Ticket attachments saved": "티켓 첨부 파일 저장됨",
+    "Important: If a file has the same name, it will be replaced": "중요: 파일 이름이 같으면 교체됩니다."
 }

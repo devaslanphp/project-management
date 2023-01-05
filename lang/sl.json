@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Vstopnica uspešno shranjena",
     "Parent epic": "Starševski ep",
     "Road Map chart is only available on large screen": "Zemljevid je na voljo samo na velikem zaslonu",
-    "Comment": "Komentiraj"
+    "Comment": "Komentiraj",
+    "Attachments": "priloge",
+    "Here you can attach all files needed for this ticket": "Tukaj lahko priložite vse datoteke, potrebne za to vstopnico",
+    "Submit": "Predloži",
+    "Ticket attachments saved": "Vstopnice so shranjene",
+    "Important: If a file has the same name, it will be replaced": "Pomembno: če ima datoteka isto ime, bo zamenjana"
 }

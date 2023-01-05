@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Matagumpay na na-save ang tiket",
     "Parent epic": "Epiko ng magulang",
     "Road Map chart is only available on large screen": "Available lang ang tsart ng Road Map sa malaking screen",
-    "Comment": "Magkomento"
+    "Comment": "Magkomento",
+    "Attachments": "Mga kalakip",
+    "Here you can attach all files needed for this ticket": "Dito maaari mong ilakip ang lahat ng mga file na kailangan para sa tiket na ito",
+    "Submit": "Ipasa",
+    "Ticket attachments saved": "Na-save ang mga attachment ng ticket",
+    "Important: If a file has the same name, it will be replaced": "Mahalaga: Kung ang isang file ay may parehong pangalan, ito ay papalitan"
 }

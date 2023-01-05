@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Το εισιτήριο αποθηκεύτηκε με επιτυχία",
     "Parent epic": "Γονικό έπος",
     "Road Map chart is only available on large screen": "Το γράφημα του οδικού χάρτη είναι διαθέσιμο μόνο σε μεγάλη οθόνη",
-    "Comment": "Σχόλιο"
+    "Comment": "Σχόλιο",
+    "Attachments": "Συνημμένα",
+    "Here you can attach all files needed for this ticket": "Εδώ μπορείτε να επισυνάψετε όλα τα αρχεία που χρειάζονται για αυτό το εισιτήριο",
+    "Submit": "υποβάλλουν",
+    "Ticket attachments saved": "Τα συνημμένα εισιτηρίων αποθηκεύτηκαν",
+    "Important: If a file has the same name, it will be replaced": "Σημαντικό: Εάν ένα αρχείο έχει το ίδιο όνομα, θα αντικατασταθεί"
 }

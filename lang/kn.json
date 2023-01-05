@@ -189,5 +189,10 @@
     "Ticket successfully saved": "ಟಿಕೆಟ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ",
     "Parent epic": "ಮಾತೃ ಮಹಾಕಾವ್ಯ",
     "Road Map chart is only available on large screen": "ರಸ್ತೆ ನಕ್ಷೆ ಚಾರ್ಟ್ ದೊಡ್ಡ ಪರದೆಯಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿದೆ",
-    "Comment": "ಕಾಮೆಂಟ್ ಮಾಡಿ"
+    "Comment": "ಕಾಮೆಂಟ್ ಮಾಡಿ",
+    "Attachments": "ಲಗತ್ತುಗಳು",
+    "Here you can attach all files needed for this ticket": "ಈ ಟಿಕೆಟ್‌ಗೆ ಅಗತ್ಯವಿರುವ ಎಲ್ಲಾ ಫೈಲ್‌ಗಳನ್ನು ನೀವು ಇಲ್ಲಿ ಲಗತ್ತಿಸಬಹುದು",
+    "Submit": "ಸಲ್ಲಿಸು",
+    "Ticket attachments saved": "ಟಿಕೆಟ್ ಲಗತ್ತುಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ",
+    "Important: If a file has the same name, it will be replaced": "ಪ್ರಮುಖ: ಫೈಲ್ ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದರೆ, ಅದನ್ನು ಬದಲಾಯಿಸಲಾಗುತ್ತದೆ"
 }

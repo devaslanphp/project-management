@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Տոմսը հաջողությամբ պահպանվեց",
     "Parent epic": "Ծնողական էպոս",
     "Road Map chart is only available on large screen": "Ճանապարհային քարտեզի գծապատկերը հասանելի է միայն մեծ էկրանին",
-    "Comment": "Մեկնաբանություն"
+    "Comment": "Մեկնաբանություն",
+    "Attachments": "Կցորդներ",
+    "Here you can attach all files needed for this ticket": "Այստեղ կարող եք կցել այս տոմսի համար անհրաժեշտ բոլոր ֆայլերը",
+    "Submit": "Ներկայացնել",
+    "Ticket attachments saved": "Տոմսերի կցորդները պահված են",
+    "Important: If a file has the same name, it will be replaced": "Կարևոր է. Եթե ֆայլն ունի նույն անունը, այն կփոխարինվի"
 }

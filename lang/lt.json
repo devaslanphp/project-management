@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Bilietas sėkmingai išsaugotas",
     "Parent epic": "Tėvų epas",
     "Road Map chart is only available on large screen": "Kelių žemėlapio diagrama pasiekiama tik dideliame ekrane",
-    "Comment": "komentuoti"
+    "Comment": "komentuoti",
+    "Attachments": "Priedai",
+    "Here you can attach all files needed for this ticket": "Čia galite pridėti visus šiam bilietui reikalingus failus",
+    "Submit": "Pateikti",
+    "Ticket attachments saved": "Bilietų priedai išsaugoti",
+    "Important: If a file has the same name, it will be replaced": "Svarbu: jei failas turi tą patį pavadinimą, jis bus pakeistas"
 }

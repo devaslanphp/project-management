@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Білет паспяхова захаваны",
     "Parent epic": "Бацькоўскі эпас",
     "Road Map chart is only available on large screen": "Дарожная карта даступная толькі на вялікім экране",
-    "Comment": "Каментуйце"
+    "Comment": "Каментуйце",
+    "Attachments": "Дадаткі",
+    "Here you can attach all files needed for this ticket": "Тут вы можаце далучыць усе файлы, неабходныя для гэтага білета",
+    "Submit": "Падаць",
+    "Ticket attachments saved": "Дадаткі да квіткоў захаваны",
+    "Important: If a file has the same name, it will be replaced": "Важна: калі файл мае такую ​​ж назву, ён будзе заменены"
 }
