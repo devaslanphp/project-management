@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Billetten er lagret",
     "Parent epic": "Foreldre-epos",
     "Road Map chart is only available on large screen": "Veikartkartet er kun tilgjengelig på storskjerm",
-    "Comment": "Kommentar"
+    "Comment": "Kommentar",
+    "Attachments": "Vedlegg",
+    "Here you can attach all files needed for this ticket": "Her kan du legge ved alle filer som trengs for denne billetten",
+    "Submit": "Sende inn",
+    "Ticket attachments saved": "Billettvedlegg lagret",
+    "Important: If a file has the same name, it will be replaced": "Viktig: Hvis en fil har samme navn, vil den bli erstattet"
 }

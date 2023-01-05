@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Тасалбарыг амжилттай хадгаллаа",
     "Parent epic": "Эцэг эхийн туульс",
     "Road Map chart is only available on large screen": "Замын газрын зургийн диаграмыг зөвхөн том дэлгэц дээр үзэх боломжтой",
-    "Comment": "Сэтгэгдэл"
+    "Comment": "Сэтгэгдэл",
+    "Attachments": "Хавсралтууд",
+    "Here you can attach all files needed for this ticket": "Энд та энэ тасалбарт шаардлагатай бүх файлыг хавсаргаж болно",
+    "Submit": "Илгээх",
+    "Ticket attachments saved": "Тасалбарын хавсралтыг хадгалсан",
+    "Important: If a file has the same name, it will be replaced": "Чухал: Хэрэв файл ижил нэртэй бол түүнийг солих болно"
 }

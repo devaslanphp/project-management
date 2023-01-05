@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Bileta u ruajt me sukses",
     "Parent epic": "Epika e prindërve",
     "Road Map chart is only available on large screen": "Grafiku i Hartës Rrugore disponohet vetëm në ekran të madh",
-    "Comment": "Komentoni"
+    "Comment": "Komentoni",
+    "Attachments": "Shtojcat",
+    "Here you can attach all files needed for this ticket": "Këtu mund të bashkëngjitni të gjithë skedarët e nevojshëm për këtë biletë",
+    "Submit": "Paraqisni",
+    "Ticket attachments saved": "Bashkëngjitjet e biletave u ruajtën",
+    "Important: If a file has the same name, it will be replaced": "E rëndësishme: Nëse një skedar ka të njëjtin emër, ai do të zëvendësohet"
 }

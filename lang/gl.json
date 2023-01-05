@@ -189,5 +189,10 @@
     "Ticket successfully saved": "O billete gardouse correctamente",
     "Parent epic": "Épica dos pais",
     "Road Map chart is only available on large screen": "O gráfico do mapa de estradas só está dispoñible na pantalla grande",
-    "Comment": "Comenta"
+    "Comment": "Comenta",
+    "Attachments": "Anexos",
+    "Here you can attach all files needed for this ticket": "Aquí podes anexar todos os ficheiros necesarios para este ticket",
+    "Submit": "Enviar",
+    "Ticket attachments saved": "Gardáronse os anexos dos tickets",
+    "Important: If a file has the same name, it will be replaced": "Importante: se un ficheiro ten o mesmo nome, substituirase"
 }

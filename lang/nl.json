@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Ticket succesvol opgeslagen",
     "Parent epic": "Ouderlijk epos",
     "Road Map chart is only available on large screen": "Wegenkaartkaart is alleen beschikbaar op groot scherm",
-    "Comment": "Commentaar"
+    "Comment": "Commentaar",
+    "Attachments": "Bijlagen",
+    "Here you can attach all files needed for this ticket": "Hier kunt u alle bestanden toevoegen die nodig zijn voor dit ticket",
+    "Submit": "Indienen",
+    "Ticket attachments saved": "Ticketbijlagen opgeslagen",
+    "Important: If a file has the same name, it will be replaced": "Belangrijk: als een bestand dezelfde naam heeft, wordt het vervangen"
 }

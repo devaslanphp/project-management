@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Biļete veiksmīgi saglabāta",
     "Parent epic": "Vecāku epopeja",
     "Road Map chart is only available on large screen": "Ceļa kartes diagramma ir pieejama tikai lielā ekrānā",
-    "Comment": "komentēt"
+    "Comment": "komentēt",
+    "Attachments": "Pielikumi",
+    "Here you can attach all files needed for this ticket": "Šeit varat pievienot visus šai biļetei nepieciešamos failus",
+    "Submit": "Iesniegt",
+    "Ticket attachments saved": "Biļešu pielikumi saglabāti",
+    "Important: If a file has the same name, it will be replaced": "Svarīgi! Ja failam ir tāds pats nosaukums, tas tiks aizstāts"
 }

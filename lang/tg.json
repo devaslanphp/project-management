@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Чипта бомуваффақият захира карда шуд",
     "Parent epic": "Эпопияи волидайн",
     "Road Map chart is only available on large screen": "Диаграммаи Харитаи роҳ танҳо дар экрани калон дастрас аст",
-    "Comment": "Шарҳ"
+    "Comment": "Шарҳ",
+    "Attachments": "Замимаҳо",
+    "Here you can attach all files needed for this ticket": "Дар ин ҷо шумо метавонед ҳамаи файлҳои барои ин чипта заруриро замима кунед",
+    "Submit": "Пешниҳод кунед",
+    "Ticket attachments saved": "Замимаҳои чипта захира карда шуданд",
+    "Important: If a file has the same name, it will be replaced": "Муҳим: Агар файл ҳамон ном дошта бошад, он иваз карда мешавад"
 }

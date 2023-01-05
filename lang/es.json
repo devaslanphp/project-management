@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Ticket guardado con éxito",
     "Parent epic": "Epopeya de los padres",
     "Road Map chart is only available on large screen": "El gráfico de hoja de ruta solo está disponible en pantalla grande",
-    "Comment": "Comentario"
+    "Comment": "Comentario",
+    "Attachments": "Archivos adjuntos",
+    "Here you can attach all files needed for this ticket": "Aquí puede adjuntar todos los archivos necesarios para este ticket",
+    "Submit": "Enviar",
+    "Ticket attachments saved": "Archivos adjuntos de entradas guardados",
+    "Important: If a file has the same name, it will be replaced": "Importante: si un archivo tiene el mismo nombre, será reemplazado"
 }

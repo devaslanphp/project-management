@@ -189,5 +189,10 @@
     "Ticket successfully saved": "El bitllet s'ha desat correctament",
     "Parent epic": "Èpica dels pares",
     "Road Map chart is only available on large screen": "El gràfic del full de ruta només està disponible a la pantalla gran",
-    "Comment": "Comenta"
+    "Comment": "Comenta",
+    "Attachments": "Adjunts",
+    "Here you can attach all files needed for this ticket": "Aquí podeu adjuntar tots els fitxers necessaris per a aquest bitllet",
+    "Submit": "Presentar",
+    "Ticket attachments saved": "S'han desat els fitxers adjunts de les entrades",
+    "Important: If a file has the same name, it will be replaced": "Important: si un fitxer té el mateix nom, se substituirà"
 }

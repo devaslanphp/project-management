@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Biljetten har sparats",
     "Parent epic": "Föräldraepos",
     "Road Map chart is only available on large screen": "Vägkartan är endast tillgänglig på stor skärm",
-    "Comment": "Kommentar"
+    "Comment": "Kommentar",
+    "Attachments": "Bilagor",
+    "Here you can attach all files needed for this ticket": "Här kan du bifoga alla filer som behövs för denna biljett",
+    "Submit": "Skicka in",
+    "Ticket attachments saved": "Biljettbilagor har sparats",
+    "Important: If a file has the same name, it will be replaced": "Viktigt: Om en fil har samma namn kommer den att ersättas"
 }

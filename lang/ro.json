@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Biletul a fost salvat",
     "Parent epic": "Epopeea părintelui",
     "Road Map chart is only available on large screen": "Diagrama Road Map este disponibilă numai pe ecranul mare",
-    "Comment": "cometariu"
+    "Comment": "cometariu",
+    "Attachments": "Atasamente",
+    "Here you can attach all files needed for this ticket": "Aici puteți atașa toate fișierele necesare pentru acest bilet",
+    "Submit": "Trimite",
+    "Ticket attachments saved": "Atașamentele biletelor au fost salvate",
+    "Important: If a file has the same name, it will be replaced": "Important: Dacă un fișier are același nume, acesta va fi înlocuit"
 }

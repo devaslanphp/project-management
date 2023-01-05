@@ -189,5 +189,10 @@
     "Ticket successfully saved": "บันทึกตั๋วเรียบร้อยแล้ว",
     "Parent epic": "มหากาพย์ผู้ปกครอง",
     "Road Map chart is only available on large screen": "แผนภูมิแผนที่ถนนมีให้ใช้งานบนหน้าจอขนาดใหญ่เท่านั้น",
-    "Comment": "ความคิดเห็น"
+    "Comment": "ความคิดเห็น",
+    "Attachments": "ไฟล์แนบ",
+    "Here you can attach all files needed for this ticket": "คุณสามารถแนบไฟล์ทั้งหมดที่จำเป็นสำหรับตั๋วนี้ได้ที่นี่",
+    "Submit": "ส่ง",
+    "Ticket attachments saved": "บันทึกไฟล์แนบตั๋วแล้ว",
+    "Important: If a file has the same name, it will be replaced": "ข้อสำคัญ: หากไฟล์มีชื่อเดียวกัน ไฟล์นั้นจะถูกแทนที่"
 }

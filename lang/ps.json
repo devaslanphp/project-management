@@ -189,5 +189,10 @@
     "Ticket successfully saved": "ټکټ په بریالیتوب سره خوندي شو",
     "Parent epic": "د مور او پلار اختراع",
     "Road Map chart is only available on large screen": "د سړک نقشه چارټ یوازې په لوی سکرین کې شتون لري",
-    "Comment": "تبصره"
+    "Comment": "تبصره",
+    "Attachments": "ملحقات",
+    "Here you can attach all files needed for this ticket": "دلته تاسو کولی شئ د دې ټکټ لپاره ټول اړین فایلونه ضمیمه کړئ",
+    "Submit": "سپارل",
+    "Ticket attachments saved": "د ټکټ ضمیمه خوندي شوه",
+    "Important: If a file has the same name, it will be replaced": "مهم: که یو فایل ورته نوم ولري، دا به بدل شي"
 }

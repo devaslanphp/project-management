@@ -189,5 +189,10 @@
     "Ticket successfully saved": "Llwyddwyd i gadw'r tocyn",
     "Parent epic": "Rhiant epig",
     "Road Map chart is only available on large screen": "Mae siart Map Ffordd ar gael ar sgrin fawr yn unig",
-    "Comment": "Sylw"
+    "Comment": "Sylw",
+    "Attachments": "Ymlyniadau",
+    "Here you can attach all files needed for this ticket": "Yma gallwch atodi'r holl ffeiliau sydd eu hangen ar gyfer y tocyn hwn",
+    "Submit": "Cyflwyno",
+    "Ticket attachments saved": "Atodion tocynnau wedi'u cadw",
+    "Important: If a file has the same name, it will be replaced": "Pwysig: Os oes gan ffeil yr un enw, caiff ei disodli"
 }
