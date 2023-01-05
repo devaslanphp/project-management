@@ -5,6 +5,7 @@ module.exports = {
     content: [
         './resources/**/*.blade.php',
         './app/Filament/**/*.php',
+        './app/Http/Livewire/**/*.php',
         './vendor/filament/**/*.blade.php',
         './node_modules/flowbite/**/*.js'
     ],

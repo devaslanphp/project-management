@@ -189,5 +189,9 @@
     "Ticket successfully saved": "Ticket enregistré avec succès",
     "Parent epic": "Epic parent",
     "Road Map chart is only available on large screen": "Le graphique de la feuille de route n'est disponible que sur grand écran",
-    "Comment": "Commentaire"
+    "Comment": "Commentaire",
+    "Attachments": "Pièces jointes",
+    "Here you can attach all files needed for this ticket": "Ici vous pouvez joindre tous les fichiers nécessaires pour ce ticket",
+    "Submit": "Soumettre",
+    "Ticket attachments saved": "Pièces jointes au ticket enregistrées"
 }

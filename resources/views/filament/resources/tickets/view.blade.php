@@ -219,6 +219,11 @@
                         @if($tab === 'time') border-primary-500 text-primary-500 @else text-gray-700 @endif">
                     {{ __('Time logged') }}
                 </button>
+                <button wire:click="selectTab('attachments')"
+                        class="md:text-xl text-sm p-3 border-b-2 border-transparent hover:border-primary-500
+                        @if($tab === 'attachments') border-primary-500 text-primary-500 @else text-gray-700 @endif">
+                    {{ __('Attachments') }}
+                </button>
             </div>
             @if($tab === 'comments')
                 <form wire:submit.prevent="submitComment" class="pb-5">
@@ -332,6 +337,9 @@
                     </span>
                     @endif
                 </div>
+            @endif
+            @if($tab === 'attachments')
+                <livewire:ticket.attachments :ticket="$record" />
             @endif
         </x-filament::card>
 
