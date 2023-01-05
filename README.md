@@ -106,8 +106,10 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 - **Release 1.1.5**
   - Add comment field to ticket hours logging
 - **Release 1.1.6**
-  - Edit ticket epic details
-  - PR #13 made by @mihaisolomon
+    - Edit ticket epic details
+    - PR #13 made by @mihaisolomon
+- **Release 1.1.7**
+    - Ticket attachments
 
 ## Support us
 
