@@ -13,7 +13,8 @@ class PermissionsSeeder extends Seeder
 {
     private array $modules = [
         'permission', 'project', 'project status', 'role', 'ticket',
-        'ticket priority', 'ticket status', 'ticket type', 'user'
+        'ticket priority', 'ticket status', 'ticket type', 'user',
+        'activity'
     ];
 
     private array $pluralActions = [
