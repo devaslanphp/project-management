@@ -13,7 +13,7 @@ class TicketHour extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'ticket_id', 'value', 'comment'
+        'user_id', 'ticket_id', 'value', 'comment', 'activity_id'
     ];
 
     public function user(): BelongsTo
@@ -24,6 +24,11 @@ class TicketHour extends Model
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class, 'ticket_id', 'id');
+    }
+
+    public function activity(): BelongsTo
+    {
+        return $this->belongsTo(Activity::class, 'activity_id', 'id');
     }
 
     public function forHumans(): Attribute
