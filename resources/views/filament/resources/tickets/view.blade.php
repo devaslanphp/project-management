@@ -324,6 +324,12 @@
                                         {{ $item->forHumans }}
                                     </span>
                                 </div>
+                                <div class="w-full flex items-center gap-1">
+                                    <span class="text-gray-400">{{ __('Activity:') }}</span>
+                                    <span class="text-primary-500 font-medium">
+                                        {{ $item->activity ? $item->activity->name : '-' }}
+                                    </span>
+                                </div>
                                 @if($item->comment)
                                     <div class="w-full">
                                         {!! nl2br(e($item->comment)) !!}

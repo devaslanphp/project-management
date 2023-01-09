@@ -110,6 +110,12 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - PR #13 made by @mihaisolomon
 - **Release 1.1.7**
     - Ticket attachments
+- **Release 1.1.8**
+    - Time logged activities #25 PR integration
+    - #19 by @mihaisolomon : 
+      - Add new resource `Activity` to referential
+      - Add `Activity` to ticket time logging
+      - Add `Activity` column to Excel exportation
 
 ## Support us
 

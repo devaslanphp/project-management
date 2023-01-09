@@ -4,10 +4,12 @@ namespace App\Filament\Resources\TicketResource\Pages;
 
 use App\Exports\TicketHoursExport;
 use App\Filament\Resources\TicketResource;
+use App\Models\Activity;
 use App\Models\TicketComment;
 use App\Models\TicketHour;
 use App\Models\TicketSubscriber;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
@@ -99,7 +101,13 @@ class ViewTicket extends ViewRecord implements HasForms
                         ->label(__('Time to log'))
                         ->numeric()
                         ->required(),
-
+                    Select::make('activity_id')
+                        ->label(__('Activity'))
+                        ->searchable()
+                        ->reactive()
+                        ->options(function ($get, $set) {
+                            return Activity::all()->pluck('name', 'id')->toArray();
+                        }),
                     Textarea::make('comment')
                         ->label(__('Comment'))
                         ->rows(3),
@@ -109,6 +117,7 @@ class ViewTicket extends ViewRecord implements HasForms
                     $comment = $data['comment'];
                     TicketHour::create([
                         'ticket_id' => $this->record->id,
+                        'activity_id' => $data['activity_id'],
                         'user_id' => auth()->user()->id,
                         'value' => $value,
                         'comment' => $comment

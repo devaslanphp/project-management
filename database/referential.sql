@@ -14,10 +14,22 @@ INSERT INTO `ticket_types` (`id`, `name`, `icon`, `color`, `is_default`, `delete
 (2, 'Evolution', 'heroicon-o-clipboard-list', '#008000', 0, NULL, '2022-11-14 12:06:56', '2022-11-14 12:06:56'),
 (3, 'Bug', 'heroicon-o-x', '#ff0000', 0, NULL, '2022-11-14 12:06:56', '2022-11-14 12:06:56');
 
+
+INSERT INTO `activities` (`id`, `name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Programming', 'Programming related activities', '2023-01-09 13:10:52', '2023-01-09 13:10:52', NULL),
+(2, 'Testing', 'Testing related activities', '2023-01-09 13:10:52', '2023-01-09 13:10:52', NULL),
+(3, 'Learning', 'Activities related to learning and training', '2023-01-09 13:10:52', '2023-01-09 13:10:52', NULL),
+(4, 'Research', 'Activities related to research', '2023-01-09 13:10:52', '2023-01-09 13:10:52', NULL),
+(5, 'Other', 'Other activities', '2023-01-09 13:10:52', '2023-01-09 13:10:52', NULL);
+
 ALTER TABLE `ticket_priorities`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 ALTER TABLE `ticket_statuses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 ALTER TABLE `ticket_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `activities`
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
