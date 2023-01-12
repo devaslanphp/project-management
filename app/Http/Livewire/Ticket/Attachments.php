@@ -7,6 +7,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -86,6 +87,17 @@ class Attachments extends Component implements HasForms, HasTable
                 ->label(__('Mime type'))
                 ->sortable()
                 ->searchable(),
+        ];
+    }
+
+    protected function getTableActions(): array
+    {
+        return [
+            DeleteAction::make()
+                ->action(function ($record) {
+                    $record->delete();
+                    Filament::notify('success', __('Ticket attachment deleted'));
+                })
         ];
     }
 }
