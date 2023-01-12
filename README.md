@@ -116,6 +116,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
       - Add new resource `Activity` to referential
       - Add `Activity` to ticket time logging
       - Add `Activity` column to Excel exportation
+- **Release 1.1.9**
+    - #32 Default user seeder enhancement
+    - #31 Issue resolved
 
 ## Support us
 
