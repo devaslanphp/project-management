@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Aqui você pode anexar todos os arquivos necessários para este ticket",
     "Submit": "Enviar",
     "Ticket attachments saved": "Anexos de ticket salvos",
-    "Important: If a file has the same name, it will be replaced": "Importante: Se um arquivo tiver o mesmo nome, ele será substituído"
+    "Important: If a file has the same name, it will be replaced": "Importante: Se um arquivo tiver o mesmo nome, ele será substituído",
+    "Upload": "Carregar"
 }

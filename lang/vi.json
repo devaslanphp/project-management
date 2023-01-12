@@ -189,5 +189,11 @@
     "Ticket successfully saved": "Đã lưu vé thành công",
     "Parent epic": "sử thi cha mẹ",
     "Road Map chart is only available on large screen": "Biểu đồ Road Map chỉ khả dụng trên màn hình lớn",
-    "Comment": "Bình luận"
+    "Comment": "Bình luận",
+    "Attachments": "tệp đính kèm",
+    "Here you can attach all files needed for this ticket": "Tại đây bạn có thể đính kèm tất cả các tệp cần thiết cho vé này",
+    "Submit": "Gửi đi",
+    "Ticket attachments saved": "Đã lưu tệp đính kèm vé",
+    "Important: If a file has the same name, it will be replaced": "Quan trọng: Nếu một tệp có cùng tên, nó sẽ bị thay thế",
+    "Upload": "Tải lên"
 }

@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Hemen txartel honetarako behar diren fitxategi guztiak erantsi ditzakezu",
     "Submit": "Bidali",
     "Ticket attachments saved": "Gorde dira txartelaren eranskinak",
-    "Important: If a file has the same name, it will be replaced": "Garrantzitsua: fitxategi batek izen bera badu, ordezkatu egingo da"
+    "Important: If a file has the same name, it will be replaced": "Garrantzitsua: fitxategi batek izen bera badu, ordezkatu egingo da",
+    "Upload": "Kargatu"
 }

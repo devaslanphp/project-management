@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Здесь вы можете прикрепить все файлы, необходимые для этого билета",
     "Submit": "Представлять на рассмотрение",
     "Ticket attachments saved": "Вложения к заявкам сохранены",
-    "Important: If a file has the same name, it will be replaced": "Важно: Если файл имеет такое же имя, он будет заменен"
+    "Important: If a file has the same name, it will be replaced": "Важно: Если файл имеет такое же имя, он будет заменен",
+    "Upload": "Загрузить"
 }

@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Her kan du legge ved alle filer som trengs for denne billetten",
     "Submit": "Sende inn",
     "Ticket attachments saved": "Billettvedlegg lagret",
-    "Important: If a file has the same name, it will be replaced": "Viktig: Hvis en fil har samme navn, vil den bli erstattet"
+    "Important: If a file has the same name, it will be replaced": "Viktig: Hvis en fil har samme navn, vil den bli erstattet",
+    "Upload": "Laste opp"
 }

@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "এখানে আপনি এই টিকিটের জন্য প্রয়োজনীয় সমস্ত ফাইল সংযুক্ত করতে পারেন",
     "Submit": "জমা দিন",
     "Ticket attachments saved": "টিকিট সংযুক্তি সংরক্ষিত",
-    "Important: If a file has the same name, it will be replaced": "গুরুত্বপূর্ণ: যদি একটি ফাইলের নাম একই থাকে তবে এটি প্রতিস্থাপন করা হবে"
+    "Important: If a file has the same name, it will be replaced": "গুরুত্বপূর্ণ: যদি একটি ফাইলের নাম একই থাকে তবে এটি প্রতিস্থাপন করা হবে",
+    "Upload": "আপলোড করুন"
 }

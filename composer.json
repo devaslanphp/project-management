@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-iconv": "*",
         "devaslanphp/filament-avatar": "^1.0",
         "doctrine/dbal": "^3.5",
         "dutchcodingcompany/filament-socialite": "^0.2.2",
@@ -24,8 +25,7 @@
         "psr/simple-cache": "^1.0",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.5",
-        "stichoza/google-translate-php": "^4.1",
-        "ext-iconv": "*"
+        "stichoza/google-translate-php": "^4.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

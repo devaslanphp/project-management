@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Այստեղ կարող եք կցել այս տոմսի համար անհրաժեշտ բոլոր ֆայլերը",
     "Submit": "Ներկայացնել",
     "Ticket attachments saved": "Տոմսերի կցորդները պահված են",
-    "Important: If a file has the same name, it will be replaced": "Կարևոր է. Եթե ֆայլն ունի նույն անունը, այն կփոխարինվի"
+    "Important: If a file has the same name, it will be replaced": "Կարևոր է. Եթե ֆայլն ունի նույն անունը, այն կփոխարինվի",
+    "Upload": "Վերբեռնել"
 }

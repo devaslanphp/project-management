@@ -368,8 +368,7 @@ CREATE TABLE `tickets` (
                            `order` int(11) NOT NULL DEFAULT 0,
                            `priority_id` bigint(20) UNSIGNED NOT NULL,
                            `estimation` double(8,2) DEFAULT NULL,
-                           `epic_id` bigint(20) UNSIGNED DEFAULT NULL,
-                           `attachments` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+                           `epic_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

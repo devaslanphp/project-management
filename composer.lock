@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db17ad6e52ec5f369f02b2cd2640f529",
+    "content-hash": "d3e992c0a1606486ed8c014aa7321666",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -1567,7 +1567,7 @@
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v2.16.58",
+            "version": "v2.16.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
@@ -11692,5 +11692,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }

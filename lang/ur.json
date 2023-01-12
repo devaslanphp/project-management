@@ -189,5 +189,11 @@
     "Ticket successfully saved": "ٹکٹ کامیابی کے ساتھ محفوظ ہو گیا۔",
     "Parent epic": "والدین مہاکاوی",
     "Road Map chart is only available on large screen": "روڈ میپ چارٹ صرف بڑی اسکرین پر دستیاب ہے۔",
-    "Comment": "تبصرہ"
+    "Comment": "تبصرہ",
+    "Attachments": "منسلکات",
+    "Here you can attach all files needed for this ticket": "یہاں آپ اس ٹکٹ کے لیے درکار تمام فائلیں منسلک کر سکتے ہیں۔",
+    "Submit": "جمع کرائیں",
+    "Ticket attachments saved": "ٹکٹ کے منسلکات محفوظ ہو گئے۔",
+    "Important: If a file has the same name, it will be replaced": "اہم: اگر کسی فائل کا نام ایک ہی ہے تو اسے تبدیل کر دیا جائے گا۔",
+    "Upload": "اپ لوڈ کریں۔"
 }

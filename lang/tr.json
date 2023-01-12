@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Bu bilet için gereken tüm dosyaları buraya ekleyebilirsiniz.",
     "Submit": "Göndermek",
     "Ticket attachments saved": "Bilet ekleri kaydedildi",
-    "Important: If a file has the same name, it will be replaced": "Önemli: Bir dosya aynı ada sahipse değiştirilecektir."
+    "Important: If a file has the same name, it will be replaced": "Önemli: Bir dosya aynı ada sahipse değiştirilecektir.",
+    "Upload": "Yüklemek"
 }

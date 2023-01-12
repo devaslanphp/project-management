@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Овде можете да ги прикачите сите датотеки потребни за овој билет",
     "Submit": "Поднесете",
     "Ticket attachments saved": "Прилозите за билети се зачувани",
-    "Important: If a file has the same name, it will be replaced": "Важно: ако датотеката го има истото име, таа ќе биде заменета"
+    "Important: If a file has the same name, it will be replaced": "Важно: ако датотеката го има истото име, таа ќе биде заменета",
+    "Upload": "Поставете"
 }

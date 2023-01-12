@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Siin saate manustada kõik selle pileti jaoks vajalikud failid",
     "Submit": "Esita",
     "Ticket attachments saved": "Pileti manused salvestatud",
-    "Important: If a file has the same name, it will be replaced": "Tähtis. Kui failil on sama nimi, asendatakse see"
+    "Important: If a file has the same name, it will be replaced": "Tähtis. Kui failil on sama nimi, asendatakse see",
+    "Upload": "Laadi üles"
 }
