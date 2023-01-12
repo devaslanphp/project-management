@@ -194,5 +194,6 @@
     "Here you can attach all files needed for this ticket": "Hér getur þú hengt við allar skrár sem þarf fyrir þennan miða",
     "Submit": "Sendu inn",
     "Ticket attachments saved": "Miðaviðhengi vistuð",
-    "Important: If a file has the same name, it will be replaced": "Mikilvægt: Ef skrá hefur sama nafn verður henni skipt út"
+    "Important: If a file has the same name, it will be replaced": "Mikilvægt: Ef skrá hefur sama nafn verður henni skipt út",
+    "Upload": "Hlaða upp"
 }

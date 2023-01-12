@@ -189,5 +189,11 @@
     "Ticket successfully saved": "Квиток успішно збережено",
     "Parent epic": "Батьківський епос",
     "Road Map chart is only available on large screen": "Дорожня карта доступна лише на великому екрані",
-    "Comment": "коментар"
+    "Comment": "коментар",
+    "Attachments": "Додатки",
+    "Here you can attach all files needed for this ticket": "Тут ви можете прикріпити всі файли, необхідні для цього квитка",
+    "Submit": "Надіслати",
+    "Ticket attachments saved": "Додатки до квитка збережені",
+    "Important: If a file has the same name, it will be replaced": "Важливо: якщо файл має таке ж ім'я, його буде замінено",
+    "Upload": "Завантажити"
 }
