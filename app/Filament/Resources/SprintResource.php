@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Closure;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -41,6 +42,21 @@ class SprintResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Card::make()
+                    ->visible(fn ($livewire) => $livewire instanceof CreateRecord)
+                    ->extraAttributes([
+                        'class' => 'bg-primary-50 border-primary-200 text-primary-500 font-medium'
+                    ])
+                    ->schema([
+                        Forms\Components\Grid::make()
+                            ->columns(1)
+                            ->schema([
+                                Forms\Components\Placeholder::make('information')
+                                    ->disableLabel()
+                                    ->content(__('The creation of a new Sprint will create a linked Epic into to the Road Map'))
+                            ]),
+                    ]),
+
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Grid::make()

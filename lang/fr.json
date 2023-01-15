@@ -205,5 +205,6 @@
     "Sprint description": "Description du sprint",
     "Sprints": "Sprints",
     "Export hours": "Exporter les heures",
-    "Sprint": "Sprint"
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "La création d'un sprint va créer un epic lié dans la feuille de route"
 }
