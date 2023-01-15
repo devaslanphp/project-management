@@ -38,13 +38,19 @@ class Ticket extends Model implements HasMedia
         });
 
         static::created(function (Ticket $item) {
+            if ($item->sprint_id && $item->sprint->epic_id) {
+                Ticket::where('id', $item->id)->update(['epic_id' => $item->sprint->epic_id]);
+            }
             foreach ($item->watchers as $user) {
                 $user->notify(new TicketCreated($item));
             }
         });
 
         static::updating(function (Ticket $item) {
-            $oldStatus = Ticket::where('id', $item->id)->first()->status_id;
+            $old = Ticket::where('id', $item->id)->first();
+
+            // Ticket activity based on status
+            $oldStatus = $old->status_id;
             if ($oldStatus != $item->status_id) {
                 TicketActivity::create([
                     'ticket_id' => $item->id,
@@ -55,6 +61,14 @@ class Ticket extends Model implements HasMedia
                 foreach ($item->watchers as $user) {
                     $user->notify(new TicketStatusUpdated($item));
                 }
+            }
+
+            // Ticket sprint update
+            $oldSprint = $old->sprint_id;
+            if ($oldSprint && !$item->sprint_id) {
+                Ticket::where('id', $item->id)->update(['epic_id' => null]);
+            } elseif ($item->sprint_id && $item->sprint->epic_id) {
+                Ticket::where('id', $item->id)->update(['epic_id' => $item->sprint->epic_id]);
             }
         });
     }

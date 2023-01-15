@@ -36,6 +36,10 @@
             &[type="submit"] {
                 @apply bg-primary-500 hover:bg-primary-600;
             }
+
+            &.delete {
+                @apply bg-danger-500 hover:bg-danger-600;
+            }
         }
     }
 }

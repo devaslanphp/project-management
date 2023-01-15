@@ -31,7 +31,8 @@ class RoadMap extends Page implements HasForms
 
     protected $listeners = [
         'closeEpicDialog' => 'closeDialog',
-        'closeTicketDialog' => 'closeDialog'
+        'closeTicketDialog' => 'closeDialog',
+        'updateEpic'
     ];
 
     protected static function getNavigationLabel(): string

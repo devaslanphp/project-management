@@ -42,13 +42,14 @@ class DataController extends Controller
     private function formatResponse(Collection $epics, Project $project): Collection
     {
         $results = collect();
-        foreach ($epics as $epic) {
+        foreach ($epics->sortBy('id') as $epic) {
             $results->push(collect($this->epicObj($epic)));
             foreach ($epic->tickets as $ticket) {
                 $results->push(collect($this->ticketObj($epic, $ticket)));
             }
         }
-        $tickets = Ticket::where('project_id', $project->id)->whereNull('epic_id')->get();
+        $tickets = Ticket::where('project_id', $project->id)->whereNull('epic_id')
+            ->orderBy('epic_id')->orderBy('id')->get();
         foreach ($tickets as $ticket) {
             $results->push(collect($this->ticketObj(null, $ticket)));
         }

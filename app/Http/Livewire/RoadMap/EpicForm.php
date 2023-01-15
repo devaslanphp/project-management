@@ -4,6 +4,7 @@ namespace App\Http\Livewire\RoadMap;
 
 use App\Models\Epic;
 use App\Models\Project;
+use App\Models\Ticket;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
@@ -86,5 +87,15 @@ class EpicForm extends Component implements HasForms
     public function cancel($refresh = false): void
     {
         $this->emit('closeEpicDialog', $refresh);
+    }
+
+    public function delete(): void
+    {
+        $this->epic->tickets->each(function (Ticket $ticket) {
+            $ticket->epic_id = null;
+            $ticket->save();
+        });
+        $this->epic->delete();
+        $this->emit('closeEpicDialog', true);
     }
 }

@@ -68,56 +68,56 @@
         </div>
     @endif
 
-</x-filament::page>
+    @push('scripts')
+        <link rel="stylesheet" href="{{ asset('css/jsgantt.css') }}" />
+        <script src="{{ asset('js/jsgantt.js') }}"></script>
 
-@push('scripts')
-    <link rel="stylesheet" href="{{ asset('css/jsgantt.css') }}" />
-    <script src="{{ asset('js/jsgantt.js') }}"></script>
-
-    <script>
-        const g = new JSGantt.GanttChart(document.getElementById('gantt-chart'), 'week');
-        // Set settings
-        g.setOptions({
-            vCaptionType: 'Complete',
-            vDayColWidth: 26,
-            vWeekColWidth: 52,
-            vMonthColWidth: 52,
-            vDateTaskDisplayFormat: 'day dd month yyyy',
-            vDayMajorDateDisplayFormat: 'mon yyyy - Week ww',
-            vWeekMinorDateDisplayFormat: 'dd mon',
-            vLang: '{{ config('app.locale') }}',
-            vShowTaskInfoLink: 1,
-            vShowEndWeekDate: 0,
-            vUseSingleCell: 10000,
-            vFormatArr: ['Day', 'Week', 'Month'],
-            vEvents: {
-                taskname: (task) => {
-                    const data = task.getAllData();
-                    const meta = data.pDataObject.meta;
-                    if (meta.epic) {
-                        @this.updateEpic(meta.id);
-                    } else {
-                        window.open('/tickets/share/' + meta.slug, '_blank');
+        <script>
+            const g = new JSGantt.GanttChart(document.getElementById('gantt-chart'), 'week');
+            // Set settings
+            g.setOptions({
+                vCaptionType: 'Complete',
+                vDayColWidth: 26,
+                vWeekColWidth: 52,
+                vMonthColWidth: 52,
+                vDateTaskDisplayFormat: 'day dd month yyyy',
+                vDayMajorDateDisplayFormat: 'mon yyyy - Week ww',
+                vWeekMinorDateDisplayFormat: 'dd mon',
+                vLang: '{{ config('app.locale') }}',
+                vShowTaskInfoLink: 1,
+                vShowEndWeekDate: 0,
+                vUseSingleCell: 10000,
+                vFormatArr: ['Day', 'Week', 'Month'],
+                vEvents: {
+                    taskname: (task) => {
+                        const data = task.getAllData();
+                        const meta = data.pDataObject.meta;
+                        if (meta.epic) {
+                            Livewire.emit('updateEpic', meta.id);
+                        } else {
+                            window.open('/tickets/share/' + meta.slug, '_blank');
+                        }
                     }
                 }
-            }
-        });
-        // Customize gantt chart
-        g.setShowDur(false); // Hide duration from columns
-        g.setUseToolTip(false); // Remove tooltip on object hover
-        // Draw gantt chart
-        g.Draw();
-
-        window.addEventListener('projectChanged', (e) => {
-            g.ClearTasks();
-            JSGantt.parseJSON(e.detail.url, g);
-            const minDate = e.detail.start_date.split('-');
-            const maxDate = e.detail.end_date.split('-');
-            const scrollToDate = e.detail.scroll_to.split('-');
-            g.setMinDate(new Date(minDate[0], (+minDate[1]) - 1, minDate['2']));
-            g.setMaxDate(new Date(maxDate[0], (+maxDate[1]) - 1, maxDate['2']));
-            g.setScrollTo(new Date(scrollToDate[0], (+scrollToDate[1]) - 1, scrollToDate['2']));
+            });
+            // Customize gantt chart
+            g.setShowDur(false); // Hide duration from columns
+            g.setUseToolTip(false); // Remove tooltip on object hover
+            // Draw gantt chart
             g.Draw();
-        });
-    </script>
-@endpush
+
+            window.addEventListener('projectChanged', (e) => {
+                g.ClearTasks();
+                JSGantt.parseJSON(e.detail.url, g);
+                const minDate = e.detail.start_date.split('-');
+                const maxDate = e.detail.end_date.split('-');
+                const scrollToDate = e.detail.scroll_to.split('-');
+                g.setMinDate(new Date(minDate[0], (+minDate[1]) - 1, minDate['2']));
+                g.setMaxDate(new Date(maxDate[0], (+maxDate[1]) - 1, maxDate['2']));
+                g.setScrollTo(new Date(scrollToDate[0], (+scrollToDate[1]) - 1, scrollToDate['2']));
+                g.Draw();
+            });
+        </script>
+    @endpush
+
+</x-filament::page>
