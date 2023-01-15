@@ -22,7 +22,7 @@ class Ticket extends Model implements HasMedia
     protected $fillable = [
         'name', 'content', 'owner_id', 'responsible_id',
         'status_id', 'project_id', 'code', 'order', 'type_id',
-        'priority_id', 'estimation', 'epic_id',
+        'priority_id', 'estimation', 'epic_id', 'sprint_id'
     ];
 
     public static function boot()
@@ -104,20 +104,6 @@ class Ticket extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'ticket_subscribers', 'ticket_id', 'user_id');
     }
 
-    public function watchers(): Attribute
-    {
-        return new Attribute(
-            get: function () {
-                $users = $this->project->users;
-                $users->push($this->owner);
-                if ($this->responsible) {
-                    $users->push($this->responsible);
-                }
-                return $users->unique('id');
-            }
-        );
-    }
-
     public function relations(): HasMany
     {
         return $this->hasMany(TicketRelation::class, 'ticket_id', 'id');
@@ -131,6 +117,30 @@ class Ticket extends Model implements HasMedia
     public function epic(): BelongsTo
     {
         return $this->belongsTo(Epic::class, 'epic_id', 'id');
+    }
+
+    public function sprint(): BelongsTo
+    {
+        return $this->belongsTo(Sprint::class, 'sprint_id', 'id');
+    }
+
+    public function sprints(): BelongsTo
+    {
+        return $this->belongsTo(Sprint::class, 'sprint_id', 'id');
+    }
+
+    public function watchers(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $users = $this->project->users;
+                $users->push($this->owner);
+                if ($this->responsible) {
+                    $users->push($this->responsible);
+                }
+                return $users->unique('id');
+            }
+        );
     }
 
     public function totalLoggedHours(): Attribute

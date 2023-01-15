@@ -8,7 +8,6 @@ use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use App\Models\ProjectFavorite;
 use App\Models\ProjectStatus;
-use App\Models\TicketStatus;
 use App\Models\User;
 use Filament\Facades\Filament;
 use Filament\Forms;
@@ -78,8 +77,7 @@ class ProjectResource extends Resource
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
                                                     ->disabled(
-                                                        fn($record) =>
-                                                            $record && $record->tickets()->count() != 0
+                                                        fn($record) => $record && $record->tickets()->count() != 0
                                                     )
                                                     ->required()
                                             ]),
@@ -102,6 +100,25 @@ class ProjectResource extends Resource
                                 Forms\Components\RichEditor::make('description')
                                     ->label(__('Project description'))
                                     ->columnSpan(3),
+
+                                Forms\Components\Select::make('type')
+                                    ->label(__('Project type'))
+                                    ->searchable()
+                                    ->options([
+                                        'kanban' => __('Kanban'),
+                                        'scrum' => __('Scrum')
+                                    ])
+                                    ->reactive()
+                                    ->default(fn() => 'kanban')
+                                    ->helperText(function ($state) {
+                                        if ($state === 'kanban') {
+                                            return __('Display and move your project forward with issues on a powerful board.');
+                                        } elseif ($state === 'scrum') {
+                                            return __('Achieve your project goals with a board, backlog, and roadmap.');
+                                        }
+                                        return '';
+                                    })
+                                    ->required(),
 
                                 Forms\Components\Select::make('status_type')
                                     ->label(__('Statuses configuration'))
@@ -176,23 +193,6 @@ class ProjectResource extends Resource
                     ->options(fn() => ProjectStatus::all()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
-                Tables\Actions\Action::make('exportLogHours')
-                    ->label('')
-                    ->icon('heroicon-o-document-download')
-                    ->color('warning')
-                    ->action(fn($record) => Excel::download(
-                        new ProjectHoursExport($record),
-                        'time_' . Str::slug($record->name) . '.csv',
-                        \Maatwebsite\Excel\Excel::CSV,
-                        ['Content-Type' => 'text/csv']
-                    )
-                    ),
-
-                Tables\Actions\Action::make('kanban')
-                    ->label('')
-                    ->icon('heroicon-o-adjustments')
-                    ->color('warning')
-                    ->url(fn($record) => route('filament.pages.kanban', ['project' => $record->id])),
 
                 Tables\Actions\Action::make('favorite')
                     ->label('')
@@ -214,8 +214,37 @@ class ProjectResource extends Resource
                         }
                         Filament::notify('success', __('Project updated'));
                     }),
+
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\Action::make('sprints')
+                        ->label(__('Sprints'))
+                        ->icon('heroicon-o-sort-ascending')
+                        ->color('secondary')
+                        ->visible(fn($record) => $record->type === 'scrum')
+                        ->url(fn($record) => route('filament.resources.sprints.index', [
+                            'tableFilters[project_id][values][0]' => $record->id
+                        ])),
+
+                    Tables\Actions\Action::make('exportLogHours')
+                        ->label(__('Export hours'))
+                        ->icon('heroicon-o-document-download')
+                        ->color('secondary')
+                        ->action(fn($record) => Excel::download(
+                            new ProjectHoursExport($record),
+                            'time_' . Str::slug($record->name) . '.csv',
+                            \Maatwebsite\Excel\Excel::CSV,
+                            ['Content-Type' => 'text/csv']
+                        )),
+
+                    Tables\Actions\Action::make('kanban')
+                        ->label(__('Kanban'))
+                        ->icon('heroicon-o-adjustments')
+                        ->color('secondary')
+                        ->url(fn($record) => route('filament.pages.kanban', ['project' => $record->id])),
+                ])->color('secondary'),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

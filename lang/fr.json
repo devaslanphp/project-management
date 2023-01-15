@@ -195,5 +195,14 @@
     "Submit": "Soumettre",
     "Ticket attachments saved": "Pièces jointes au ticket enregistrées",
     "Important: If a file has the same name, it will be replaced": "Important : Si un fichier porte le même nom, il sera remplacé",
-    "Upload": "Téléverser"
+    "Upload": "Téléverser",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Affichez et faites avancer votre projet grâce à des tickets sur un tableau performant.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Atteignez les objectifs de votre projet grâce à un tableau, un backlog et une feuille de route.",
+    "Sprint name": "Nom du sprint",
+    "Sprint start date": "Date début du sprint",
+    "Sprint end date": "Date fin du sprint",
+    "Sprint description": "Description du sprint",
+    "Sprints": "Sprints",
+    "Export hours": "Exporter les heures"
 }

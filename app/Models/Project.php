@@ -18,7 +18,7 @@ class Project extends Model implements HasMedia
 
     protected $fillable = [
         'name', 'description', 'status_id', 'owner_id', 'ticket_prefix',
-        'status_type'
+        'status_type', 'type'
     ];
 
     protected $appends = [
@@ -53,6 +53,11 @@ class Project extends Model implements HasMedia
     public function epics(): HasMany
     {
         return $this->hasMany(Epic::class, 'project_id', 'id');
+    }
+
+    public function sprints(): HasMany
+    {
+        return $this->hasMany(Sprint::class, 'project_id', 'id');
     }
 
     public function epicsFirstDate(): Attribute

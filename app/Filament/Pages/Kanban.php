@@ -31,7 +31,7 @@ class Kanban extends Page implements HasForms
 
     protected static string $view = 'filament.pages.kanban';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public bool $sortable = true;
 

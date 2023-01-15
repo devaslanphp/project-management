@@ -234,75 +234,86 @@ class TicketResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+    public static function tableColumns(bool $withProject = true): array
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('project.name')
-                    ->label(__('Project'))
-                    ->sortable()
-                    ->searchable(),
+        $columns = [];
+        if ($withProject) {
+            $columns[] = Tables\Columns\TextColumn::make('project.name')
+                ->label(__('Project'))
+                ->sortable()
+                ->searchable();
+        }
+        $columns = array_merge($columns, [
+            Tables\Columns\TextColumn::make('name')
+                ->label(__('Ticket name'))
+                ->sortable()
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('Ticket name'))
-                    ->sortable()
-                    ->searchable(),
+            Tables\Columns\TextColumn::make('owner.name')
+                ->label(__('Owner'))
+                ->sortable()
+                ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('owner.name')
-                    ->label(__('Owner'))
-                    ->sortable()
-                    ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
-                    ->searchable(),
+            Tables\Columns\TextColumn::make('responsible.name')
+                ->label(__('Responsible'))
+                ->sortable()
+                ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('responsible.name')
-                    ->label(__('Responsible'))
-                    ->sortable()
-                    ->formatStateUsing(fn($record) => view('components.user-avatar', ['user' => $record->owner]))
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('status.name')
-                    ->label(__('Status'))
-                    ->formatStateUsing(fn($record) => new HtmlString('
+            Tables\Columns\TextColumn::make('status.name')
+                ->label(__('Status'))
+                ->formatStateUsing(fn($record) => new HtmlString('
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->status->color . '"></span>
                                 <span>' . $record->status->name . '</span>
                             </div>
                         '))
-                    ->sortable()
-                    ->searchable(),
+                ->sortable()
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('type.name')
-                    ->label(__('Type'))
-                    ->formatStateUsing(
-                        fn($record) => view('partials.filament.resources.ticket-type', ['state' => $record->type])
-                    )
-                    ->sortable()
-                    ->searchable(),
+            Tables\Columns\TextColumn::make('type.name')
+                ->label(__('Type'))
+                ->formatStateUsing(
+                    fn($record) => view('partials.filament.resources.ticket-type', ['state' => $record->type])
+                )
+                ->sortable()
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('priority.name')
-                    ->label(__('Priority'))
-                    ->formatStateUsing(fn($record) => new HtmlString('
+            Tables\Columns\TextColumn::make('priority.name')
+                ->label(__('Priority'))
+                ->formatStateUsing(fn($record) => new HtmlString('
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="filament-tables-color-column relative flex h-6 w-6 rounded-md"
                                     style="background-color: ' . $record->priority->color . '"></span>
                                 <span>' . $record->priority->name . '</span>
                             </div>
                         '))
-                    ->sortable()
-                    ->searchable(),
+                ->sortable()
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('Created at'))
-                    ->dateTime()
-                    ->sortable()
-                    ->searchable(),
-            ])
+            Tables\Columns\TextColumn::make('created_at')
+                ->label(__('Created at'))
+                ->dateTime()
+                ->sortable()
+                ->searchable(),
+        ]);
+        return $columns;
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns(self::tableColumns())
             ->filters([
                 Tables\Filters\SelectFilter::make('project_id')
                     ->label(__('Project'))
                     ->multiple()
-                    ->options(fn() => Project::all()->pluck('name', 'id')->toArray()),
+                    ->options(fn() => Project::where('owner_id', auth()->user()->id)
+                        ->orWhereHas('users', function ($query) {
+                            return $query->where('users.id', auth()->user()->id);
+                        })->pluck('name', 'id')->toArray()),
 
                 Tables\Filters\SelectFilter::make('owner_id')
                     ->label(__('Owner'))
