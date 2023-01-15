@@ -195,5 +195,16 @@
     "Submit": "Cyflwyno",
     "Ticket attachments saved": "Atodion tocynnau wedi'u cadw",
     "Important: If a file has the same name, it will be replaced": "Pwysig: Os oes gan ffeil yr un enw, caiff ei disodli",
-    "Upload": "Llwytho i fyny"
+    "Upload": "Llwytho i fyny",
+    "Scrum": "sgrym",
+    "Display and move your project forward with issues on a powerful board.": "Arddangoswch a symudwch eich prosiect ymlaen gyda materion ar fwrdd pwerus.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Cyflawnwch nodau eich prosiect gyda bwrdd, ôl-groniad, a map ffordd.",
+    "Sprint name": "Enw sbrint",
+    "Sprint start date": "Dyddiad cychwyn sbrint",
+    "Sprint end date": "Dyddiad gorffen sbrint",
+    "Sprint description": "Disgrifiad sbrint",
+    "Sprints": "Sbrintiau",
+    "Export hours": "Oriau allforio",
+    "Sprint": "Gwibio",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Bydd creu Sbrint newydd yn creu Epic cysylltiedig â'r Map Ffordd"
 }

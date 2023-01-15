@@ -195,5 +195,16 @@
     "Submit": "Поднесете",
     "Ticket attachments saved": "Прилозите за билети се зачувани",
     "Important: If a file has the same name, it will be replaced": "Важно: ако датотеката го има истото име, таа ќе биде заменета",
-    "Upload": "Поставете"
+    "Upload": "Поставете",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Прикажете го и придвижете го вашиот проект напред со проблеми на моќна табла.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Постигнете ги вашите проектни цели со табла, заостанати работи и патоказ.",
+    "Sprint name": "Име на спринт",
+    "Sprint start date": "Датум на почеток на спринт",
+    "Sprint end date": "Краен датум на Спринт",
+    "Sprint description": "Опис на спринт",
+    "Sprints": "Спринтови",
+    "Export hours": "Часови за извоз",
+    "Sprint": "Спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Создавањето на нов Спринт ќе создаде поврзан Еп со Патот"
 }

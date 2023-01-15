@@ -195,5 +195,16 @@
     "Submit": "გაგზავნა",
     "Ticket attachments saved": "ბილეთის დანართები შენახულია",
     "Important: If a file has the same name, it will be replaced": "მნიშვნელოვანია: თუ ფაილს აქვს იგივე სახელი, ის შეიცვლება",
-    "Upload": "ატვირთვა"
+    "Upload": "ატვირთვა",
+    "Scrum": "სკრამი",
+    "Display and move your project forward with issues on a powerful board.": "აჩვენეთ და გადაიტანეთ თქვენი პროექტი მძლავრ დაფაზე არსებული საკითხებით.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "მიაღწიეთ თქვენი პროექტის მიზნებს დაფის, ჩამორჩენილი და საგზაო რუქის მეშვეობით.",
+    "Sprint name": "სპრინტის სახელი",
+    "Sprint start date": "სპრინტის დაწყების თარიღი",
+    "Sprint end date": "სპრინტის დასრულების თარიღი",
+    "Sprint description": "სპრინტის აღწერა",
+    "Sprints": "სპრინტები",
+    "Export hours": "ექსპორტის საათები",
+    "Sprint": "სპრინტი",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "ახალი სპრინტის შექმნა შექმნის დაკავშირებულ ეპოსს საგზაო რუკასთან"
 }

@@ -195,5 +195,16 @@
     "Submit": "ដាក់ស្នើ",
     "Ticket attachments saved": "ឯកសារភ្ជាប់សំបុត្រត្រូវបានរក្សាទុក",
     "Important: If a file has the same name, it will be replaced": "សំខាន់៖ ប្រសិនបើឯកសារមានឈ្មោះដូចគ្នា នោះវានឹងត្រូវបានជំនួស",
-    "Upload": "ផ្ទុកឡើង"
+    "Upload": "ផ្ទុកឡើង",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "បង្ហាញ និងផ្លាស់ទីគម្រោងរបស់អ្នកទៅមុខជាមួយនឹងបញ្ហានៅលើក្តារដ៏មានឥទ្ធិពល។",
+    "Achieve your project goals with a board, backlog, and roadmap.": "សម្រេចបាននូវគោលដៅគម្រោងរបស់អ្នកជាមួយនឹងក្តារ កំណត់ហេតុ និងផែនទីបង្ហាញផ្លូវ។",
+    "Sprint name": "ឈ្មោះ Sprint",
+    "Sprint start date": "កាលបរិច្ឆេទចាប់ផ្តើម Sprint",
+    "Sprint end date": "កាលបរិច្ឆេទបញ្ចប់ Sprint",
+    "Sprint description": "ការពិពណ៌នា Sprint",
+    "Sprints": "រត់",
+    "Export hours": "ម៉ោងនាំចេញ",
+    "Sprint": "រត់",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "ការបង្កើត Sprint ថ្មីនឹងបង្កើត Epic ដែលភ្ជាប់ទៅផែនទីផ្លូវ"
 }

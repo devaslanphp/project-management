@@ -195,5 +195,16 @@
     "Submit": "Hantar",
     "Ticket attachments saved": "Lampiran tiket disimpan",
     "Important: If a file has the same name, it will be replaced": "Penting: Jika fail mempunyai nama yang sama, ia akan diganti",
-    "Upload": "Muat naik"
+    "Upload": "Muat naik",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Paparkan dan gerakkan projek anda ke hadapan dengan isu pada papan yang berkuasa.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Capai matlamat projek anda dengan papan, tunggakan dan peta jalan.",
+    "Sprint name": "Nama pecut",
+    "Sprint start date": "Tarikh mula pecut",
+    "Sprint end date": "Tarikh tamat pecut",
+    "Sprint description": "Penerangan pecut",
+    "Sprints": "Lari pecut",
+    "Export hours": "Waktu eksport",
+    "Sprint": "Lari pecut",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Penciptaan Sprint baharu akan mencipta Epik yang dipautkan ke dalam Peta Jalan"
 }

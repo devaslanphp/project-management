@@ -195,5 +195,16 @@
     "Submit": "سپارل",
     "Ticket attachments saved": "د ټکټ ضمیمه خوندي شوه",
     "Important: If a file has the same name, it will be replaced": "مهم: که یو فایل ورته نوم ولري، دا به بدل شي",
-    "Upload": "پورته کول"
+    "Upload": "پورته کول",
+    "Scrum": "سکروم",
+    "Display and move your project forward with issues on a powerful board.": "په یوه پیاوړې بورډ کې د مسلو سره خپله پروژه ښکاره کړئ او پرمخ بوځي.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "خپلې پروژې موخې د بورډ، بیکلاګ، او سړک نقشې سره ترلاسه کړئ.",
+    "Sprint name": "د سپرنټ نوم",
+    "Sprint start date": "د سپرینټ پیل نیټه",
+    "Sprint end date": "د سپرینټ پای نیټه",
+    "Sprint description": "د سپرنټ توضیحات",
+    "Sprints": "سپرنټونه",
+    "Export hours": "د صادراتو ساعتونه",
+    "Sprint": "سپرنټ",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "د نوي سپرینټ رامینځته کول به د سړک نقشه کې یو تړلی ایپیک رامینځته کړي"
 }

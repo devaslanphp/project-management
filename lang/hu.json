@@ -195,5 +195,16 @@
     "Submit": "Beküldés",
     "Ticket attachments saved": "Jegymellékletek mentve",
     "Important: If a file has the same name, it will be replaced": "Fontos: Ha egy fájlnak ugyanaz a neve, a rendszer lecseréli",
-    "Upload": "Feltöltés"
+    "Upload": "Feltöltés",
+    "Scrum": "Dulakodás",
+    "Display and move your project forward with issues on a powerful board.": "Jelenítse meg és vigye előre projektjét problémákkal egy hatékony táblán.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Érje el projektcéljait táblával, lemaradásokkal és ütemtervvel.",
+    "Sprint name": "Sprint név",
+    "Sprint start date": "Sprint kezdési dátuma",
+    "Sprint end date": "Sprint befejezési dátuma",
+    "Sprint description": "Sprint leírása",
+    "Sprints": "Sprintek",
+    "Export hours": "Exportálási órák",
+    "Sprint": "Sprintel",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Egy új Sprint létrehozása az útitervhez kapcsolódó epikát hozza létre"
 }

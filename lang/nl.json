@@ -195,5 +195,16 @@
     "Submit": "Indienen",
     "Ticket attachments saved": "Ticketbijlagen opgeslagen",
     "Important: If a file has the same name, it will be replaced": "Belangrijk: als een bestand dezelfde naam heeft, wordt het vervangen",
-    "Upload": "Uploaden"
+    "Upload": "Uploaden",
+    "Scrum": "Scrummen",
+    "Display and move your project forward with issues on a powerful board.": "Toon en verplaats uw project met problemen op een krachtig bord.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Bereik uw projectdoelen met een bord, backlog en roadmap.",
+    "Sprint name": "Sprint naam",
+    "Sprint start date": "Startdatum sprinten",
+    "Sprint end date": "Einddatum sprinten",
+    "Sprint description": "Sprint beschrijving",
+    "Sprints": "Sprinten",
+    "Export hours": "Uren exporteren",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "De creatie van een nieuwe Sprint zal een gekoppeld Epic creëren in de Road Map"
 }

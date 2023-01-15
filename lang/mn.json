@@ -195,5 +195,16 @@
     "Submit": "Илгээх",
     "Ticket attachments saved": "Тасалбарын хавсралтыг хадгалсан",
     "Important: If a file has the same name, it will be replaced": "Чухал: Хэрэв файл ижил нэртэй бол түүнийг солих болно",
-    "Upload": "Байршуулах"
+    "Upload": "Байршуулах",
+    "Scrum": "Скрум",
+    "Display and move your project forward with issues on a powerful board.": "Хүчтэй самбар дээр асуудлаа харуулж, төслөө урагшлуулна уу.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Самбар, хоцрогдол, замын зураглалын тусламжтайгаар төслийн зорилгодоо хүрээрэй.",
+    "Sprint name": "Спринт нэр",
+    "Sprint start date": "Спринт эхлэх огноо",
+    "Sprint end date": "Спринт дуусах огноо",
+    "Sprint description": "Sprint тайлбар",
+    "Sprints": "Спринт",
+    "Export hours": "Экспортын цаг",
+    "Sprint": "Спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Шинэ Sprint бий болгосноор Замын газрын зурагтай холбоотой туульс үүсгэх болно"
 }

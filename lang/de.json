@@ -195,5 +195,16 @@
     "Submit": "einreichen",
     "Ticket attachments saved": "Ticketanhänge gespeichert",
     "Important: If a file has the same name, it will be replaced": "Wichtig: Wenn eine Datei denselben Namen hat, wird sie ersetzt",
-    "Upload": "Hochladen"
+    "Upload": "Hochladen",
+    "Scrum": "Gedränge",
+    "Display and move your project forward with issues on a powerful board.": "Zeigen Sie Ihr Projekt an und bringen Sie es mit Problemen auf einem leistungsstarken Board voran.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Erreichen Sie Ihre Projektziele mit einem Board, Backlog und einer Roadmap.",
+    "Sprint name": "Sprint-Name",
+    "Sprint start date": "Startdatum des Sprints",
+    "Sprint end date": "Enddatum des Sprints",
+    "Sprint description": "Beschreibung des Sprints",
+    "Sprints": "Sprints",
+    "Export hours": "Stunden exportieren",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Die Erstellung eines neuen Sprints erstellt ein mit der Roadmap verknüpftes Epic"
 }

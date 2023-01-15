@@ -195,5 +195,16 @@
     "Submit": "Представлять на рассмотрение",
     "Ticket attachments saved": "Вложения к заявкам сохранены",
     "Important: If a file has the same name, it will be replaced": "Важно: Если файл имеет такое же имя, он будет заменен",
-    "Upload": "Загрузить"
+    "Upload": "Загрузить",
+    "Scrum": "Скрам",
+    "Display and move your project forward with issues on a powerful board.": "Отображайте и продвигайте свой проект с задачами на мощной доске.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Достигайте целей проекта с помощью доски, невыполненной работы и дорожной карты.",
+    "Sprint name": "Название спринта",
+    "Sprint start date": "Дата начала спринта",
+    "Sprint end date": "Дата окончания спринта",
+    "Sprint description": "Описание спринта",
+    "Sprints": "Спринты",
+    "Export hours": "Экспорт часов",
+    "Sprint": "Спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Создание нового спринта создаст эпик, связанный с дорожной картой."
 }

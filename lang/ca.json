@@ -195,5 +195,16 @@
     "Submit": "Presentar",
     "Ticket attachments saved": "S'han desat els fitxers adjunts de les entrades",
     "Important: If a file has the same name, it will be replaced": "Important: si un fitxer té el mateix nom, se substituirà",
-    "Upload": "Carrega"
+    "Upload": "Carrega",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Mostra i avança el teu projecte amb problemes en un tauler potent.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Aconseguiu els objectius del vostre projecte amb un tauler, un backlog i un full de ruta.",
+    "Sprint name": "Nom de l'esprint",
+    "Sprint start date": "Data d'inici de l'esprint",
+    "Sprint end date": "Data de finalització de l'esprint",
+    "Sprint description": "Descripció de l'esprint",
+    "Sprints": "Sprints",
+    "Export hours": "Hores d'exportació",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "La creació d'un nou Sprint crearà una èpica enllaçada al full de ruta"
 }

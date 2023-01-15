@@ -195,5 +195,16 @@
     "Submit": "Ներկայացնել",
     "Ticket attachments saved": "Տոմսերի կցորդները պահված են",
     "Important: If a file has the same name, it will be replaced": "Կարևոր է. Եթե ֆայլն ունի նույն անունը, այն կփոխարինվի",
-    "Upload": "Վերբեռնել"
+    "Upload": "Վերբեռնել",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Ցուցադրել և առաջ տանել ձեր նախագիծը հզոր տախտակի վրա առկա խնդիրներով:",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Ձեռք բերեք ձեր ծրագրի նպատակները տախտակի, հետաձգման և ճանապարհային քարտեզի միջոցով:",
+    "Sprint name": "Sprint անունը",
+    "Sprint start date": "Sprint մեկնարկի ամսաթիվը",
+    "Sprint end date": "Sprint ավարտի ամսաթիվը",
+    "Sprint description": "Sprint նկարագրությունը",
+    "Sprints": "Sprints",
+    "Export hours": "Արտահանման ժամեր",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Նոր Sprint-ի ստեղծումը կապակցված էպոս կստեղծի Ճանապարհային քարտեզի հետ"
 }

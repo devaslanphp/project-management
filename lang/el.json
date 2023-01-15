@@ -195,5 +195,16 @@
     "Submit": "υποβάλλουν",
     "Ticket attachments saved": "Τα συνημμένα εισιτηρίων αποθηκεύτηκαν",
     "Important: If a file has the same name, it will be replaced": "Σημαντικό: Εάν ένα αρχείο έχει το ίδιο όνομα, θα αντικατασταθεί",
-    "Upload": "Μεταφόρτωση"
+    "Upload": "Μεταφόρτωση",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Εμφανίστε και προωθήστε το έργο σας με προβλήματα σε έναν ισχυρό πίνακα.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Πετύχετε τους στόχους του έργου σας με πίνακα, ανεκτέλεστο και οδικό χάρτη.",
+    "Sprint name": "Όνομα σπριντ",
+    "Sprint start date": "Ημερομηνία έναρξης Sprint",
+    "Sprint end date": "Ημερομηνία λήξης Sprint",
+    "Sprint description": "Περιγραφή σπριντ",
+    "Sprints": "Σπριντ",
+    "Export hours": "Ώρες εξαγωγής",
+    "Sprint": "Τρέχω",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Η δημιουργία ενός νέου Sprint θα δημιουργήσει ένα συνδεδεμένο Epic με τον Οδικό Χάρτη"
 }

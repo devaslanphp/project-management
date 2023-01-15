@@ -195,5 +195,16 @@
     "Submit": "Trimite",
     "Ticket attachments saved": "Atașamentele biletelor au fost salvate",
     "Important: If a file has the same name, it will be replaced": "Important: Dacă un fișier are același nume, acesta va fi înlocuit",
-    "Upload": "Încărcați"
+    "Upload": "Încărcați",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Afișați și duceți-vă proiectul înainte cu probleme pe o tablă puternică.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Atinge-ți obiectivele proiectului cu un panou, un backlog și o foaie de parcurs.",
+    "Sprint name": "Nume sprint",
+    "Sprint start date": "Data începerii sprintului",
+    "Sprint end date": "Data de încheiere a sprintului",
+    "Sprint description": "Descrierea sprintului",
+    "Sprints": "Sprinturi",
+    "Export hours": "Orele de export",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Crearea unui nou Sprint va crea un Epic legat de Road Map"
 }

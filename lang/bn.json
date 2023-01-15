@@ -195,5 +195,16 @@
     "Submit": "জমা দিন",
     "Ticket attachments saved": "টিকিট সংযুক্তি সংরক্ষিত",
     "Important: If a file has the same name, it will be replaced": "গুরুত্বপূর্ণ: যদি একটি ফাইলের নাম একই থাকে তবে এটি প্রতিস্থাপন করা হবে",
-    "Upload": "আপলোড করুন"
+    "Upload": "আপলোড করুন",
+    "Scrum": "স্ক্রাম",
+    "Display and move your project forward with issues on a powerful board.": "একটি শক্তিশালী বোর্ডে সমস্যাগুলির সাথে আপনার প্রকল্পটি প্রদর্শন করুন এবং এগিয়ে যান।",
+    "Achieve your project goals with a board, backlog, and roadmap.": "একটি বোর্ড, ব্যাকলগ এবং রোডম্যাপ দিয়ে আপনার প্রকল্পের লক্ষ্যগুলি অর্জন করুন।",
+    "Sprint name": "স্প্রিন্ট নাম",
+    "Sprint start date": "স্প্রিন্ট শুরুর তারিখ",
+    "Sprint end date": "স্প্রিন্ট শেষ তারিখ",
+    "Sprint description": "স্প্রিন্ট বর্ণনা",
+    "Sprints": "স্প্রিন্ট",
+    "Export hours": "রপ্তানির সময়",
+    "Sprint": "স্প্রিন্ট",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "একটি নতুন স্প্রিন্ট তৈরি করা রোড ম্যাপের সাথে একটি সংযুক্ত মহাকাব্য তৈরি করবে৷"
 }

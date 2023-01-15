@@ -195,5 +195,16 @@
     "Submit": "Predloži",
     "Ticket attachments saved": "Vstopnice so shranjene",
     "Important: If a file has the same name, it will be replaced": "Pomembno: če ima datoteka isto ime, bo zamenjana",
-    "Upload": "Naloži"
+    "Upload": "Naloži",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Prikažite in premaknite svoj projekt naprej s težavami na zmogljivi tabli.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Dosežite cilje svojega projekta s tablo, zaostanki in načrtom.",
+    "Sprint name": "Ime sprinta",
+    "Sprint start date": "Datum začetka sprinta",
+    "Sprint end date": "Končni datum sprinta",
+    "Sprint description": "Opis sprinta",
+    "Sprints": "Šprinti",
+    "Export hours": "Izvozne ure",
+    "Sprint": "Šprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Ustvarjanje novega Sprinta bo ustvarilo Epic, povezan s Road Map"
 }

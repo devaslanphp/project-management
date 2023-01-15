@@ -195,5 +195,16 @@
     "Submit": "جمع کرائیں",
     "Ticket attachments saved": "ٹکٹ کے منسلکات محفوظ ہو گئے۔",
     "Important: If a file has the same name, it will be replaced": "اہم: اگر کسی فائل کا نام ایک ہی ہے تو اسے تبدیل کر دیا جائے گا۔",
-    "Upload": "اپ لوڈ کریں۔"
+    "Upload": "اپ لوڈ کریں۔",
+    "Scrum": "سکرم",
+    "Display and move your project forward with issues on a powerful board.": "ایک طاقتور بورڈ پر مسائل کے ساتھ اپنے پروجیکٹ کو ڈسپلے اور آگے بڑھائیں۔",
+    "Achieve your project goals with a board, backlog, and roadmap.": "بورڈ، بیک لاگ اور روڈ میپ کے ساتھ اپنے پروجیکٹ کے اہداف حاصل کریں۔",
+    "Sprint name": "سپرنٹ کا نام",
+    "Sprint start date": "سپرنٹ شروع ہونے کی تاریخ",
+    "Sprint end date": "سپرنٹ کی آخری تاریخ",
+    "Sprint description": "سپرنٹ کی تفصیل",
+    "Sprints": "سپرنٹ",
+    "Export hours": "ایکسپورٹ گھنٹے",
+    "Sprint": "سپرنٹ",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "ایک نئے اسپرنٹ کی تخلیق سے روڈ میپ سے منسلک ایپک بن جائے گا۔"
 }

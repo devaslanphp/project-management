@@ -195,5 +195,16 @@
     "Submit": "Gửi đi",
     "Ticket attachments saved": "Đã lưu tệp đính kèm vé",
     "Important: If a file has the same name, it will be replaced": "Quan trọng: Nếu một tệp có cùng tên, nó sẽ bị thay thế",
-    "Upload": "Tải lên"
+    "Upload": "Tải lên",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Hiển thị và đưa dự án của bạn về phía trước với các vấn đề trên một bảng mạnh mẽ.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Đạt được các mục tiêu dự án của bạn với bảng, công việc tồn đọng và lộ trình.",
+    "Sprint name": "tên nước rút",
+    "Sprint start date": "Ngày bắt đầu chạy nước rút",
+    "Sprint end date": "Ngày kết thúc nước rút",
+    "Sprint description": "mô tả nước rút",
+    "Sprints": "nước rút",
+    "Export hours": "giờ xuất khẩu",
+    "Sprint": "tăng tốc",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Việc tạo một Sprint mới sẽ tạo ra một Sử thi được liên kết với Lộ trình"
 }
