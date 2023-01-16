@@ -8,5 +8,10 @@
         <button type="button" wire:click="cancel" wire:loading.attr="disabled">
             {{ __('Cancel') }}
         </button>
+        @if($epic?->id)
+            <button class="delete" type="button" wire:click="delete" wire:loading.attr="disabled">
+                {{ __('Delete') }}
+            </button>
+        @endif
     </div>
 </form>

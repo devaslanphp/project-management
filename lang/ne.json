@@ -195,5 +195,16 @@
     "Submit": "पेश गर्नुहोस्",
     "Ticket attachments saved": "टिकट संलग्नहरू बचत गरियो",
     "Important: If a file has the same name, it will be replaced": "महत्त्वपूर्ण: यदि फाइलको समान नाम छ भने, यसलाई प्रतिस्थापन गरिनेछ",
-    "Upload": "अपलोड गर्नुहोस्"
+    "Upload": "अपलोड गर्नुहोस्",
+    "Scrum": "स्क्रम",
+    "Display and move your project forward with issues on a powerful board.": "एक शक्तिशाली बोर्ड मा समस्याहरु संग आफ्नो परियोजना अगाडि बढाउनुहोस् र प्रदर्शन गर्नुहोस्।",
+    "Achieve your project goals with a board, backlog, and roadmap.": "बोर्ड, ब्याकलग, र रोडम्यापको साथ आफ्नो परियोजना लक्ष्यहरू प्राप्त गर्नुहोस्।",
+    "Sprint name": "स्प्रिन्ट नाम",
+    "Sprint start date": "स्प्रिन्ट सुरु मिति",
+    "Sprint end date": "स्प्रिन्ट अन्त्य मिति",
+    "Sprint description": "स्प्रिन्ट विवरण",
+    "Sprints": "स्प्रिन्टहरू",
+    "Export hours": "घण्टा निर्यात गर्नुहोस्",
+    "Sprint": "स्प्रिन्ट",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "नयाँ स्प्रिन्टको सिर्जनाले रोड म्यापमा लिङ्क गरिएको एपिक सिर्जना गर्नेछ"
 }

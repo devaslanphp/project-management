@@ -195,5 +195,16 @@
     "Submit": "Пешниҳод кунед",
     "Ticket attachments saved": "Замимаҳои чипта захира карда шуданд",
     "Important: If a file has the same name, it will be replaced": "Муҳим: Агар файл ҳамон ном дошта бошад, он иваз карда мешавад",
-    "Upload": "Бор кунед"
+    "Upload": "Бор кунед",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Лоиҳаи худро бо мушкилот дар тахтаи пурқувват намоиш диҳед ва ба пеш ҳаракат кунед.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Ба ҳадафҳои лоиҳаи худ бо тахта, ақибмонда ва харитаи роҳ ноил шавед.",
+    "Sprint name": "Номи Sprint",
+    "Sprint start date": "Санаи оғози Sprint",
+    "Sprint end date": "Санаи анҷоми Sprint",
+    "Sprint description": "Тавсифи Sprint",
+    "Sprints": "Спринтҳо",
+    "Export hours": "Соатҳои содиротӣ",
+    "Sprint": "Спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Эҷоди як Sprint нав як эпикии алоқамандро ба Харитаи роҳ эҷод мекунад"
 }

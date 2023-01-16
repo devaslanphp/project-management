@@ -195,5 +195,16 @@
     "Submit": "Wasilisha",
     "Ticket attachments saved": "Viambatisho vya tikiti vimehifadhiwa",
     "Important: If a file has the same name, it will be replaced": "Muhimu: Ikiwa faili ina jina sawa, itabadilishwa",
-    "Upload": "Pakia"
+    "Upload": "Pakia",
+    "Scrum": "Skramu",
+    "Display and move your project forward with issues on a powerful board.": "Onyesha na usonge mbele mradi wako na masuala kwenye ubao wenye nguvu.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Fikia malengo ya mradi wako na ubao, kumbukumbu nyuma na ramani ya barabara.",
+    "Sprint name": "Jina la Sprint",
+    "Sprint start date": "Tarehe ya kuanza kwa mbio",
+    "Sprint end date": "Tarehe ya mwisho ya mbio",
+    "Sprint description": "Maelezo ya mbio",
+    "Sprints": "Sprints",
+    "Export hours": "Saa za kuuza nje",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Kuundwa kwa Sprint mpya kutaunda Epic iliyounganishwa kwenye Ramani ya Barabara"
 }

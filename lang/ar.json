@@ -195,5 +195,16 @@
     "Submit": "يُقدِّم",
     "Ticket attachments saved": "تم حفظ مرفقات التذاكر",
     "Important: If a file has the same name, it will be replaced": "هام: إذا كان الملف يحمل نفس الاسم ، فسيتم استبداله",
-    "Upload": "رفع"
+    "Upload": "رفع",
+    "Scrum": "سكرم",
+    "Display and move your project forward with issues on a powerful board.": "اعرض مشروعك وحركه للأمام مع المشكلات الموجودة على السبورة القوية.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "حقق أهداف مشروعك من خلال لوحة ، وتراكم ، وخريطة طريق.",
+    "Sprint name": "اسم Sprint",
+    "Sprint start date": "تاريخ بدء السباق",
+    "Sprint end date": "تاريخ انتهاء السباق",
+    "Sprint description": "وصف سبرينت",
+    "Sprints": "سباقات السرعة",
+    "Export hours": "ساعات التصدير",
+    "Sprint": "سبرينت",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "سيؤدي إنشاء Sprint جديد إلى إنشاء ملحمة مرتبطة بخريطة الطريق"
 }

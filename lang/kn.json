@@ -195,5 +195,16 @@
     "Submit": "ಸಲ್ಲಿಸು",
     "Ticket attachments saved": "ಟಿಕೆಟ್ ಲಗತ್ತುಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ",
     "Important: If a file has the same name, it will be replaced": "ಪ್ರಮುಖ: ಫೈಲ್ ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದರೆ, ಅದನ್ನು ಬದಲಾಯಿಸಲಾಗುತ್ತದೆ",
-    "Upload": "ಅಪ್ಲೋಡ್ ಮಾಡಿ"
+    "Upload": "ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+    "Scrum": "ಸ್ಕ್ರಮ್",
+    "Display and move your project forward with issues on a powerful board.": "ಪ್ರಬಲ ಬೋರ್ಡ್‌ನಲ್ಲಿ ಸಮಸ್ಯೆಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಯೋಜನೆಯನ್ನು ಪ್ರದರ್ಶಿಸಿ ಮತ್ತು ಮುಂದಕ್ಕೆ ಸರಿಸಿ.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "ಬೋರ್ಡ್, ಬ್ಯಾಕ್‌ಲಾಗ್ ಮತ್ತು ಮಾರ್ಗಸೂಚಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಯೋಜನೆಯ ಗುರಿಗಳನ್ನು ಸಾಧಿಸಿ.",
+    "Sprint name": "ಸ್ಪ್ರಿಂಟ್ ಹೆಸರು",
+    "Sprint start date": "ಸ್ಪ್ರಿಂಟ್ ಪ್ರಾರಂಭ ದಿನಾಂಕ",
+    "Sprint end date": "ಸ್ಪ್ರಿಂಟ್ ಅಂತಿಮ ದಿನಾಂಕ",
+    "Sprint description": "ಸ್ಪ್ರಿಂಟ್ ವಿವರಣೆ",
+    "Sprints": "ಸ್ಪ್ರಿಂಟ್ಸ್",
+    "Export hours": "ರಫ್ತು ಗಂಟೆಗಳು",
+    "Sprint": "ಸ್ಪ್ರಿಂಟ್",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "ಹೊಸ ಸ್ಪ್ರಿಂಟ್ ರಚನೆಯು ರೋಡ್ ಮ್ಯಾಪ್‌ಗೆ ಲಿಂಕ್ ಮಾಡಲಾದ ಎಪಿಕ್ ಅನ್ನು ರಚಿಸುತ್ತದೆ"
 }

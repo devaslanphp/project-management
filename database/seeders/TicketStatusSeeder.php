@@ -10,7 +10,7 @@ class TicketStatusSeeder extends Seeder
 {
     private array $data = [
         [
-            'name' => 'Backlog',
+            'name' => 'Todo',
             'color' => '#cecece',
             'is_default' => true,
             'order' => 1

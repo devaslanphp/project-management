@@ -195,5 +195,16 @@
     "Submit": "Iberiň",
     "Ticket attachments saved": "Bilet goşundylary saklandy",
     "Important: If a file has the same name, it will be replaced": "Üns beriň: Bir faýlyň ady birmeňzeş bolsa, onuň ýerine çalşylar",
-    "Upload": "Uploadükle"
+    "Upload": "Uploadükle",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Güýçli tagtadaky meseleler bilen taslamaňyzy görkeziň we öňe sürüň.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Taslama maksatlaryňyzy tagta, yzky sahypa we ýol kartasy bilen ýerine ýetiriň.",
+    "Sprint name": "Sprint ady",
+    "Sprint start date": "Sprint başlangyç senesi",
+    "Sprint end date": "Sprint gutarýan senesi",
+    "Sprint description": "Sprint beýany",
+    "Sprints": "Sprintler",
+    "Export hours": "Eksport sagatlary",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Täze “Sprint” -iň döredilmegi “Mapol kartasy” bilen baglanyşykly epiki döreder"
 }

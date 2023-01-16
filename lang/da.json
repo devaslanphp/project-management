@@ -195,5 +195,16 @@
     "Submit": "Indsend",
     "Ticket attachments saved": "Billetvedhæftede filer er gemt",
     "Important: If a file has the same name, it will be replaced": "Vigtigt: Hvis en fil har samme navn, vil den blive erstattet",
-    "Upload": "Upload"
+    "Upload": "Upload",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Vis og flyt dit projekt fremad med problemer på en kraftfuld tavle.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Opnå dine projektmål med en bestyrelse, backlog og køreplan.",
+    "Sprint name": "Sprint navn",
+    "Sprint start date": "Sprint startdato",
+    "Sprint end date": "Sprint slutdato",
+    "Sprint description": "Sprint beskrivelse",
+    "Sprints": "Sprints",
+    "Export hours": "Eksport timer",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Oprettelsen af ​​en ny Sprint vil skabe et linket Epic til køreplanen"
 }

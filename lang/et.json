@@ -195,5 +195,16 @@
     "Submit": "Esita",
     "Ticket attachments saved": "Pileti manused salvestatud",
     "Important: If a file has the same name, it will be replaced": "Tähtis. Kui failil on sama nimi, asendatakse see",
-    "Upload": "Laadi üles"
+    "Upload": "Laadi üles",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Näidake ja viige oma projekti probleemidega edasi võimsal tahvlil.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Saavutage oma projekti eesmärgid tahvli, mahajäämuse ja tegevuskava abil.",
+    "Sprint name": "Sprindi nimi",
+    "Sprint start date": "Sprindi alguskuupäev",
+    "Sprint end date": "Sprindi lõppkuupäev",
+    "Sprint description": "Sprindi kirjeldus",
+    "Sprints": "Sprindid",
+    "Export hours": "Eksporditunnid",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Uue Sprinti loomine loob teekaardiga lingitud eepose"
 }

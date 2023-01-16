@@ -195,5 +195,16 @@
     "Submit": "प्रस्तुत करणे",
     "Ticket attachments saved": "तिकीट संलग्नके जतन केली",
     "Important: If a file has the same name, it will be replaced": "महत्त्वाचे: फाइलचे नाव समान असल्यास, ती बदलली जाईल",
-    "Upload": "अपलोड करा"
+    "Upload": "अपलोड करा",
+    "Scrum": "स्क्रम",
+    "Display and move your project forward with issues on a powerful board.": "शक्तिशाली बोर्डवर समस्यांसह तुमचा प्रकल्प प्रदर्शित करा आणि पुढे जा.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "बोर्ड, अनुशेष आणि रोडमॅपसह तुमची प्रकल्प उद्दिष्टे साध्य करा.",
+    "Sprint name": "स्प्रिंट नाव",
+    "Sprint start date": "स्प्रिंट प्रारंभ तारीख",
+    "Sprint end date": "स्प्रिंट समाप्ती तारीख",
+    "Sprint description": "स्प्रिंट वर्णन",
+    "Sprints": "धावणे",
+    "Export hours": "तास निर्यात करा",
+    "Sprint": "धावणे",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "नवीन स्प्रिंटच्या निर्मितीमुळे रोड मॅपमध्ये लिंक केलेले एपिक तयार होईल"
 }

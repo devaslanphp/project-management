@@ -195,5 +195,16 @@
     "Submit": "שלח",
     "Ticket attachments saved": "קבצים מצורפים לכרטיסים נשמרו",
     "Important: If a file has the same name, it will be replaced": "חשוב: אם לקובץ יש אותו שם, הוא יוחלף",
-    "Upload": "העלה"
+    "Upload": "העלה",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "הצג והצע את הפרויקט שלך קדימה עם בעיות על לוח חזק.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "השג את יעדי הפרויקט שלך עם לוח, צבר ומפת דרכים.",
+    "Sprint name": "שם ספרינט",
+    "Sprint start date": "תאריך תחילת ספרינט",
+    "Sprint end date": "תאריך סיום ספרינט",
+    "Sprint description": "תיאור ספרינט",
+    "Sprints": "ספרינטים",
+    "Export hours": "שעות ייצוא",
+    "Sprint": "ריצה מהירה",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "יצירת ספרינט חדש תיצור אפוס מקושר אל מפת הדרכים"
 }

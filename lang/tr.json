@@ -195,5 +195,16 @@
     "Submit": "Göndermek",
     "Ticket attachments saved": "Bilet ekleri kaydedildi",
     "Important: If a file has the same name, it will be replaced": "Önemli: Bir dosya aynı ada sahipse değiştirilecektir.",
-    "Upload": "Yüklemek"
+    "Upload": "Yüklemek",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Sorunlarla birlikte projenizi güçlü bir panoda görüntüleyin ve ileriye taşıyın.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Pano, biriktirme listesi ve yol haritasıyla proje hedeflerinize ulaşın.",
+    "Sprint name": "Sprint adı",
+    "Sprint start date": "Sprint başlangıç ​​tarihi",
+    "Sprint end date": "Sprint bitiş tarihi",
+    "Sprint description": "Sprint açıklaması",
+    "Sprints": "Sprintler",
+    "Export hours": "Dışa aktarma saatleri",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Yeni bir Sprint'in oluşturulması, Yol Haritasına bağlı bir Destan oluşturacaktır."
 }

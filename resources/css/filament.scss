@@ -6,11 +6,6 @@
 
 .filament-header-heading {
     display: block;
-    text-transform: lowercase;
-}
-
-.filament-header-heading:first-letter {
-    text-transform: uppercase;
 }
 
 .ticket-comment {
@@ -51,4 +46,8 @@
     &.twitter {
         background-color: #55acee;
     }
+}
+
+label:has(.sprint-checkboxes) > span {
+    width: 100%;
 }

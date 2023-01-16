@@ -195,5 +195,16 @@
     "Submit": "Předložit",
     "Ticket attachments saved": "Přílohy lístků uloženy",
     "Important: If a file has the same name, it will be replaced": "Důležité: Pokud má soubor stejný název, bude nahrazen",
-    "Upload": "nahrát"
+    "Upload": "nahrát",
+    "Scrum": "Skrumáž",
+    "Display and move your project forward with issues on a powerful board.": "Zobrazte a posuňte svůj projekt vpřed s problémy na výkonné desce.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Dosáhněte cílů svého projektu pomocí nástěnky, backlogu a plánu.",
+    "Sprint name": "Název sprintu",
+    "Sprint start date": "Datum zahájení sprintu",
+    "Sprint end date": "Datum ukončení sprintu",
+    "Sprint description": "Popis sprintu",
+    "Sprints": "Sprinty",
+    "Export hours": "Exportní hodiny",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Vytvoření nového sprintu vytvoří propojený Epic do cestovní mapy"
 }

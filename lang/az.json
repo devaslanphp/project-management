@@ -195,5 +195,16 @@
     "Submit": "təqdim",
     "Ticket attachments saved": "Bilet qoşmaları yadda saxlanıldı",
     "Important: If a file has the same name, it will be replaced": "Vacib: Əgər fayl eyni ada malikdirsə, o, dəyişdiriləcək",
-    "Upload": "Yükləmək"
+    "Upload": "Yükləmək",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Güclü lövhədə problemlərlə layihənizi göstərin və irəli aparın.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Lövhə, geridə qalan iş və yol xəritəsi ilə layihə məqsədlərinizə nail olun.",
+    "Sprint name": "Sprint adı",
+    "Sprint start date": "Sprint başlama tarixi",
+    "Sprint end date": "Sprint bitmə tarixi",
+    "Sprint description": "Sprint təsviri",
+    "Sprints": "Sprintlər",
+    "Export hours": "İxrac saatları",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Yeni Sprint-in yaradılması Yol Xəritəsi ilə əlaqəli Epic yaradacaq"
 }

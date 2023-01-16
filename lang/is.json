@@ -195,5 +195,16 @@
     "Submit": "Sendu inn",
     "Ticket attachments saved": "Miðaviðhengi vistuð",
     "Important: If a file has the same name, it will be replaced": "Mikilvægt: Ef skrá hefur sama nafn verður henni skipt út",
-    "Upload": "Hlaða upp"
+    "Upload": "Hlaða upp",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Sýndu og færðu verkefnið þitt áfram með málefnum á öflugri stjórn.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Náðu verkefnismarkmiðum þínum með töflu, eftirstöðvum og vegvísi.",
+    "Sprint name": "Sprett nafn",
+    "Sprint start date": "Upphafsdagur spretthlaups",
+    "Sprint end date": "Lokadagur spretthlaups",
+    "Sprint description": "Sprettur lýsing",
+    "Sprints": "Sprettir",
+    "Export hours": "Útflutningstímar",
+    "Sprint": "Sprettur",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Sköpun nýs Sprint mun búa til tengda Epic inn í vegakortið"
 }

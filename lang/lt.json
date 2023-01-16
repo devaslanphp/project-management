@@ -195,5 +195,16 @@
     "Submit": "Pateikti",
     "Ticket attachments saved": "Bilietų priedai išsaugoti",
     "Important: If a file has the same name, it will be replaced": "Svarbu: jei failas turi tą patį pavadinimą, jis bus pakeistas",
-    "Upload": "Įkelti"
+    "Upload": "Įkelti",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Parodykite ir judėkite į priekį savo projektą su problemomis galingoje lentoje.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Pasiekite savo projekto tikslus naudodami lentą, atsilikimą ir veiksmų planą.",
+    "Sprint name": "Sprinto pavadinimas",
+    "Sprint start date": "Sprinto pradžios data",
+    "Sprint end date": "Sprinto pabaigos data",
+    "Sprint description": "Sprinto aprašymas",
+    "Sprints": "Sprintai",
+    "Export hours": "Eksporto valandos",
+    "Sprint": "Sprintas",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Sukūrus naują „Sprint“, bus sukurtas susietas epas su kelių žemėlapiu"
 }

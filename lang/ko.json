@@ -195,5 +195,16 @@
     "Submit": "제출하다",
     "Ticket attachments saved": "티켓 첨부 파일 저장됨",
     "Important: If a file has the same name, it will be replaced": "중요: 파일 이름이 같으면 교체됩니다.",
-    "Upload": "업로드"
+    "Upload": "업로드",
+    "Scrum": "스크럼",
+    "Display and move your project forward with issues on a powerful board.": "강력한 보드에 문제가 있는 프로젝트를 표시하고 진행합니다.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "보드, 백로그 및 로드맵으로 프로젝트 목표를 달성하십시오.",
+    "Sprint name": "스프린트 이름",
+    "Sprint start date": "스프린트 시작 날짜",
+    "Sprint end date": "스프린트 종료 날짜",
+    "Sprint description": "스프린트 설명",
+    "Sprints": "스프린트",
+    "Export hours": "내보내기 시간",
+    "Sprint": "스프린트",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "새 스프린트를 생성하면 로드맵에 연결된 에픽이 생성됩니다."
 }

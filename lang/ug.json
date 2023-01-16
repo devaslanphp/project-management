@@ -195,5 +195,16 @@
     "Submit": "يوللاڭ",
     "Ticket attachments saved": "بېلەت قوشۇمچە ھۆججەتلىرى ساقلاندى",
     "Important: If a file has the same name, it will be replaced": "مۇھىمى: ئەگەر ھۆججەتنىڭ ئىسمى ئوخشاش بولسا ، ئۇ ئالماشتۇرۇلىدۇ",
-    "Upload": "يۈكلەش"
+    "Upload": "يۈكلەش",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "كۈچلۈك تاختايدىكى مەسىلىلەر بىلەن تۈرىڭىزنى كۆرسىتىڭ ۋە ئىلگىرى سۈرۈڭ.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "تاختاي ، ئارقىدا قېلىش ۋە يول خەرىتىسى ئارقىلىق تۈر نىشانىڭىزغا يېتىڭ.",
+    "Sprint name": "Sprint name",
+    "Sprint start date": "Sprint باشلىنىش ۋاقتى",
+    "Sprint end date": "Sprint ئاخىرلىشىش ۋاقتى",
+    "Sprint description": "Sprint description",
+    "Sprints": "Sprints",
+    "Export hours": "چىقىرىش ۋاقتى",
+    "Sprint": "Sprint",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "يېڭى Sprint نىڭ بارلىققا كېلىشى يول خەرىتىسىگە ئۇلانغان ئېپوس ھاسىل قىلىدۇ"
 }

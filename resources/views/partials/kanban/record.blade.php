@@ -11,7 +11,8 @@
         <a href="{{ route('filament.resources.tickets.view', $record['id']) }}"
            target="_blank"
            class="record-title">
-            {{ $record['title'] }}
+            <span class="code">{{ $record['code'] }}</span>
+            <span class="title">{{ $record['title'] }}</span>
         </a>
     </div>
     <div class="record-footer">
@@ -25,7 +26,6 @@
             @endif
             <x-ticket-priority :priority="$record['priority']" />
             <x-ticket-type :type="$record['type']" />
-            <span>{{ $record['code'] }}</span>
         </div>
         @if($record['responsible'])
             <x-user-avatar :user="$record['responsible']" />

@@ -195,5 +195,16 @@
     "Submit": "Bidali",
     "Ticket attachments saved": "Gorde dira txartelaren eranskinak",
     "Important: If a file has the same name, it will be replaced": "Garrantzitsua: fitxategi batek izen bera badu, ordezkatu egingo da",
-    "Upload": "Kargatu"
+    "Upload": "Kargatu",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Erakutsi eta aurrera egin zure proiektua arazoekin arbel indartsu batean.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Lortu zure proiektuaren helburuak taula, atzerapenarekin eta bide-orri batekin.",
+    "Sprint name": "Sprint izena",
+    "Sprint start date": "Sprint hasierako data",
+    "Sprint end date": "Sprint amaiera data",
+    "Sprint description": "Sprintaren deskribapena",
+    "Sprints": "Esprintak",
+    "Export hours": "Esportatu orduak",
+    "Sprint": "Sprinta",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Sprint berri bat sortzeak Epopeia estekatu bat sortuko du Road Maparekin"
 }

@@ -195,5 +195,16 @@
     "Submit": "Жіберу",
     "Ticket attachments saved": "Билет тіркемелері сақталды",
     "Important: If a file has the same name, it will be replaced": "Маңызды: файлдың аты бірдей болса, ол ауыстырылады",
-    "Upload": "Жүктеп салу"
+    "Upload": "Жүктеп салу",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Күшті тақтадағы мәселелермен жобаңызды көрсетіңіз және алға жылжытыңыз.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Тақта, артта қалу және жол картасы арқылы жоба мақсаттарыңызға қол жеткізіңіз.",
+    "Sprint name": "Спринт атауы",
+    "Sprint start date": "Спринттің басталу күні",
+    "Sprint end date": "Sprint аяқталу күні",
+    "Sprint description": "Sprint сипаттамасы",
+    "Sprints": "Спринтер",
+    "Export hours": "Экспорттау сағаттары",
+    "Sprint": "Спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Жаңа Sprint жасау Жол картасына байланыстырылған эпосты жасайды"
 }

@@ -195,5 +195,16 @@
     "Submit": "ส่ง",
     "Ticket attachments saved": "บันทึกไฟล์แนบตั๋วแล้ว",
     "Important: If a file has the same name, it will be replaced": "ข้อสำคัญ: หากไฟล์มีชื่อเดียวกัน ไฟล์นั้นจะถูกแทนที่",
-    "Upload": "ที่อัพโหลด"
+    "Upload": "ที่อัพโหลด",
+    "Scrum": "การต่อสู้",
+    "Display and move your project forward with issues on a powerful board.": "แสดงและขับเคลื่อนโครงการของคุณไปข้างหน้าด้วยปัญหาบนกระดานที่มีประสิทธิภาพ",
+    "Achieve your project goals with a board, backlog, and roadmap.": "บรรลุเป้าหมายโครงการของคุณด้วยบอร์ด งานในมือ และแผนงาน",
+    "Sprint name": "ชื่อสปรินท์",
+    "Sprint start date": "วันที่เริ่มวิ่ง",
+    "Sprint end date": "วันที่สิ้นสุดสปรินต์",
+    "Sprint description": "คำอธิบายการวิ่ง",
+    "Sprints": "วิ่ง",
+    "Export hours": "ชั่วโมงการส่งออก",
+    "Sprint": "วิ่ง",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "การสร้าง Sprint ใหม่จะสร้าง Epic ที่เชื่อมโยงกับ Road Map"
 }

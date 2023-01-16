@@ -195,5 +195,16 @@
     "Submit": "Надіслати",
     "Ticket attachments saved": "Додатки до квитка збережені",
     "Important: If a file has the same name, it will be replaced": "Важливо: якщо файл має таке ж ім'я, його буде замінено",
-    "Upload": "Завантажити"
+    "Upload": "Завантажити",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Показуйте та рухайте свій проект вперед із проблемами на потужній дошці.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Досягніть цілей свого проекту за допомогою дошки, невиконаних завдань і дорожньої карти.",
+    "Sprint name": "Назва спринту",
+    "Sprint start date": "Дата початку спринту",
+    "Sprint end date": "Дата завершення спринту",
+    "Sprint description": "Опис спринту",
+    "Sprints": "Спринт",
+    "Export hours": "Експорт годин",
+    "Sprint": "спринт",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Створення нового спринту призведе до створення зв’язку Epic з дорожньою картою"
 }

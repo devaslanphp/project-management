@@ -21,7 +21,7 @@ class RoadMap extends Page implements HasForms
 
     protected static ?string $slug = 'road-map';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     public $project;
 
@@ -31,7 +31,8 @@ class RoadMap extends Page implements HasForms
 
     protected $listeners = [
         'closeEpicDialog' => 'closeDialog',
-        'closeTicketDialog' => 'closeDialog'
+        'closeTicketDialog' => 'closeDialog',
+        'updateEpic'
     ];
 
     protected static function getNavigationLabel(): string

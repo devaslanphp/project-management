@@ -195,5 +195,16 @@
     "Submit": "ارسال",
     "Ticket attachments saved": "پیوست‌های بلیت ذخیره شدند",
     "Important: If a file has the same name, it will be replaced": "مهم: اگر فایلی به همین نام باشد، جایگزین خواهد شد",
-    "Upload": "بارگذاری"
+    "Upload": "بارگذاری",
+    "Scrum": "اسکرام",
+    "Display and move your project forward with issues on a powerful board.": "پروژه خود را با مشکلاتی در یک برد قدرتمند نمایش دهید و به جلو ببرید.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "به اهداف پروژه خود با تابلو، عقب ماندگی و نقشه راه دست یابید.",
+    "Sprint name": "نام اسپرینت",
+    "Sprint start date": "تاریخ شروع اسپرینت",
+    "Sprint end date": "تاریخ پایان اسپرینت",
+    "Sprint description": "توضیحات اسپرینت",
+    "Sprints": "دوی سرعت",
+    "Export hours": "ساعت صادرات",
+    "Sprint": "اسپرینت",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "ایجاد یک اسپرینت جدید یک حماسه مرتبط با نقشه راه ایجاد می کند"
 }

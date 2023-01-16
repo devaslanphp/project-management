@@ -195,5 +195,16 @@
     "Submit": "Lähetä",
     "Ticket attachments saved": "Lippuliitteet tallennettu",
     "Important: If a file has the same name, it will be replaced": "Tärkeää: Jos tiedostolla on sama nimi, se korvataan",
-    "Upload": "Lataa"
+    "Upload": "Lataa",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "Näytä ja vie projektisi eteenpäin ongelmien kanssa tehokkaalla taululla.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "Saavuta projektisi tavoitteet taulun, ruuhkan ja tiekartan avulla.",
+    "Sprint name": "Sprintin nimi",
+    "Sprint start date": "Sprintin aloituspäivä",
+    "Sprint end date": "Sprintin päättymispäivä",
+    "Sprint description": "Sprintin kuvaus",
+    "Sprints": "Sprintit",
+    "Export hours": "Vientitunnit",
+    "Sprint": "Sprintti",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "Uuden Sprintin luominen luo tiekarttaan linkitetyn eeppisen"
 }

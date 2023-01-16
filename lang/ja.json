@@ -195,5 +195,16 @@
     "Submit": "送信",
     "Ticket attachments saved": "チケットの添付ファイルを保存しました",
     "Important: If a file has the same name, it will be replaced": "重要: ファイルが同じ名前の場合、置き換えられます",
-    "Upload": "アップロード"
+    "Upload": "アップロード",
+    "Scrum": "スクラム",
+    "Display and move your project forward with issues on a powerful board.": "強力なボードに課題を表示してプロジェクトを進めます。",
+    "Achieve your project goals with a board, backlog, and roadmap.": "ボード、バックログ、およびロードマップを使用して、プロジェクトの目標を達成します。",
+    "Sprint name": "スプリント名",
+    "Sprint start date": "スプリント開始日",
+    "Sprint end date": "スプリント終了日",
+    "Sprint description": "スプリントの説明",
+    "Sprints": "スプリント",
+    "Export hours": "エクスポート時間",
+    "Sprint": "スプリント",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "新しいスプリントを作成すると、ロードマップにリンクされたエピックが作成されます"
 }

@@ -8,6 +8,7 @@ use App\Models\TicketPriority;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
+use Closure;
 use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -20,16 +21,13 @@ class IssueForm extends Component implements HasForms
 
     public Project|null $project = null;
     public array $epics;
+    public array $sprints;
 
     public function mount()
     {
-        if ($this->project) {
-            $project = Project::where('id', $this->project->id)->first();
-        } else {
-            $project = null;
-        }
-        if ($project?->status_type === 'custom') {
-            $defaultStatus = TicketStatus::where('project_id', $project->id)
+        $this->initProject($this->project?->id);
+        if ($this->project?->status_type === 'custom') {
+            $defaultStatus = TicketStatus::where('project_id', $this->project->id)
                 ->where('is_default', true)
                 ->first()
                 ?->id;
@@ -39,7 +37,6 @@ class IssueForm extends Component implements HasForms
                 ->first()
                 ?->id;
         }
-        $this->epics = $this->project ? $this->project->epics->pluck('name', 'id')->toArray() : [];
         $this->form->fill([
             'project_id' => $this->project?->id ?? null,
             'owner_id' => auth()->user()->id,
@@ -54,6 +51,17 @@ class IssueForm extends Component implements HasForms
         return view('livewire.road-map.issue-form');
     }
 
+    private function initProject($projectId): void
+    {
+        if ($projectId) {
+            $this->project = Project::where('id', $projectId)->first();
+        } else {
+            $this->project = null;
+        }
+        $this->epics = $this->project ? $this->project->epics->pluck('name', 'id')->toArray() : [];
+        $this->sprints = $this->project ? $this->project->sprints->pluck('name', 'id')->toArray() : [];
+    }
+
     protected function getFormSchema(): array
     {
         return [
@@ -66,27 +74,36 @@ class IssueForm extends Component implements HasForms
                                 ->searchable()
                                 ->reactive()
                                 ->disabled($this->project != null)
-                                ->columnSpan(fn () => $this->project == null ? 2 : 1)
+                                ->columnSpan(2)
                                 ->options(fn() => Project::where('owner_id', auth()->user()->id)
                                     ->orWhereHas('users', function ($query) {
                                         return $query->where('users.id', auth()->user()->id);
                                     })->pluck('name', 'id')->toArray()
                                 )
+                                ->afterStateUpdated(fn(Closure $get) => $this->initProject($get('project_id')))
                                 ->required(),
+
+                            Forms\Components\Select::make('sprint_id')
+                                ->label(__('Sprint'))
+                                ->searchable()
+                                ->reactive()
+                                ->visible(fn () => $this->project && $this->project->type === 'scrum')
+                                ->columnSpan(2)
+                                ->options(fn () => $this->sprints),
 
                             Forms\Components\Select::make('epic_id')
                                 ->label(__('Epic'))
                                 ->searchable()
                                 ->reactive()
-                                ->columnSpan(1)
+                                ->columnSpan(2)
                                 ->required()
-                                ->visible($this->project != null)
-                                ->options($this->epics),
+                                ->visible(fn () => $this->project && $this->project->type !== 'scrum')
+                                ->options(fn () => $this->epics),
 
                             Forms\Components\TextInput::make('name')
                                 ->label(__('Ticket name'))
                                 ->required()
-                                ->columnSpan(2)
+                                ->columnSpan(4)
                                 ->maxLength(255),
                         ]),
 
@@ -139,6 +156,7 @@ class IssueForm extends Component implements HasForms
 
             Forms\Components\RichEditor::make('content')
                 ->label(__('Ticket content'))
+                ->required()
                 ->columnSpan(2),
 
             Forms\Components\Grid::make()

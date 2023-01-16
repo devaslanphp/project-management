@@ -195,5 +195,16 @@
     "Submit": "ඉදිරිපත් කරන්න",
     "Ticket attachments saved": "ප්‍රවේශපත්‍ර ඇමුණුම් සුරකින ලදී",
     "Important: If a file has the same name, it will be replaced": "වැදගත්: ගොනුවකට එකම නම තිබේ නම්, එය ප්‍රතිස්ථාපනය වේ",
-    "Upload": "උඩුගත කරන්න"
+    "Upload": "උඩුගත කරන්න",
+    "Scrum": "Scrum",
+    "Display and move your project forward with issues on a powerful board.": "ප්‍රබල පුවරුවක ගැටළු සහිතව ඔබේ ව්‍යාපෘතිය ප්‍රදර්ශනය කර ඉදිරියට ගෙන යන්න.",
+    "Achieve your project goals with a board, backlog, and roadmap.": "පුවරුවක්, පසුබෑමක් සහ මාර්ග සිතියමක් සමඟ ඔබේ ව්‍යාපෘති ඉලක්ක සපුරා ගන්න.",
+    "Sprint name": "ස්ප්රින්ට් නම",
+    "Sprint start date": "ස්ප්‍රින්ට් ආරම්භක දිනය",
+    "Sprint end date": "ස්ප්‍රින්ට් අවසන් දිනය",
+    "Sprint description": "ස්ප්රින්ට් විස්තරය",
+    "Sprints": "ස්ප්රින්ට්ස්",
+    "Export hours": "අපනයන පැය",
+    "Sprint": "ස්ප්රින්ට්",
+    "The creation of a new Sprint will create a linked Epic into to the Road Map": "නව ස්ප්‍රින්ට් එකක් නිර්මාණය කිරීම මාර්ග සිතියමට සම්බන්ධ කර ඇති එපික් නිර්මාණය කරයි"
 }
