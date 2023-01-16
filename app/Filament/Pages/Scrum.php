@@ -21,15 +21,15 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 
-class Kanban extends Page implements HasForms
+class Scrum extends Page implements HasForms
 {
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-view-boards';
 
-    protected static ?string $slug = 'kanban/{project}';
+    protected static ?string $slug = 'scrum/{project}';
 
-    protected static string $view = 'filament.pages.kanban';
+    protected static string $view = 'filament.pages.scrum';
 
     protected static bool $shouldRegisterNavigation = false;
 
@@ -52,8 +52,8 @@ class Kanban extends Page implements HasForms
     public function mount(Project $project)
     {
         $this->project = $project;
-        if ($this->project->type === 'scrum') {
-            $this->redirect(route('filament.pages.scrum/{project}', ['project' => $project]));
+        if ($this->project->type !== 'scrum') {
+            $this->redirect(route('filament.pages.kanban/{project}', ['project' => $project]));
         } elseif (
             $this->project->owner_id != auth()->user()->id
             &&

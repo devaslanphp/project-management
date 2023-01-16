@@ -52,3 +52,7 @@
         background-color: #55acee;
     }
 }
+
+label:has(.sprint-checkboxes) > span {
+    width: 100%;
+}

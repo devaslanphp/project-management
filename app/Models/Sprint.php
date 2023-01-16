@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +16,14 @@ class Sprint extends Model
 
     protected $fillable = [
         'name', 'starts_at', 'ends_at', 'description',
-        'project_id'
+        'project_id', 'started_at', 'ended_at'
+    ];
+
+    protected $casts = [
+        'starts_at' => 'date',
+        'ends_at' => 'date',
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
     ];
 
     public static function boot()
@@ -46,5 +55,17 @@ class Sprint extends Model
     public function epic(): BelongsTo
     {
         return $this->belongsTo(Epic::class, 'epic_id', 'id');
+    }
+
+    public function remaining(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                if ($this->starts_at && $this->ends_at && $this->started_at && !$this->ended_at) {
+                    return $this->ends_at->diffInDays(now());
+                }
+                return null;
+            }
+        );
     }
 }

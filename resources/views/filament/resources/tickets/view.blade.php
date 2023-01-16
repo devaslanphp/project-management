@@ -1,7 +1,7 @@
 @php($record = $this->record)
 <x-filament::page>
 
-    <a href="{{ route('filament.pages.kanban', ['project' => $record->project->id]) }}"
+    <a href="{{ route('filament.pages.kanban/{project}', ['project' => $record->project->id]) }}"
        class="flex items-center gap-1 text-gray-500 hover:text-gray-700 font-medium text-xs">
         <x-heroicon-o-arrow-left class="w-4 h-4"/> {{ __('Back to kanban board') }}
     </a>
@@ -74,18 +74,37 @@
                 </div>
             </div>
 
-            <div class="w-full flex flex-col gap-1 pt-3">
-                <span class="text-gray-500 text-sm font-medium">
-                    {{ __('Epic') }}
-                </span>
-                <div class="w-full flex items-center gap-1 text-gray-500">
-                    @if($record->epic)
-                        {{ $record->epic->name }}
-                    @else
-                        -
-                    @endif
+            @if($record->project->type === 'scrum')
+                <div class="w-full flex flex-col gap-1 pt-3">
+                    <span class="text-gray-500 text-sm font-medium">
+                        {{ __('Sprint') }}
+                    </span>
+                    <div class="w-full flex flex-col justify-center gap-1 text-gray-500">
+                        @if($record->sprint)
+                            {{ $record->sprint->name }}
+                            <span class="text-xs text-gray-400">
+                                {{ __('Starts at:') }} {{ $record->sprint->starts_at->format(__('Y-m-d')) }} -
+                                {{ __('Ends at:') }} {{ $record->sprint->ends_at->format(__('Y-m-d')) }}
+                            </span>
+                        @else
+                            -
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="w-full flex flex-col gap-1 pt-3">
+                    <span class="text-gray-500 text-sm font-medium">
+                        {{ __('Epic') }}
+                    </span>
+                    <div class="w-full flex items-center gap-1 text-gray-500">
+                        @if($record->epic)
+                            {{ $record->epic->name }}
+                        @else
+                            -
+                        @endif
+                    </div>
+                </div>
+            @endif
 
             <div class="w-full flex flex-col gap-1 pt-3">
                 <span class="text-gray-500 text-sm font-medium">

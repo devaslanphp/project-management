@@ -175,6 +175,16 @@ class ProjectResource extends Resource
                     ->label(__('Affected users'))
                     ->limit(2),
 
+                Tables\Columns\BadgeColumn::make('type')
+                    ->enum([
+                        'kanban' => __('Kanban'),
+                        'scrum' => __('Scrum')
+                    ])
+                    ->colors([
+                        'secondary' => 'kanban',
+                        'warning' => 'scrum',
+                    ]),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Created at'))
                     ->dateTime()
@@ -240,10 +250,19 @@ class ProjectResource extends Resource
                         )),
 
                     Tables\Actions\Action::make('kanban')
-                        ->label(__('Kanban'))
-                        ->icon('heroicon-o-adjustments')
+                        ->label(
+                            fn ($record)
+                                => ($record->type === 'scrum' ? __('Scrum board') : __('Kanban board'))
+                        )
+                        ->icon('heroicon-o-view-boards')
                         ->color('secondary')
-                        ->url(fn($record) => route('filament.pages.kanban', ['project' => $record->id])),
+                        ->url(function ($record) {
+                            if ($record->type === 'scrum') {
+                                return route('filament.pages.scrum/{project}', ['project' => $record->id]);
+                            } else {
+                                return route('filament.pages.kanban/{project}', ['project' => $record->id]);
+                            }
+                        }),
                 ])->color('secondary'),
             ])
             ->bulkActions([
@@ -254,6 +273,7 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\SprintsRelationManager::class,
             RelationManagers\UsersRelationManager::class,
             RelationManagers\StatusesRelationManager::class,
         ];
