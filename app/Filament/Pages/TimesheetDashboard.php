@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\Timesheet\ActivitiesReport;
 use App\Filament\Widgets\Timesheet\MonthlyReport;
 use Filament\Pages\Page;
 
@@ -33,7 +34,8 @@ class TimesheetDashboard extends Page
     protected function getWidgets(): array
     {
         return [
-            MonthlyReport::class
+            MonthlyReport::class,
+            ActivitiesReport::class
         ];
     }
 }
