@@ -8,6 +8,7 @@ use App\Models\TicketHour;
 use App\Models\User;
 use Carbon\Carbon;
 use Filament\Widgets\BarChartWidget;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class MonthlyReport extends BarChartWidget
@@ -17,7 +18,85 @@ class MonthlyReport extends BarChartWidget
         return __('Logged time monthly');
     }
 
+    public ?string $filter = '2023';
+
     protected function getData(): array
+    {
+        $collection = $this->filter(auth()->user(), [
+            'year' => $this->filter
+        ]);
+
+        $datasets = $this->getDatasets($this->buildRapport($collection));
+
+        return [
+            'datasets' => [
+                [
+                    'label' => __('Total time logged'),
+                    'data' => $datasets['sets'],
+                    'backgroundColor' => [
+                        'rgba(54, 162, 235, .6)'
+                    ],
+                    'borderColor' => [
+                        'rgba(54, 162, 235, .8)'
+                    ],
+                ],
+            ],
+            'labels' => $datasets['labels'],
+        ];
+    }
+
+    protected function getFilters(): ?array
+    {
+        return [
+            2022 => 2022,
+            2023 => 2023
+        ];
+    }
+
+    protected static ?array $options = [
+        'plugins' => [
+            'legend' => [
+                'display' => true,
+            ],
+        ],
+    ];
+
+    protected int|string|array $columnSpan = [
+        'sm' => 1,
+        'md' => 6,
+        'lg' => 3
+    ];
+
+    protected function filter(User $user, array $params)
+    {
+        return TicketHour::select([
+            DB::raw("DATE_FORMAT(created_at,'%m') as month"),
+            DB::raw('SUM(value) as value'),
+        ])
+            ->whereRaw(
+                DB::raw("YEAR(created_at)=" . (is_null($params['year']) ? Carbon::now()->format('Y') : $params['year']))
+            )
+            ->where('user_id', $user->id)
+            ->groupBy(DB::raw("DATE_FORMAT (created_at, '%m')"))
+            ->get();
+    }
+
+    protected function getDatasets(array $rapportData): array
+    {
+        $datasets = [
+            'sets' => [],
+            'labels' => []
+        ];
+
+        foreach ($rapportData as $data) {
+            $datasets['sets'][] = $data[1];
+            $datasets['labels'][] = $data[0];
+        }
+
+        return $datasets;
+    }
+
+    protected function buildRapport(Collection $collection): array
     {
         $months = [
             1 => ['January', 0],
@@ -34,54 +113,12 @@ class MonthlyReport extends BarChartWidget
             12 => ['December', 0]
         ];
 
-
-        $data = $this->filter(auth()->user());
-
-        foreach ($data as $value) {
+        foreach ($collection as $value) {
             if (isset($months[(int)$value->month])) {
                 $months[(int)$value->month][1] = (float)$value->value;
             }
         }
 
-        $datasets = [];
-        $labels = [];
-        foreach ($months as $month) {
-            $datasets[] = $month[1];
-            $labels[] = $month[0];
-        }
-
-        return [
-            'datasets' => [
-                [
-                    'label' => __('Total time logged'),
-                    'data' => $datasets,
-                    'backgroundColor' => [
-                        'rgba(54, 162, 235, .6)'
-                    ],
-                    'borderColor' => [
-                        'rgba(54, 162, 235, .8)'
-                    ],
-                ],
-            ],
-            'labels' => $labels,
-        ];
-    }
-
-    protected int|string|array $columnSpan = [
-        'sm' => 1,
-        'md' => 6,
-        'lg' => 3
-    ];
-
-    protected function filter(User $user)
-    {
-        return TicketHour::select([
-            DB::raw("DATE_FORMAT (created_at, '%m') as month"),
-            DB::raw('SUM(value) as value'),
-        ])
-            ->where('user_id', $user->id)
-            ->whereRaw(DB::raw("YEAR(created_at)=") . Carbon::now()->format('Y'))
-            ->groupBy(DB::raw("DATE_FORMAT (created_at, '%m')"))
-            ->get();
+        return $months;
     }
 }
