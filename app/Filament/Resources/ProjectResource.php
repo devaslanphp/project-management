@@ -229,15 +229,6 @@ class ProjectResource extends Resource
                 Tables\Actions\EditAction::make(),
 
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\Action::make('sprints')
-                        ->label(__('Sprints'))
-                        ->icon('heroicon-o-sort-ascending')
-                        ->color('secondary')
-                        ->visible(fn($record) => $record->type === 'scrum')
-                        ->url(fn($record) => route('filament.resources.sprints.index', [
-                            'tableFilters[project_id][values][0]' => $record->id
-                        ])),
-
                     Tables\Actions\Action::make('exportLogHours')
                         ->label(__('Export hours'))
                         ->icon('heroicon-o-document-download')
