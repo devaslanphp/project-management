@@ -51,7 +51,7 @@
     "If checked, this type will be automatically affected to new tickets": "Si cochée, se type sera automatiquement affecté aux nouveaux tickets",
     "If custom type selected, you need to configure project specific statuses": "Si le type personnalisé est sélectionné, vous devez configurer des statuts spécifiques au projet",
     "If not selected, an image will be generated based on the project name": "Si non sélectionné, une image sera générée en fonction du nom du projet",
-    "Include not affected tickets": "Inclure les tickets non concernés",
+    "Show only not affected tickets": "Afficher seulement les tickets non concernés",
     "Kanban": "Kanban",
     "Kanban board updated": "Tableau kanban mis à jour",
     "Last update": "Dernière modification",
