@@ -79,6 +79,7 @@ class TimesheetResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('comment')
                     ->label(__('Comment'))
+                    ->limit(50)
                     ->sortable()
                     ->searchable(),
 
