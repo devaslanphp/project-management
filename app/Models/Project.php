@@ -105,4 +105,31 @@ class Project extends Model implements HasMedia
                 'https://ui-avatars.com/api/?background=3f84f3&color=ffffff&name=' . $this->name
         );
     }
+
+    public function currentSprint(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->sprints()
+                ->whereNotNull('started_at')
+                ->whereNull('ended_at')
+                ->first()
+        );
+    }
+
+    public function nextSprint(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                if ($this->currentSprint) {
+                    return $this->sprints()
+                        ->whereNull('started_at')
+                        ->whereNull('ended_at')
+                        ->where('starts_at', '>=', $this->currentSprint->ends_at)
+                        ->orderBy('starts_at')
+                        ->first();
+                }
+                return null;
+            }
+        );
+    }
 }

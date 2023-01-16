@@ -317,8 +317,8 @@
                         @endforeach
                     @else
                         <span class="text-gray-400 text-sm font-medium">
-                        {{ __('No activities yet!') }}
-                    </span>
+                            {{ __('No activities yet!') }}
+                        </span>
                     @endif
                 </div>
             @endif

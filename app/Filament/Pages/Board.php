@@ -9,6 +9,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
+use Illuminate\Contracts\Support\Htmlable;
 
 class Board extends Page implements HasForms
 {
@@ -21,6 +22,11 @@ class Board extends Page implements HasForms
     protected static ?string $slug = 'board';
 
     protected static ?int $navigationSort = 4;
+
+    protected function getSubheading(): string|Htmlable|null
+    {
+        return __("In this section you can choose one of your projects to show it's Scrum or Kanban board");
+    }
 
     public function mount(): void
     {

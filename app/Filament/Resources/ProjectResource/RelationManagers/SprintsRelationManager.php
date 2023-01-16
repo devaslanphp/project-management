@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Closure;
 use Filament\Facades\Filament;
 use Filament\Forms;
+use Filament\Notifications\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
@@ -108,7 +110,7 @@ class SprintsRelationManager extends RelationManager
 
                 Tables\Columns\TextColumn::make('remaining')
                     ->label(__('Remaining'))
-                    ->suffix(fn ($record) => $record->remaining ? (' ' . __('days')) : '')
+                    ->suffix(fn($record) => $record->remaining ? (' ' . __('days')) : '')
                     ->sortable()
                     ->searchable(),
 
@@ -133,8 +135,34 @@ class SprintsRelationManager extends RelationManager
                     ->button()
                     ->icon('heroicon-o-play')
                     ->action(function ($record) {
-                        $record->started_at = now();
+                        $now = now();
+                        Sprint::where('project_id', $record->project_id)
+                            ->where('id', '<>', $record->id)
+                            ->whereNotNull('started_at')
+                            ->whereNull('ended_at')
+                            ->update(['ended_at' => $now]);
+                        $record->started_at = $now;
                         $record->save();
+                        Notification::make('sprint_started')
+                            ->success()
+                            ->body(__('Sprint started at') . ' ' . $now)
+                            ->actions([
+                                Action::make('board')
+                                    ->color('secondary')
+                                    ->button()
+                                    ->label(
+                                        fn ()
+                                        => ($record->project->type === 'scrum' ? __('Scrum board') : __('Kanban board'))
+                                    )
+                                    ->url(function () use ($record) {
+                                        if ($record->project->type === 'scrum') {
+                                            return route('filament.pages.scrum/{project}', ['project' => $record->project->id]);
+                                        } else {
+                                            return route('filament.pages.kanban/{project}', ['project' => $record->project->id]);
+                                        }
+                                    }),
+                            ])
+                            ->send();
                     }),
 
                 Tables\Actions\Action::make('stop')
@@ -145,8 +173,14 @@ class SprintsRelationManager extends RelationManager
                     ->button()
                     ->icon('heroicon-o-pause')
                     ->action(function ($record) {
-                        $record->ended_at = now();
+                        $now = now();
+                        $record->ended_at = $now;
                         $record->save();
+
+                        Notification::make('sprint_started')
+                            ->success()
+                            ->body(__('Sprint ended at') . ' ' . $now)
+                            ->send();
                     }),
 
                 Tables\Actions\Action::make('tickets')

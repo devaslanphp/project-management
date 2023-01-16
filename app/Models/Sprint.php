@@ -62,7 +62,7 @@ class Sprint extends Model
         return new Attribute(
             get: function () {
                 if ($this->starts_at && $this->ends_at && $this->started_at && !$this->ended_at) {
-                    return $this->ends_at->diffInDays(now());
+                    return $this->ends_at->diffInDays(now()) + 1;
                 }
                 return null;
             }

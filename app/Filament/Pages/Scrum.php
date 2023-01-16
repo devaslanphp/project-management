@@ -114,14 +114,22 @@ class Scrum extends Page implements HasForms
     protected function getActions(): array
     {
         return [
+            Action::make('manage-sprints')
+                ->button()
+                ->visible(fn () => $this->project->currentSprint && auth()->user()->can('update', $this->project))
+                ->label(__('Manage sprints'))
+                ->color('primary')
+                ->url(route('filament.resources.projects.edit', $this->project)),
+
             Action::make('refresh')
                 ->button()
+                ->visible(fn () => $this->project->currentSprint)
                 ->label(__('Refresh'))
                 ->color('secondary')
                 ->action(function () {
                     $this->getRecords();
                     Filament::notify('success', __('Kanban board updated'));
-                })
+                }),
         ];
     }
 
@@ -133,7 +141,7 @@ class Scrum extends Page implements HasForms
         $heading .= __('Back to board');
         $heading .= '</a>';
         $heading .= '<div class="flex flex-col gap-1">';
-        $heading .= '<span>' . __('Kanban');
+        $heading .= '<span>' . __('Scrum');
         if ($this->project) {
             $heading .= ' - ' . $this->project->name . '</span>';
         } else {
@@ -144,6 +152,38 @@ class Scrum extends Page implements HasForms
         $heading .= '</div>';
         $heading .= '</div>';
         return new HtmlString($heading);
+    }
+
+    protected function getSubheading(): string|Htmlable|null
+    {
+        if ($this->project?->currentSprint) {
+            return new HtmlString(
+                '<div class="w-full flex flex-col gap-1">'
+                    . '<div class="w-full flex items-center gap-2">'
+                        . '<span class="bg-danger-500 px-2 py-1 rounded text-white text-sm">'
+                            . $this->project->currentSprint->name
+                        . '</span>'
+                        . '<span class="text-xs text-gray-400">'
+                            . __('Started at:') . ' ' . $this->project->currentSprint->started_at->format(__('Y-m-d')) . ' - '
+                            . __('Ends at:') . ' ' . $this->project->currentSprint->ends_at->format(__('Y-m-d')) . ' - '
+                            . ($this->project->currentSprint->remaining ?
+                                (
+                                    __('Remaining:') . ' ' . $this->project->currentSprint->remaining . ' ' . __('days'))
+                                : ''
+                            )
+                        . '</span>'
+                    . '</div>'
+                    . ($this->project->nextSprint ? '<span class="text-xs text-primary-500 font-medium">'
+                        . __('Next sprint:') . ' ' . $this->project->nextSprint->name . ' - '
+                        . __('Starts at:') . ' ' . $this->project->nextSprint->starts_at->format(__('Y-m-d'))
+                        . ' (' . __('in') . ' ' . $this->project->nextSprint->starts_at->diffForHumans() . ')'
+                        . '</span>'
+                    . '</span>' : '')
+                . '</div>'
+            );
+        } else {
+            return null;
+        }
     }
 
     public function getStatuses(): Collection
@@ -175,6 +215,7 @@ class Scrum extends Page implements HasForms
     public function getRecords(): Collection
     {
         $query = Ticket::query();
+        $query->where('sprint_id', $this->project->currentSprint->id);
         $query->with(['project', 'owner', 'responsible', 'status', 'type', 'priority', 'epic']);
         if ($this->project) {
             $query->where('project_id', $this->project->id);

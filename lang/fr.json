@@ -218,5 +218,17 @@
     "Choose tickets to associate to this sprint": "Choisissez les tickets à associer à ce sprint",
     "Tickets associated with sprint": "Tickets associés au sprint",
     "Associated tickets": "Tickets associés",
-    "days": "jours"
+    "days": "jours",
+    "In this section you can choose one of your projects to show it's Scrum or Kanban board": "Dans cette section vous pouvez choisir l'un de vos projets pour afficher son tableau Scrum ou Kanban",
+    "No active sprint for this project!": "Aucun sprint actif pour ce projet !",
+    "Manage sprints": "Gérer les sprints",
+    "Click the below button to manage project's sprints": "Cliquez sur le bouton ci-dessous pour gérer les sprints du projet",
+    "Remaining": "Restant",
+    "Remaining:": "Restant :",
+    "If you think a sprint should be started, please contact an administrator": "Si vous pensez qu'un sprint doit être en cours, veuillez contacter un administrateur",
+    "in": "dans",
+    "Next sprint:": "Sprint suivant :",
+    "Sprint ended at": "Sprint terminé le",
+    "Sprint started at": "Sprint commencé le",
+    "Started at:": "Commencé le :"
 }

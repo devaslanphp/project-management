@@ -40,7 +40,17 @@
                     }
 
                     .record-title {
-                        @apply text-base text-gray-600 hover:cursor-pointer hover:underline;
+                        @apply text-base text-gray-600 hover:cursor-pointer;
+
+                        .code {
+                            @apply text-xs font-medium text-gray-400;
+                        }
+
+                        &:hover {
+                            .title {
+                                @apply underline;
+                            }
+                        }
                     }
                 }
 
@@ -49,10 +59,6 @@
 
                     .record-type-code {
                         @apply flex items-center gap-2;
-
-                        span {
-                            @apply text-xs font-medium text-gray-400;
-                        }
                     }
 
                     .avatar {
