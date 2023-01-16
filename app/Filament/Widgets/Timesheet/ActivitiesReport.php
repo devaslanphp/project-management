@@ -19,6 +19,8 @@ class ActivitiesReport extends BarChartWidget
         'lg' => 3
     ];
 
+    public ?string $filter = '2023';
+    
     protected function getHeading(): string
     {
         return __('Logged time by activity');
