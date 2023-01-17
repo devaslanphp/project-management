@@ -1,16 +1,8 @@
 version: "3.3"
 services:
-  queue:
-    image: jaccove/helper:latest
-    container_name: helper-queue
-    restart: "always"
-    ports:
-      - 4202:80
-    volumes:
-      - /etc/localtime:/etc/localtime
-    command: php artisan queue:work
   sqldb:
     image: mysql:5.7
+    container_name: helper-mysql
     volumes:
       - /home/jacco/docker/helper/mysql:/var/lib/mysql
     environment:
@@ -26,30 +18,20 @@ services:
       start_period: 10s
       timeout: 10s
       retries: 3
-  #db:
-  #  image: jaccove/helper:latest
-  #  container_name: helper-db
-  #  restart: "always"
-  #  ports:
-  #    - 4203:80
-  #  volumes:
-  #    - /etc/localtime:/etc/localtime
-  #  command: php artisan migrate
-  #db-seeder:
-  #  image: jaccove/helper:latest
-  #  container_name: helper-seeder
-  #  restart: "always"
-  #  ports:
-  #    - 4204:80
-  #  volumes:
-  #    - /etc/localtime:/etc/localtime
-  #  command: php artisan db:seed
-  #server:
-  #  image: jaccove/helper:latest
-  #  container_name: helper-server
-  #  restart: "always"
-  #  ports:
-  #    - 4205:8000
-  #  volumes:
-  #    - /etc/localtime:/etc/localtime
-  #  command: php artisan serve
+  helper:
+    image: jaccove/helper:latest
+    container_name: helper-server
+    environment:
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=smtp.mailtrap.io
+      - MAIL_PORT=2525
+      - MAIL_USERNAME=your_usernamed
+      - MAIL_PASSWORD=your_password
+      - MAIL_ENCRYPTION=tls
+    depends_on:
+      - sqldb
+    restart: "no"
+    ports:
+      - 8000:8000
+    volumes:
+      - /etc/localtime:/etc/localtime
