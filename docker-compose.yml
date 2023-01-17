@@ -1,0 +1,55 @@
+version: "3.3"
+services:
+  queue:
+    image: jaccove/helper:latest
+    container_name: helper-queue
+    restart: "always"
+    ports:
+      - 4202:80
+    volumes:
+      - /etc/localtime:/etc/localtime
+    command: php artisan queue:work
+  sqldb:
+    image: mysql:5.7
+    volumes:
+      - /home/jacco/docker/helper/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=helper
+      - MYSQL_USER=helper
+      - MYSQL_PASSWORD=helper
+      - MYSQL_ROOT_PASSWORD=helper
+    command: --default-storage-engine innodb
+    restart: unless-stopped
+    healthcheck:
+      test: mysqladmin -p$$MYSQL_ROOT_PASSWORD ping -h localhost
+      interval: 20s
+      start_period: 10s
+      timeout: 10s
+      retries: 3
+  #db:
+  #  image: jaccove/helper:latest
+  #  container_name: helper-db
+  #  restart: "always"
+  #  ports:
+  #    - 4203:80
+  #  volumes:
+  #    - /etc/localtime:/etc/localtime
+  #  command: php artisan migrate
+  #db-seeder:
+  #  image: jaccove/helper:latest
+  #  container_name: helper-seeder
+  #  restart: "always"
+  #  ports:
+  #    - 4204:80
+  #  volumes:
+  #    - /etc/localtime:/etc/localtime
+  #  command: php artisan db:seed
+  #server:
+  #  image: jaccove/helper:latest
+  #  container_name: helper-server
+  #  restart: "always"
+  #  ports:
+  #    - 4205:8000
+  #  volumes:
+  #    - /etc/localtime:/etc/localtime
+  #  command: php artisan serve

@@ -1,0 +1,1 @@
+docker build --network=host -t jaccove/helper:latest -t jaccove/helper:v1.1.9 .
