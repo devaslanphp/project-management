@@ -85,7 +85,7 @@ return [
             'roles' => [
 
                 // Default role
-                'default' => 'administrator',
+                'default' => 'employee',
 
                 // Role that can manage
                 'can_manage' => 'administrator',
