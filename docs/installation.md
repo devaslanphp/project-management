@@ -36,6 +36,8 @@ In addition of the main [prerequisites](/?id=prerequisites), you must have this 
     <img src="_media/22.png" width="20%"></img> 
     <img src="_media/23.png" width="20%"></img> 
     <img src="_media/24.png" width="20%"></img> 
+    <img src="_media/25.png" width="20%"></img> 
+    <img src="_media/26.png" width="20%"></img> 
 </div>
 
 

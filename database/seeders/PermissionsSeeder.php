@@ -26,7 +26,7 @@ class PermissionsSeeder extends Seeder
     ];
 
     private array $extraPermissions = [
-        'Manage general settings'
+        'Manage general settings', 'Import from Jira'
     ];
 
     private string $defaultRole = 'Default role';
