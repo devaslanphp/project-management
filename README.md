@@ -64,6 +64,8 @@ All this made with the best technologies.
     <img src="github-contents/22.png" width="20%"></img> 
     <img src="github-contents/23.png" width="20%"></img> 
     <img src="github-contents/24.png" width="20%"></img> 
+    <img src="github-contents/25.png" width="20%"></img> 
+    <img src="github-contents/26.png" width="20%"></img> 
 </div>
 
 ## Documentation
