@@ -122,9 +122,12 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - #32 Default user seeder enhancement
     - #31 Issue resolved
 - **Release 1.2.0**
-  - Scrum module #28
-  - Design enhancement (Kanban / Scrum boards)
-  - Referential updates
+    - Scrum module #28
+    - Design enhancement (Kanban / Scrum boards)
+    - Referential updates
+- **Release 1.2.1**
+    - Add jira integration #36
+    - New feature: Import jira projects / tickets
 
 ## Support us
 
