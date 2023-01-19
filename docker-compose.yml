@@ -1,0 +1,47 @@
+version: "3.3"
+
+volumes:
+  mysql_data:
+
+services:
+  sqldb:
+    image: mysql:5.7
+    container_name: helper-mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=helper
+      - MYSQL_USER=helper
+      - MYSQL_PASSWORD=helper
+      - MYSQL_ROOT_PASSWORD=helper
+    command: --default-storage-engine innodb
+    restart: unless-stopped
+    healthcheck:
+      test: mysqladmin -p$$MYSQL_ROOT_PASSWORD ping -h localhost
+      interval: 20s
+      start_period: 10s
+      timeout: 10s
+      retries: 3
+  helper:
+    image: devaslanphp/helper:latest
+    container_name: helper-server
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=sqldb
+      - DB_PORT=3306
+      - DB_DATABASE=helper
+      - DB_USERNAME=helper
+      - DB_PASSWORD=helper
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=smtp.mailtrap.io
+      - MAIL_PORT=2525
+      - MAIL_USERNAME=your_username
+      - MAIL_PASSWORD=your_password
+      - MAIL_ENCRYPTION=tls
+    depends_on:
+      - sqldb
+    restart: "no"
+    ports:
+      - 8000:8000
+    volumes:
+      - /etc/localtime:/etc/localtime
