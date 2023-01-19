@@ -19,11 +19,13 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: Set environment variable for latest
-          run: RELEASE_VERSION=${GITHUB_REF#refs/*/}
+      - id: timeseries
+          uses: pozetroninc/github-action-get-latest-release@master
+          with:
+            repository: ${{ github.repository }}
       - name: Build Docker image
         run: |
-          docker build --network=host -t devaslanphp/helper:latest -t devaslanphp/helper:$RELEASE_VERSION .
+          docker build --network=host -t devaslanphp/helper:latest -t devaslanphp/helper:${{ steps.timeseries.outputs.release }} .
       - name: Docker push image
         run: |
           docker push ${{secrets.DOCKER_USER}}/helper
