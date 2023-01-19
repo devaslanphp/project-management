@@ -135,8 +135,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - Add jira integration #36
     - New feature: Import jira projects / tickets
 - **Release 1.2.2**
-    - Add jira integration #36
-    - New feature: Import jira projects / tickets
+    - Dockerize application #23 
+    - PR #45 
 
 ## Support us
 
