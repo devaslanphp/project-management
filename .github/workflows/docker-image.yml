@@ -26,7 +26,8 @@ jobs:
           repository: ${{ github.repository }}
       - name: Build Docker image
         run: |
-          docker build --network=host -t eloufirhatim/helper:latest -t eloufirhatim/helper:${{ steps.timeseries.outputs.release }} .
+          docker build --network=host -t ${{secrets.DOCKER_USER}}/helper:latest -t ${{secrets.DOCKER_USER}}/helper:${{ steps.timeseries.outputs.release }} .
       - name: Docker push image
         run: |
           docker push ${{secrets.DOCKER_USER}}/helper
+          docker push ${{secrets.DOCKER_USER}}/helper:${{ steps.timeseries.outputs.release }}
