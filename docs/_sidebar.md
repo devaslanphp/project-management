@@ -14,3 +14,6 @@
   - [Projects configuration](/customization?id=projects-configuration)
   - [Tickets configuration](/customization?id=tickets-configuration)
   - [Social authentication](/customization?id=social-authentication)
+- [Docker](/docker?id=docker)
+    - [Build image locally](/docker?id=build-image-locally)
+    - [Use the Docker hub image](/docker?id=use-the-docker-hub-image)
