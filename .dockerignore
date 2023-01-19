@@ -2,7 +2,6 @@
 docs/
 github-contents/
 tests/
-.env.example
 .gitattributes
 .gitignore
 buildDocker.sh

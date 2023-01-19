@@ -9,6 +9,8 @@ LABEL Maintainer="Jacco van Ekris"
 # Any working directory can be chosen as per choice like '/' or '/home' etc
 WORKDIR /app
 
+COPY .env.example .env
+
 COPY . .
 
 RUN apt-get update -y && \

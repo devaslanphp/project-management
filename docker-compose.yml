@@ -1,10 +1,14 @@
 version: "3.3"
+
+volumes:
+  mysql_data:
+
 services:
   sqldb:
     image: mysql:5.7
     container_name: helper-mysql
     volumes:
-      - /home/jacco/docker/helper/mysql:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=helper
       - MYSQL_USER=helper
@@ -19,7 +23,7 @@ services:
       timeout: 10s
       retries: 3
   helper:
-    image: jaccove/helper:latest
+    image: devaslanphp/helper:latest
     container_name: helper-server
     environment:
       - DB_CONNECTION=mysql
@@ -31,7 +35,7 @@ services:
       - MAIL_MAILER=smtp
       - MAIL_HOST=smtp.mailtrap.io
       - MAIL_PORT=2525
-      - MAIL_USERNAME=your_usernamed
+      - MAIL_USERNAME=your_username
       - MAIL_PASSWORD=your_password
       - MAIL_ENCRYPTION=tls
     depends_on:
