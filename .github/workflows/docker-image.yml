@@ -1,0 +1,34 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Get repository release tag
+        id: timeseries
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          excludes: prerelease, draft
+          repository: ${{ github.repository }}
+      - name: Build Docker image
+        run: |
+          docker build --network=host -t ${{secrets.DOCKER_USER}}/helper:latest -t ${{secrets.DOCKER_USER}}/helper:${{ steps.timeseries.outputs.release }} .
+      - name: Docker push image
+        run: |
+          docker push ${{secrets.DOCKER_USER}}/helper
+          docker push ${{secrets.DOCKER_USER}}/helper:${{ steps.timeseries.outputs.release }}

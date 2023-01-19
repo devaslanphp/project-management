@@ -19,6 +19,10 @@
     <a href="https://devaslanphp.github.io/project-management" title="Go to project documentation">
         <img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation">
     </a>
+    <br/>
+    <a href="https://hub.docker.com/r/eloufirhatim/helper/tags" title="Docker image">
+        <img src="https://img.shields.io/docker/v/eloufirhatim/helper?label=Docker&logo=docker&style=for-the-badge" alt="Docker image">
+    </a>
 </p>
 
 # Introduction
@@ -128,6 +132,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - Design enhancement (Kanban / Scrum boards)
     - Referential updates
 - **Release 1.2.1**
+    - Add jira integration #36
+    - New feature: Import jira projects / tickets
+- **Release 1.2.2**
     - Add jira integration #36
     - New feature: Import jira projects / tickets
 
