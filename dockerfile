@@ -3,9 +3,6 @@
 #Deriving the latest base image
 FROM node:16.17.0-bullseye-slim
 
-#Labels as key value pair
-LABEL Maintainer="Jacco van Ekris"
-
 # Any working directory can be chosen as per choice like '/' or '/home' etc
 WORKDIR /app
 
