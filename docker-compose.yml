@@ -23,7 +23,7 @@ services:
       timeout: 10s
       retries: 3
   helper:
-    image: devaslanphp/helper:latest
+    image: eloufirhatim/helper:latest
     container_name: helper-server
     environment:
       - DB_CONNECTION=mysql
