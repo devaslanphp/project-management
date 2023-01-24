@@ -256,5 +256,10 @@
     "Jira importation": "Importation jira",
     "Jira tickets successfully imported": "Tickets jira importés avec succès",
     "Before you can import jira tickets you need to have all the referentials configured": "Avant de pouvoir importer des tickets jira, vous devez avoir configuré tous les référentiels",
-    "No content found in jira ticket": "Aucun contenu trouvé sur le ticket jira"
+    "No content found in jira ticket": "Aucun contenu trouvé sur le ticket jira",
+    "Default role": "Rôle par défaut",
+    "The platform default role (used mainly in OIDC Connect).": "Le rôle par défaut de la plateforme (utilisé principal par la connexion OIDC).",
+    "OIDC Connect error": "Erreur de connection OIDC",
+    "Invalid account!": "Compte incorrect !",
+    "OIDC Connect": "Connexion OIDC"
 }

@@ -4,6 +4,12 @@
         <x-filament::brand />
     </div>
 
+    @if(session()->has('oidc_error'))
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{ __('OIDC Connect error') }}</span> {{ __('Invalid account!') }}
+        </div>
+    @endif
+
     <div>
         <h2 class="font-bold tracking-tight text-center text-2xl">
             {{ __('filament::login.heading') }}
@@ -30,5 +36,19 @@
 
     @if(config('filament-socialite.enabled'))
         <x-filament-socialite::buttons />
+    @endif
+
+    @if(config('services.oidc.is_enabled'))
+        <x-filament::button
+            color="secondary"
+            class="w-full"
+            tag="a"
+            :href="route('oidc.redirect')"
+        >
+            <div class="w-full flex items-center gap-2">
+                <x-heroicon-o-login class="w-5 h-5" />
+                {{ __('OIDC Connect') }}
+            </div>
+        </x-filament::button>
     @endif
 </x-filament-breezy::auth-card>

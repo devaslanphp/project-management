@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Role;
 use App\Settings\GeneralSettings;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
@@ -77,6 +78,12 @@ class ManageGeneralSettings extends SettingsPage
                                         ->helperText(__('The language used by the platform.'))
                                         ->searchable()
                                         ->options($this->getLanguages()),
+
+                                    Select::make('default_role')
+                                        ->label(__('Default role'))
+                                        ->helperText(__('The platform default role (used mainly in OIDC Connect).'))
+                                        ->searchable()
+                                        ->options(Role::all()->pluck('name', 'id')->toArray()),
                                 ]),
                         ]),
                 ]),

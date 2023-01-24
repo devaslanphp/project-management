@@ -34,7 +34,10 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         'name',
         'email',
         'password',
-        'creation_token'
+        'creation_token',
+        'type',
+        'oidc_username',
+        'email_verified_at',
     ];
 
     /**
@@ -61,12 +64,16 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         parent::boot();
 
         static::creating(function (User $item) {
-            $item->password = bcrypt(uniqid());
-            $item->creation_token = Uuid::uuid4()->toString();
+            if ($item->type == 'db') {
+                $item->password = bcrypt(uniqid());
+                $item->creation_token = Uuid::uuid4()->toString();
+            }
         });
 
         static::created(function (User $item) {
-            $item->notify(new UserCreatedNotification($item));
+            if ($item->type == 'db') {
+                $item->notify(new UserCreatedNotification($item));
+            }
         });
     }
 
