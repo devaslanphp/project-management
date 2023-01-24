@@ -13,6 +13,8 @@ class GeneralSettings extends Settings
     public string|null $enable_social_login;
     public string|null $site_language;
     public string|null $default_role;
+    public string|null $enable_login_form;
+    public string|null $enable_oidc_login;
 
     public static function group(): string
     {

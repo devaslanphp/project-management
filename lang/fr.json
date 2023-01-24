@@ -261,5 +261,11 @@
     "The platform default role (used mainly in OIDC Connect).": "Le rôle par défaut de la plateforme (utilisé principal par la connexion OIDC).",
     "OIDC Connect error": "Erreur de connection OIDC",
     "Invalid account!": "Compte incorrect !",
-    "OIDC Connect": "Connexion OIDC"
+    "OIDC Connect": "Connexion OIDC",
+    "Enable form login?": "Activer la connexion avec formulaire ?",
+    "Enable OIDC login?": "Activer la connexion avec OIDC ?",
+    "If enabled, any user can create an account in this platform. But an administration need to give them permissions.": "Si activé, n'importe quel utilisateur peut créer un compte sur cette plateforme. Mais une administration doit leur donner des autorisations.",
+    "If enabled, configured users can login via their social accounts.": "Si activé, les utilisateurs configurés peuvent se connecter via leurs comptes sociaux.",
+    "If enabled, a login form will be visible on the login page.": "Si activé, un formulaire de connexion sera visible sur la page de connexion.",
+    "If enabled, an OIDC Connect button will be visible on the login page.": "S'il est activé, un bouton OIDC Connect sera visible sur la page de connexion."
 }
