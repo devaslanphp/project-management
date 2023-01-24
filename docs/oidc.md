@@ -4,7 +4,7 @@ The Helper has an authentication layer that let you configure your Open ID provi
 
 ## Configuration
 
-First of all, you need to configure this environment variables:
+All you need to do is to configure this environment variables:
 
 ```env
 OIDC_CLIENT_ID=
