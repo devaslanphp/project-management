@@ -138,8 +138,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - Add jira integration #36
     - New feature: Import jira projects / tickets
 - **Release 1.2.3**
-    - Add jira integration #36
-    - New feature: Import jira projects / tickets
+    - Update german language #52
+    - SSO with OpenID (OIDC) #48
 
 ## Support us
 
