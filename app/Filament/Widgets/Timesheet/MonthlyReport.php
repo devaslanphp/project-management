@@ -77,7 +77,7 @@ class MonthlyReport extends BarChartWidget
                 DB::raw("YEAR(created_at)=" . (is_null($params['year']) ? Carbon::now()->format('Y') : $params['year']))
             )
             ->where('user_id', $user->id)
-            ->groupBy(DB::raw("DATE_FORMAT (created_at, '%m')"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at,'%m')"))
             ->get();
     }
 
