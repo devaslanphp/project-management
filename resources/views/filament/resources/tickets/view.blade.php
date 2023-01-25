@@ -323,45 +323,7 @@
                 </div>
             @endif
             @if($tab === 'time')
-                <div class="w-full flex flex-col pt-5">
-                    @if($record->hours->count())
-                        @foreach($record->hours->sortByDesc('created_at') as $item)
-                            <div class="w-full flex flex-col gap-2
-                                 @if(!$loop->last) pb-5 mb-5 border-b border-gray-200 @endif">
-                                <span class="flex items-center gap-1 text-gray-500 text-sm">
-                                    <span class="font-medium flex items-center gap-1">
-                                        <x-user-avatar :user="$item->user"/>
-                                        {{ $item->user->name }}
-                                    </span>
-                                    <span class="text-gray-400 px-2">|</span>
-                                    {{ $item->created_at->format('Y-m-d g:i A') }}
-                                    ({{ $item->created_at->diffForHumans() }})
-                                </span>
-                                <div class="w-full flex items-center gap-1">
-                                    <span class="text-gray-400">{{ __('Logged:') }}</span>
-                                    <span class="text-primary-500 font-medium">
-                                        {{ $item->forHumans }}
-                                    </span>
-                                </div>
-                                <div class="w-full flex items-center gap-1">
-                                    <span class="text-gray-400">{{ __('Activity:') }}</span>
-                                    <span class="text-primary-500 font-medium">
-                                        {{ $item->activity ? $item->activity->name : '-' }}
-                                    </span>
-                                </div>
-                                @if($item->comment)
-                                    <div class="w-full">
-                                        {!! nl2br(e($item->comment)) !!}
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach
-                    @else
-                        <span class="text-gray-400 text-sm font-medium">
-                        {{ __('No time logged yet!') }}
-                    </span>
-                    @endif
-                </div>
+                <livewire:timesheet.time-logged :ticket="$record" />
             @endif
             @if($tab === 'attachments')
                 <livewire:ticket.attachments :ticket="$record" />
