@@ -76,10 +76,6 @@ All this made with the best technologies.
 
 Full documentation can be viewed online: [Docs](https://devaslanphp.github.io/project-management)
 
-## Online Demo
-
-You can see the application in action here: [https://project-helper.net](https://project-helper.net)
-
 ## Work in progress
 
 We are always working to make Project Management a better application, all contributions are welcome.
