@@ -20,7 +20,7 @@ class ActivitiesReport extends BarChartWidget
     ];
 
     public ?string $filter = '2023';
-    
+
     protected function getHeading(): string
     {
         return __('Logged time by activity');
@@ -68,7 +68,7 @@ class ActivitiesReport extends BarChartWidget
 
         foreach ($collection as $item) {
             $datasets['sets'][] = $item->value;
-            $datasets['labels'][] = $item->activity->name;
+            $datasets['labels'][] = $item->activity?->name ?? __('No activity');
         }
 
         return $datasets;
