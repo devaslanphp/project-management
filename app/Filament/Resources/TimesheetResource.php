@@ -23,8 +23,6 @@ class TimesheetResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    protected static bool $shouldRegisterNavigation = false;
-
     protected static function getNavigationLabel(): string
     {
         return __('Timesheet');
@@ -38,6 +36,11 @@ class TimesheetResource extends Resource
     protected static function getNavigationGroup(): ?string
     {
         return __('Timesheet');
+    }
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->can('List timesheet data');
     }
 
     public static function form(Form $form): Form
