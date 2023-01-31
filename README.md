@@ -76,10 +76,6 @@ All this made with the best technologies.
 
 Full documentation can be viewed online: [Docs](https://devaslanphp.github.io/project-management)
 
-## Online Demo
-
-You can see the application in action here: [https://project-helper.net](https://project-helper.net)
-
 ## Work in progress
 
 We are always working to make Project Management a better application, all contributions are welcome.
@@ -135,8 +131,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
     - Add jira integration #36
     - New feature: Import jira projects / tickets
 - **Release 1.2.2**
-    - Add jira integration #36
-    - New feature: Import jira projects / tickets
+    - Dockerize application #23 
+    - PR #45 
 - **Release 1.2.3**
     - Update german language #52
     - SSO with OpenID (OIDC) #48
