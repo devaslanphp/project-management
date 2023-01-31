@@ -4,11 +4,10 @@ namespace App\Providers;
 
 use App\Settings\GeneralSettings;
 use Filament\Facades\Filament;
-use Filament\Navigation\UserMenuItem;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\ServiceProvider;
 
@@ -69,6 +68,11 @@ class AppServiceProvider extends ServiceProvider
             __('Security'),
             __('Settings'),
         ]);
+
+        // Force HTTPS over HTTP
+        if (env('APP_FORCE_HTTPS') ?? false) {
+            URL::forceScheme('https');
+        }
     }
 
     private function configureApp(): void
@@ -85,6 +89,8 @@ class AppServiceProvider extends ServiceProvider
             Config::set('filament-breezy.enable_registration', $settings->enable_registration ?? false);
             Config::set('filament-socialite.registration', $settings->enable_registration ?? false);
             Config::set('filament-socialite.enabled', $settings->enable_social_login ?? false);
+            Config::set('system.login_form.is_enabled', $settings->enable_login_form ?? false);
+            Config::set('services.oidc.is_enabled', $settings->enable_oidc_login ?? false);
         } catch (QueryException $e) {
             // Error: No database configured yet
         }

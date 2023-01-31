@@ -133,6 +133,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 - **Release 1.2.2**
     - Dockerize application #23 
     - PR #45 
+- **Release 1.2.3**
+    - Update german language #52
+    - SSO with OpenID (OIDC) #48
 
 ## Support us
 

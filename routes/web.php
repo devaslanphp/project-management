@@ -5,6 +5,7 @@ use App\Models\Ticket;
 use Illuminate\Support\Facades\Route;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use App\Http\Controllers\RoadMap\DataController;
+use App\Http\Controllers\Auth\OidcAuthController;
 
 // Share ticket
 Route::get('/tickets/share/{ticket:code}', function (Ticket $ticket) {
@@ -28,3 +29,10 @@ Route::redirect('/login-redirect', '/login')->name('login');
 Route::get('road-map/data/{project}', [DataController::class, 'data'])
     ->middleware(['verified', 'auth'])
     ->name('road-map.data');
+
+Route::name('oidc.')
+    ->prefix('oidc')
+    ->group(function () {
+        Route::get('redirect', [OidcAuthController::class, 'redirect'])->name('redirect');
+        Route::get('callback', [OidcAuthController::class, 'callback'])->name('callback');
+    });

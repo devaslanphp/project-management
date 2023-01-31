@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Settings\GeneralSettings;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -65,6 +66,9 @@ class PermissionsSeeder extends Seeder
         $role = Role::firstOrCreate([
             'name' => $this->defaultRole
         ]);
+        $settings = app(GeneralSettings::class);
+        $settings->default_role = $role->id;
+        $settings->save();
 
         // Add all permissions to default role
         $role->syncPermissions(Permission::all()->pluck('name')->toArray());

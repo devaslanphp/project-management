@@ -2,6 +2,14 @@
 
 return [
 
+    // Login form
+    'login_form' => [
+
+        // Enabled
+        'is_enabled' => true
+
+    ],
+
     // Locales
     'locales' => [
 
