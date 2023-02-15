@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class TimesheetExport extends Page implements HasForms
 {
     use InteractsWithForms;
+
     protected static ?string $slug = 'timesheet-export';
 
     protected static ?int $navigationSort = 2;
