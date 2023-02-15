@@ -22,6 +22,7 @@ class TimesheetExport implements FromCollection, WithHeadings
     {
         return [
             '#',
+            'Project',
             'Ticket',
             'User',
             'Time',
@@ -45,6 +46,7 @@ class TimesheetExport implements FromCollection, WithHeadings
         foreach ($hours as $item) {
             $collection->push([
                 '#' => $item->ticket->code,
+                'project' => $item->ticket->project->name,
                 'ticket' => $item->ticket->name,
                 'user' => $item->user->name,
                 'time' => $item->forHumans,
