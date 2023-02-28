@@ -20,20 +20,31 @@ class WeeklyReport extends BarChartWidget
         'lg' => 3
     ];
 
+    public function __construct($id = null)
+    {
+        $weekDaysData = $this->getWeekStartAndFinishDays();
+
+        $this->filter = $weekDaysData['weekStartDate'] . ' - ' . $weekDaysData['weekEndDate'];
+
+        parent::__construct($id);
+    }
+
+    protected function getHeading(): string
+    {
+        return __('Weekly logged time');
+    }
+
     protected function getData(): array
     {
-        $now = Carbon::now();
-
-        $weekStartDate = $now->startOfWeek()->format('Y-m-d');
-        $weekEndDate = $now->endOfWeek()->format('Y-m-d');
+        $weekDaysData = explode(' - ', $this->filter);
 
         $collection = $this->filter(auth()->user(), [
             'year' => null,
-            'weekStartDate' => $weekStartDate,
-            'weekEndDate' => $weekEndDate
+            'weekStartDate' => $weekDaysData[0],
+            'weekEndDate' => $weekDaysData[1]
         ]);
 
-        $dates = $this->buildDatesRange($weekStartDate, $weekEndDate);
+        $dates = $this->buildDatesRange($weekDaysData[0], $weekDaysData[1]);
 
         $datasets = $this->buildRapport($collection, $dates);
 
@@ -52,6 +63,11 @@ class WeeklyReport extends BarChartWidget
             ],
             'labels' => $dates,
         ];
+    }
+
+    protected function getFilters(): ?array
+    {
+        return $this->yearWeeks();
     }
 
     protected function buildRapport(Collection $collection, array $dates): array
@@ -97,5 +113,31 @@ class WeeklyReport extends BarChartWidget
             $template[$date]['value'] = 0;
         }
         return $template;
+    }
+
+    protected function yearWeeks(): array
+    {
+        $year = date_create('today')->format('Y');
+
+        $dtStart = date_create('2 jan ' . $year)->modify('last Monday');
+        $dtEnd = date_create('last monday of Dec ' . $year);
+
+        for ($weeks = []; $dtStart <= $dtEnd; $dtStart->modify('+1 week')) {
+            $from = $dtStart->format('Y-m-d');
+            $to = (clone $dtStart)->modify('+6 Days')->format('Y-m-d');
+            $weeks[$from . ' - ' . $to] = $from . ' - ' . $to;
+        }
+
+        return $weeks;
+    }
+
+    protected function getWeekStartAndFinishDays(): array
+    {
+        $now = Carbon::now();
+
+        return [
+            'weekStartDate' => $now->startOfWeek()->format('Y-m-d'),
+            'weekEndDate' => $now->endOfWeek()->format('Y-m-d')
+        ];
     }
 }
