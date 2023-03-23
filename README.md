@@ -25,14 +25,6 @@
     </a>
 </p>
 
-# Sponsors
-Thanks to anyone who helps make this project better :heart:
-
-<div>
-    <a href="https://github.com/moustou1993"><img src="https://avatars.githubusercontent.com/u/48994051?v=4" width="40" /></a>
-    <a href="https://github.com/matbgn"><img src="https://avatars.githubusercontent.com/u/13169819?v=4" width="40" /></a>
-</div>
-
 # Introduction
 
 ![logo](readme-logo.png)
@@ -144,6 +136,25 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 - **Release 1.2.3**
     - Update german language #52
     - SSO with OpenID (OIDC) #48
+
+### Thanks to anyone who helps make this project better :heart:
+
+## Sponsors
+
+<div>
+    <a href="https://github.com/moustou1993"><img src="https://avatars.githubusercontent.com/u/48994051?v=4" width="40" /></a>
+    <a href="https://github.com/matbgn"><img src="https://avatars.githubusercontent.com/u/13169819?v=4" width="40" /></a>
+</div>
+
+## Contributors
+
+<div>
+    <a href="https://github.com/heloufir"><img src="https://avatars.githubusercontent.com/u/6197875?v=4" width="40" /></a>
+    <a href="https://github.com/mihaisolomon"><img src="https://avatars.githubusercontent.com/u/17908506?v=4" width="40" /></a>
+    <a href="https://github.com/TheZoker"><img src="https://avatars.githubusercontent.com/u/1368405?v=4" width="40" /></a>
+    <a href="https://github.com/JaccoVE"><img src="https://avatars.githubusercontent.com/u/34547046?v=4" width="40" /></a>
+    <a href="https://github.com/leozfr"><img src="https://avatars.githubusercontent.com/u/57966806?v=4" width="40" /></a>
+</div>
 
 ## Support us
 
