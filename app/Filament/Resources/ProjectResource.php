@@ -77,7 +77,7 @@ class ProjectResource extends Resource
                                                     ->label(__('Ticket prefix'))
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
-                                                    ->unique(table: Ticket::class, column: 'ticket_prefix')
+                                                    ->unique(table: Project::class, column: 'ticket_prefix')
                                                     ->disabled(
                                                         fn($record) => $record && $record->tickets()->count() != 0
                                                     )
