@@ -8,6 +8,7 @@ use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use App\Models\ProjectFavorite;
 use App\Models\ProjectStatus;
+use App\Models\Ticket;
 use App\Models\User;
 use Filament\Facades\Filament;
 use Filament\Forms;
@@ -76,6 +77,7 @@ class ProjectResource extends Resource
                                                     ->label(__('Ticket prefix'))
                                                     ->maxLength(3)
                                                     ->columnSpan(2)
+                                                    ->unique(table: Ticket::class, column: 'ticket_prefix')
                                                     ->disabled(
                                                         fn($record) => $record && $record->tickets()->count() != 0
                                                     )
