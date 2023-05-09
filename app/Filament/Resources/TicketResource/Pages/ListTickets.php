@@ -11,6 +11,11 @@ class ListTickets extends ListRecords
 {
     protected static string $resource = TicketResource::class;
 
+    protected function shouldPersistTableFiltersInSession(): bool
+    {
+        return true;
+    }
+
     protected function getActions(): array
     {
         return [
