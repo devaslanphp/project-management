@@ -46,7 +46,7 @@ In addition of the main [prerequisites](/?id=prerequisites), you must have this 
 First thing to do is to clone the project by using the git command: 
 
 ```bash
-git clone https://github.com/devaslanphp/project-management-docs.git
+git clone https://github.com/devaslanphp/project-management.git
 ```
 
 ## Dependencies
