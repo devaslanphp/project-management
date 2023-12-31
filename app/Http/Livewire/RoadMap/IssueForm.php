@@ -20,29 +20,36 @@ class IssueForm extends Component implements HasForms
     use InteractsWithForms;
 
     public Project|null $project = null;
+    public Ticket|null $ticketToEdit = null;
     public array $epics;
     public array $sprints;
 
     public function mount()
     {
-        $this->initProject($this->project?->id);
-        if ($this->project?->status_type === 'custom') {
-            $defaultStatus = TicketStatus::where('project_id', $this->project->id)
+        $this->initProject($this->project?->id, $this->ticketToEdit ?: null);
+
+        $defaultStatus = ($this->project?->status_type === 'custom')
+            ? TicketStatus::where('project_id', $this->project->id)
+                ->where('is_default', true)
+                ->first()
+                ?->id
+            : TicketStatus::whereNull('project_id')
                 ->where('is_default', true)
                 ->first()
                 ?->id;
-        } else {
-            $defaultStatus = TicketStatus::whereNull('project_id')
-                ->where('is_default', true)
-                ->first()
-                ?->id;
-        }
+
         $this->form->fill([
-            'project_id' => $this->project?->id ?? null,
-            'owner_id' => auth()->user()->id,
-            'status_id' => $defaultStatus,
-            'type_id' => TicketType::where('is_default', true)->first()?->id,
-            'priority_id' => TicketPriority::where('is_default', true)->first()?->id
+            'project_id' => $this->ticketToEdit?->project_id ?? $this->project?->id ?? null,
+            'owner_id' => $this->ticketToEdit?->owner_id ?? auth()->user()->id,
+            'status_id' => $this->ticketToEdit?->status_id ?? $defaultStatus,
+            'type_id' => $this->ticketToEdit?->type_id ?? TicketType::where('is_default', true)->first()?->id,
+            'priority_id' => $this->ticketToEdit?->priority_id ?? TicketPriority::where('is_default', true)->first()?->id,
+            'sprint_id' => $this->ticketToEdit?->sprint_id,
+            'epic_id' => $this->ticketToEdit?->epic_id,
+            'name' => $this->ticketToEdit?->name,
+            'responsible_id' => $this->ticketToEdit?->responsible_id,
+            'content' => $this->ticketToEdit?->content,
+            'estimation' => $this->ticketToEdit?->estimation,
         ]);
     }
 
@@ -51,13 +58,10 @@ class IssueForm extends Component implements HasForms
         return view('livewire.road-map.issue-form');
     }
 
-    private function initProject($projectId): void
+    private function initProject($projectId, Ticket|null $ticketToEdit = null): void
     {
-        if ($projectId) {
-            $this->project = Project::where('id', $projectId)->first();
-        } else {
-            $this->project = null;
-        }
+        $projectId = $ticketToEdit?->project_id ?? $projectId ?? null;
+        $this->project = $projectId ? Project::where('id', $projectId)->first() : null;
         $this->epics = $this->project ? $this->project->epics->pluck('name', 'id')->toArray() : [];
         $this->sprints = $this->project ? $this->project->sprints->pluck('name', 'id')->toArray() : [];
     }
@@ -174,7 +178,7 @@ class IssueForm extends Component implements HasForms
     public function submit(): void
     {
         $data = $this->form->getState();
-        Ticket::create($data);
+        $this->ticketToEdit ? $this->ticketToEdit->update($data) : Ticket::create($data);
         Filament::notify('success', __('Ticket successfully saved'));
         $this->cancel(true);
     }

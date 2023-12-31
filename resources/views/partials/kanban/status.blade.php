@@ -22,15 +22,35 @@
                 <x-heroicon-o-plus class="w-4 h-4" /> {{ __('Create ticket') }}
             </a>
 
-            @if($ticket)
+            @if($ticketToEdit || $ticket)
                 <!-- Epic modal -->
                 <div class="dialog-container">
-                    <div class="dialog dialog-xl">
+                    <div class="dialog dialog-xl dark:bg-gray-900">
                         <div class="dialog-header">
-                            {{ __('Create ticket') }}
+                            <div class="flex justify-between items-center pb-3">
+                                <p class="text-2xl font-bold">
+                                    {{ $ticketToEdit ? __('Edit ticket') : __('Create ticket') }}
+                                </p>
+
+                                @if ($ticketToEdit)
+                                    <div class="cursor-pointer z-50">
+                                        <a
+                                            href="{{ route('filament.resources.tickets.view', $record['id']) }}"
+                                            target="_blank"
+                                            class="record-title"
+                                            title="{{ __('View ticket in a new tab') }}"
+                                        >
+                                            @svg('heroicon-s-external-link', 'h-5 w-5')
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="dialog-content">
-                            @livewire('road-map.issue-form', ['project' => null])
+                            @livewire('road-map.issue-form', [
+                                'project' => null,
+                                'ticketToEdit' => $ticketToEdit ?: null,
+                            ])
                         </div>
                     </div>
                 </div>

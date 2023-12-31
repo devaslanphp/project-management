@@ -30,6 +30,7 @@ trait KanbanScrumHelper
     public $includeNotAffectedTickets = false;
 
     public bool $ticket = false;
+    public Ticket|null $ticketToEdit = null;
 
     protected function formSchema(): array
     {
@@ -186,9 +187,16 @@ trait KanbanScrumHelper
         $this->ticket = true;
     }
 
+    public function editTicket(Ticket $ticket): void
+    {
+        $this->ticketToEdit = $ticket;
+    }
+
     public function closeTicketDialog(bool $refresh): void
     {
+        $this->ticketToEdit = null;
         $this->ticket = false;
+
         if ($refresh) {
             $this->filter();
         }
