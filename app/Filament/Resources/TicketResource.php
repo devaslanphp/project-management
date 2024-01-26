@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TicketResource\Pages;
-use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Models\Epic;
 use App\Models\Project;
 use App\Models\Ticket;
@@ -41,7 +40,7 @@ class TicketResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Management');
+        return 'Management';
     }
 
     public static function form(Form $form): Form

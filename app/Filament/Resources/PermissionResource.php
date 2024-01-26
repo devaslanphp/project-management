@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PermissionResource\Pages;
-use App\Filament\Resources\PermissionResource\RelationManagers;
 use App\Models\Permission;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -31,7 +30,7 @@ class PermissionResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return static::getPluralLabel();
+        return 'Permissions';
     }
 
     public static function form(Form $form): Form

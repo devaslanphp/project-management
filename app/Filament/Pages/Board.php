@@ -40,7 +40,7 @@ class Board extends Page implements HasForms
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Management');
+        return 'Management';
     }
 
     protected function getFormSchema(): array

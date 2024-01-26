@@ -328,9 +328,9 @@ return [
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
+            LocaleMiddleware::class,
             DispatchServingFilamentEvent::class,
             MirrorConfigToSubpackages::class,
-            LocaleMiddleware::class
         ],
     ],
 

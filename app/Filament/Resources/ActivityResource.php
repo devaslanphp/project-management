@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ActivityResource\Pages;
-use App\Filament\Resources\ActivityResource\RelationManagers;
 use App\Models\Activity;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -18,7 +17,6 @@ class ActivityResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-clipboard';
 
     protected static ?int $navigationSort = 1;
-
     protected static function getNavigationLabel(): string
     {
         return __('Activities');
@@ -31,7 +29,7 @@ class ActivityResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Referential');
+        return 'Referential';
     }
 
     public static function form(Form $form): Form

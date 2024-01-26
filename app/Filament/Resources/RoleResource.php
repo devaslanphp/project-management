@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
-use App\Filament\Resources\RoleResource\RelationManagers;
 use App\Models\Permission;
 use App\Models\Role;
 use Filament\Forms;
@@ -32,7 +31,7 @@ class RoleResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Permissions');
+        return 'Permissions';
     }
 
     public static function form(Form $form): Form

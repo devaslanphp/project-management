@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Settings\GeneralSettings;
 use Filament\Facades\Filament;
+use Filament\Navigation\NavigationGroup;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Config;
@@ -38,6 +39,16 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerTheme(
                 app(Vite::class)('resources/css/filament.scss'),
             );
+
+            // Register navigation groups
+            Filament::registerNavigationGroups([
+                'Management'  => NavigationGroup::make()->label(__('Management')),
+                'Referential' => NavigationGroup::make()->label( __('Referential')),
+                'Security'    => NavigationGroup::make()->label(__('Security')),
+                'Settings'    => NavigationGroup::make()->label(__('Settings')),
+                'Permissions' => NavigationGroup::make()->label(__('Permissions')),
+                'Timesheet'   => NavigationGroup::make()->label(__('Timesheet')),
+            ]);
         });
 
         // Register tippy styles
@@ -59,14 +70,6 @@ class AppServiceProvider extends ServiceProvider
             new HtmlString('<link rel="icon"
                                        type="image/x-icon"
                                        href="' . config('app.logo') . '">'),
-        ]);
-
-        // Register navigation groups
-        Filament::registerNavigationGroups([
-            __('Management'),
-            __('Referential'),
-            __('Security'),
-            __('Settings'),
         ]);
 
         // Force HTTPS over HTTP

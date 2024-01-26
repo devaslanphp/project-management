@@ -27,7 +27,7 @@ class TimesheetDashboard extends Page
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Timesheet');
+        return 'Timesheet';
     }
 
     protected static function shouldRegisterNavigation(): bool

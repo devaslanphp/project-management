@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TicketTypeResource\Pages;
-use App\Filament\Resources\TicketTypeResource\RelationManagers;
 use App\Models\TicketType;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -33,7 +32,7 @@ class TicketTypeResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Referential');
+        return 'Referential';
     }
 
     public static function form(Form $form): Form
