@@ -45,7 +45,7 @@ class RoleResource extends Resource
                             ->columns(1)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
-                                    ->label(__('Permission name'))
+                                    ->label(__('Role name'))
                                     ->unique(table: Permission::class, column: 'name')
                                     ->maxLength(255)
                                     ->required(),
@@ -65,7 +65,7 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label(__('Permission name'))
+                    ->label(__('Role'))
                     ->sortable()
                     ->searchable(),
 
