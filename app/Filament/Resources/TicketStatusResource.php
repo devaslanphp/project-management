@@ -107,6 +107,7 @@ class TicketStatusResource extends Resource
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
+            ->reorderable('order')
             ->defaultSort('order');
     }
 
