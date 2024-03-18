@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TimesheetResource\Pages;
-use App\Filament\Resources\TimesheetResource\RelationManagers;
 use App\Models\Activity;
 use App\Models\TicketHour;
 use Filament\Forms;
@@ -35,7 +34,7 @@ class TimesheetResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Timesheet');
+        return 'Timesheet';
     }
 
     protected static function shouldRegisterNavigation(): bool

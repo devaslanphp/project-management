@@ -40,8 +40,9 @@ class ProjectResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Management');
+        return 'Management';
     }
+
 
     public static function form(Form $form): Form
     {

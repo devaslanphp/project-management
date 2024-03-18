@@ -25,7 +25,7 @@ class TimesheetExport extends Page implements HasForms
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Timesheet');
+        return 'Timesheet';
     }
 
     public function mount(): void

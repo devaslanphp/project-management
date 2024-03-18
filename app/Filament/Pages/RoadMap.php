@@ -42,7 +42,7 @@ class RoadMap extends Page implements HasForms
 
     protected static function getNavigationGroup(): ?string
     {
-        return __('Management');
+        return 'Management';
     }
 
     public function mount()
