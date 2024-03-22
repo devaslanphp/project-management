@@ -24,4 +24,8 @@ RUN apt-get update -y && \
     php artisan key:generate && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y --no-install-recommends supervisor
+
+ADD docker/app/supervisor.conf /etc/supervisor/conf.d/worker.conf
+
 CMD [ "bash", "./run.sh"]
