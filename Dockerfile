@@ -1,27 +1,40 @@
 # syntax=docker/dockerfile:1
 
-#Deriving the latest base image
-FROM node:16.17.0-bullseye-slim
+FROM php:8.3-cli-bookworm
 
-# Any working directory can be chosen as per choice like '/' or '/home' etc
 WORKDIR /app
 
-COPY .env.example .env
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        git \
+        unzip \
+        default-mysql-client \
+        libfreetype6-dev \
+        libicu-dev \
+        libjpeg62-turbo-dev \
+        libonig-dev \
+        libpng-dev \
+        libxml2-dev \
+        libzip-dev && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install bcmath exif gd intl mbstring pcntl pdo_mysql zip && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+COPY composer.json composer.lock package.json package-lock.json ./
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader && \
+    npm install
 
 COPY . .
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends software-properties-common gnupg2 wget && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list && \
-    wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
-    apt-get update -y && \
-    apt-get install -y --no-install-recommends php8.1 php8.1-curl php8.1-xml php8.1-zip php8.1-gd php8.1-mbstring php8.1-mysql && \
-    apt-get update -y && \
-    apt-get install -y composer && \
-    composer update && \
-    composer install && \
-    npm install && \
-    php artisan key:generate && \
-    rm -rf /var/lib/apt/lists/*
+RUN npm run build && \
+    mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views bootstrap/cache
 
-CMD [ "bash", "./run.sh"]
+EXPOSE 8000
+
+CMD ["bash", "./run.sh"]

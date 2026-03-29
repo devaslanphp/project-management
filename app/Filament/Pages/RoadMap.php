@@ -35,12 +35,12 @@ class RoadMap extends Page implements HasForms
         'updateEpic'
     ];
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Road Map');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Management');
     }

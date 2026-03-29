@@ -8,13 +8,12 @@ use App\Models\Activity;
 use App\Models\TicketComment;
 use App\Models\TicketHour;
 use App\Models\TicketSubscriber;
+use Filament\Forms\Form;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
@@ -22,10 +21,8 @@ use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ViewTicket extends ViewRecord implements HasForms
+class ViewTicket extends ViewRecord
 {
-    use InteractsWithForms;
-
     protected static string $resource = TicketResource::class;
 
     protected static string $view = 'filament.resources.tickets.view';
@@ -36,10 +33,12 @@ class ViewTicket extends ViewRecord implements HasForms
 
     public $selectedCommentId;
 
+    public ?array $commentData = [];
+
     public function mount($record): void
     {
         parent::mount($record);
-        $this->form->fill();
+        $this->commentForm->fill();
     }
 
     protected function getActions(): array
@@ -157,19 +156,29 @@ class ViewTicket extends ViewRecord implements HasForms
         $this->tab = $tab;
     }
 
-    protected function getFormSchema(): array
+    public function commentForm(Form $form): Form
+    {
+        return $form
+            ->schema([
+                RichEditor::make('comment')
+                    ->disableLabel()
+                    ->placeholder(__('Type a new comment'))
+                    ->required(),
+            ])
+            ->statePath('commentData');
+    }
+
+    protected function getForms(): array
     {
         return [
-            RichEditor::make('comment')
-                ->disableLabel()
-                ->placeholder(__('Type a new comment'))
-                ->required()
+            ...parent::getForms(),
+            'commentForm',
         ];
     }
 
     public function submitComment(): void
     {
-        $data = $this->form->getState();
+        $data = $this->commentForm->getState();
         if ($this->selectedCommentId) {
             TicketComment::where('id', $this->selectedCommentId)
                 ->update([
@@ -199,7 +208,7 @@ class ViewTicket extends ViewRecord implements HasForms
 
     public function editComment(int $commentId): void
     {
-        $this->form->fill([
+        $this->commentForm->fill([
             'comment' => $this->record->comments->where('id', $commentId)->first()?->content
         ]);
         $this->selectedCommentId = $commentId;
@@ -235,7 +244,7 @@ class ViewTicket extends ViewRecord implements HasForms
 
     public function cancelEditComment(): void
     {
-        $this->form->fill();
+        $this->commentForm->fill();
         $this->selectedCommentId = null;
     }
 }

@@ -22,7 +22,7 @@ class UserTimeLogged extends BarChartWidget
         return auth()->user()->can('List tickets');
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Time logged by users');
     }

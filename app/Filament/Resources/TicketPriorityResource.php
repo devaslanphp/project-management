@@ -6,10 +6,10 @@ use App\Filament\Resources\TicketPriorityResource\Pages;
 use App\Filament\Resources\TicketPriorityResource\RelationManagers;
 use App\Models\TicketPriority;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Guava\FilamentIconPicker\Tables\IconColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -22,7 +22,7 @@ class TicketPriorityResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Ticket priorities');
     }
@@ -32,7 +32,7 @@ class TicketPriorityResource extends Resource
         return static::getNavigationLabel();
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Referential');
     }

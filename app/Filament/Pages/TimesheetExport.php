@@ -23,7 +23,7 @@ class TimesheetExport extends Page implements HasForms
 
     protected static string $view = 'filament.pages.timesheet-export';
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Timesheet');
     }

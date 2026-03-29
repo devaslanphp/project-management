@@ -32,7 +32,7 @@ class Scrum extends Page implements HasForms
     {
         $this->project = $project;
         if ($this->project->type !== 'scrum') {
-            $this->redirect(route('filament.pages.kanban/{project}', ['project' => $project]));
+            $this->redirect(route('filament.app.pages.kanban.{project}', ['project' => $project]));
         } elseif (
             $this->project->owner_id != auth()->user()->id
             &&
@@ -51,7 +51,7 @@ class Scrum extends Page implements HasForms
                 ->visible(fn() => $this->project->currentSprint && auth()->user()->can('update', $this->project))
                 ->label(__('Manage sprints'))
                 ->color('primary')
-                ->url(route('filament.resources.projects.edit', $this->project)),
+                ->url(route('filament.app.resources.projects.edit', $this->project)),
 
             Action::make('refresh')
                 ->button()
@@ -65,12 +65,12 @@ class Scrum extends Page implements HasForms
         ];
     }
 
-    protected function getHeading(): string|Htmlable
+    public function getHeading(): string|Htmlable
     {
         return $this->scrumHeading();
     }
 
-    protected function getSubheading(): string|Htmlable|null
+    public function getSubheading(): string|Htmlable|null
     {
         return $this->scrumSubHeading();
     }

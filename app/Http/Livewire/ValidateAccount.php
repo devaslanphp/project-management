@@ -53,6 +53,6 @@ class ValidateAccount extends Component implements HasForms
         $this->user->save();
         auth()->login($this->user);
         Filament::notify('success', __('Account verified'), true);
-        redirect()->to(route('filament.pages.dashboard'));
+        redirect()->to(route('filament.app.pages.dashboard'));
     }
 }

@@ -1,7 +1,65 @@
 <x-filament-breezy::auth-card action="authenticate">
+    @php
+        $logoPaths = [
+            'clawbot' => null,
+            'prince' => null,
+        ];
 
-    <div class="w-full flex justify-center">
-        <x-filament::brand />
+        foreach (['png', 'svg', 'jpg', 'jpeg', 'webp'] as $extension) {
+            if (! $logoPaths['clawbot'] && file_exists(public_path("img/clawbot-logo.{$extension}"))) {
+                $logoPaths['clawbot'] = asset("img/clawbot-logo.{$extension}");
+            }
+
+            if (! $logoPaths['prince'] && file_exists(public_path("img/prince-logo.{$extension}"))) {
+                $logoPaths['prince'] = asset("img/prince-logo.{$extension}");
+            }
+        }
+    @endphp
+
+    <div class="space-y-6">
+        <div class="flex items-center justify-center gap-4">
+            <div class="flex flex-col items-center gap-2">
+                @if($logoPaths['clawbot'])
+                    <img
+                        src="{{ $logoPaths['clawbot'] }}"
+                        alt="Clawbot logo"
+                        class="h-16 w-auto object-contain"
+                    >
+                @else
+                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-600 text-lg font-bold text-white">
+                        C
+                    </div>
+                @endif
+
+                <span class="text-sm font-semibold tracking-wide text-gray-600">
+                    Clawbot
+                </span>
+            </div>
+
+            <div class="h-10 w-px bg-gray-200"></div>
+
+            <div class="flex flex-col items-center gap-2">
+                @if($logoPaths['prince'])
+                    <img
+                        src="{{ $logoPaths['prince'] }}"
+                        alt="Prince logo"
+                        class="h-16 w-auto object-contain"
+                    >
+                @else
+                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-900 text-lg font-bold text-white">
+                        P
+                    </div>
+                @endif
+
+                <span class="text-sm font-semibold tracking-wide text-gray-600">
+                    Prince
+                </span>
+            </div>
+        </div>
+
+        <div class="w-full flex justify-center">
+            <x-filament::brand />
+        </div>
     </div>
 
     <h2 class="font-bold tracking-tight text-center text-2xl">
@@ -28,9 +86,15 @@
 
         {{ $this->form }}
 
-        <x-filament::button type="submit" class="w-full">
-            {{ __('filament::login.buttons.submit.label') }}
-        </x-filament::button>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <x-filament::button type="submit" class="w-full">
+                {{ __('filament::login.buttons.submit.label') }}
+            </x-filament::button>
+
+            <x-filament::button type="reset" color="gray" class="w-full">
+                {{ __('Cancel') }}
+            </x-filament::button>
+        </div>
 
         <div class="text-center">
             <a class="text-primary-600 hover:text-primary-700" href="{{route(config('filament-breezy.route_group_prefix').'password.request')}}">{{ __('filament-breezy::default.login.forgot_password_link') }}</a>

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class MonthlyReport extends BarChartWidget
 {
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Logged time monthly');
     }

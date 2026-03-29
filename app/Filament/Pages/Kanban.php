@@ -32,7 +32,7 @@ class Kanban extends Page implements HasForms
     {
         $this->project = $project;
         if ($this->project->type === 'scrum') {
-            $this->redirect(route('filament.pages.scrum/{project}', ['project' => $project]));
+            $this->redirect(route('filament.app.pages.scrum.{project}', ['project' => $project]));
         } elseif (
             $this->project->owner_id != auth()->user()->id
             &&
@@ -57,7 +57,7 @@ class Kanban extends Page implements HasForms
         ];
     }
 
-    protected function getHeading(): string|Htmlable
+    public function getHeading(): string|Htmlable
     {
         return $this->kanbanHeading();
     }

@@ -21,22 +21,22 @@ class ManageGeneralSettings extends SettingsPage
 
     protected static string $settings = GeneralSettings::class;
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->can('Manage general settings');
     }
 
-    protected function getHeading(): string|Htmlable
+    public function getHeading(): string|Htmlable
     {
         return __('Manage general settings');
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('General');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Settings');
     }
@@ -97,7 +97,7 @@ class ManageGeneralSettings extends SettingsPage
         ];
     }
 
-    protected function getSaveFormAction(): Action
+    public function getSaveFormAction(): Action
     {
         return parent::getSaveFormAction()->label(__('Save'));
     }

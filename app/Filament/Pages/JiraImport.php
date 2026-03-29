@@ -52,22 +52,22 @@ class JiraImport extends Page implements HasForms
         $this->form->fill();
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->can('Import from Jira');
     }
 
-    protected function getSubheading(): string|Htmlable|null
+    public function getSubheading(): string|Htmlable|null
     {
         return __('Use this section to login into your jira account and import tickets to this application');
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Jira import');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Settings');
     }
@@ -242,7 +242,7 @@ class JiraImport extends Page implements HasForms
             }
             dispatch(new ImportJiraTicketsJob($tickets, auth()->user()));
             $this->notify('success', __('The importation job is started, when finished you will be notified'), true);
-            $this->redirect(route('filament.pages.jira-import'));
+            $this->redirect(route('filament.app.pages.jira-import'));
         } else {
             $this->notify('warning', __('Please choose at least a jira ticket to import'));
         }

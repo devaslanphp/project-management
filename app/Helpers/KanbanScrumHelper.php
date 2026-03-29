@@ -197,7 +197,7 @@ trait KanbanScrumHelper
     protected function kanbanHeading(): string|Htmlable
     {
         $heading = '<div class="w-full flex flex-col gap-1">';
-        $heading .= '<a href="' . route('filament.pages.board') . '"
+        $heading .= '<a href="' . route('filament.app.pages.board') . '"
                             class="text-primary-500 text-xs font-medium hover:underline">';
         $heading .= __('Back to board');
         $heading .= '</a>';
@@ -218,7 +218,7 @@ trait KanbanScrumHelper
     protected function scrumHeading(): string|Htmlable
     {
         $heading = '<div class="w-full flex flex-col gap-1">';
-        $heading .= '<a href="' . route('filament.pages.board') . '"
+        $heading .= '<a href="' . route('filament.app.pages.board') . '"
                             class="text-primary-500 text-xs font-medium hover:underline">';
         $heading .= __('Back to board');
         $heading .= '</a>';

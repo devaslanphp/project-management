@@ -57,12 +57,12 @@ class FavoriteProjects extends BaseWidget
                         . '</div>
                         <div class="text-xs w-full flex items-center gap-2 mt-2">
                             <a class="text-primary-400 hover:text-primary-500 hover:cursor-pointer"
-                               href="' . route('filament.resources.projects.view', $project) . '">
+                               href="' . route('filament.app.resources.projects.view', $project) . '">
                                 ' . __('View details') . '
                             </a>
                             <span class="text-gray-300">|</span>
                             <a class="text-primary-400 hover:text-primary-500 hover:cursor-pointer"
-                               href="' . route('filament.pages.kanban/{project}', ['project' => $project->id]) . '">
+                               href="' . route('filament.app.pages.kanban.{project}', ['project' => $project->id]) . '">
                                 ' . __('Tickets') . '
                             </a>
                         </div>

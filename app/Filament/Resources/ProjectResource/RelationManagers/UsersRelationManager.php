@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\ProjectResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
 class UsersRelationManager extends RelationManager
@@ -17,13 +17,13 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $inverseRelationship = 'projectsAffected';
 
-    public static function attach(Form $form): Form
+    public function attach(Form $form): Form
     {
         return $form
             ->schema([]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([

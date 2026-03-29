@@ -38,5 +38,5 @@ return [
     'user_model' => \App\Models\User::class,
 
     // Specify the default redirect route for successful logins
-    'login_redirect_route' => 'filament.pages.dashboard',
+    'login_redirect_route' => 'filament.app.pages.dashboard',
 ];

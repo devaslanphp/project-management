@@ -6,10 +6,10 @@ use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Resources\PermissionResource\RelationManagers;
 use App\Models\Permission;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 
 class PermissionResource extends Resource
 {
@@ -19,7 +19,7 @@ class PermissionResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Permissions');
     }
@@ -29,7 +29,7 @@ class PermissionResource extends Resource
         return static::getNavigationLabel();
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return static::getPluralLabel();
     }

@@ -22,9 +22,9 @@ class EditProject extends EditRecord
                 ->color('secondary')
                 ->url(function () {
                     if ($this->record->type === 'scrum') {
-                        return route('filament.pages.scrum/{project}', ['project' => $this->record->id]);
+                        return route('filament.app.pages.scrum.{project}', ['project' => $this->record->id]);
                     } else {
-                        return route('filament.pages.kanban/{project}', ['project' => $this->record->id]);
+                        return route('filament.app.pages.kanban.{project}', ['project' => $this->record->id]);
                     }
                 }),
 

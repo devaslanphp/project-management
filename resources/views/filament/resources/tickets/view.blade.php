@@ -1,7 +1,7 @@
 @php($record = $this->record)
 <x-filament::page>
 
-    <a href="{{ route('filament.pages.kanban/{project}', ['project' => $record->project->id]) }}"
+    <a href="{{ route('filament.app.pages.kanban.{project}', ['project' => $record->project->id]) }}"
        class="flex items-center gap-1 text-gray-500 hover:text-gray-700 font-medium text-xs">
         <x-heroicon-o-arrow-left class="w-4 h-4"/> {{ __('Back to kanban board') }}
     </a>
@@ -246,7 +246,7 @@
             </div>
             @if($tab === 'comments')
                 <form wire:submit.prevent="submitComment" class="pb-5">
-                    {{ $this->form }}
+                    {{ $this->commentForm }}
                     <button type="submit"
                             class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded mt-3">
                         {{ __($selectedCommentId ? 'Edit comment' : 'Add comment') }}

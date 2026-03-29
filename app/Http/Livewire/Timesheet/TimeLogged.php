@@ -6,16 +6,12 @@ namespace App\Http\Livewire\Timesheet;
 
 use App\Models\Ticket;
 use Filament\Tables;
-use Filament\Tables\Concerns\InteractsWithTable;
-use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\TableComponent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Livewire\Component;
 
-class TimeLogged extends Component implements HasTable
+class TimeLogged extends TableComponent
 {
-    use InteractsWithTable;
-
     public Ticket $ticket;
 
     protected function getFormModel(): Model|string|null

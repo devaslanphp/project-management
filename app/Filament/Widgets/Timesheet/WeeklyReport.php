@@ -29,7 +29,7 @@ class WeeklyReport extends BarChartWidget
         parent::__construct($id);
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Weekly logged time');
     }

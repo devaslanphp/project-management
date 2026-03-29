@@ -10,10 +10,10 @@ use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 
@@ -23,12 +23,12 @@ class SprintsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function canViewForRecord(Model $ownerRecord): bool
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
     {
         return $ownerRecord->type === 'scrum';
     }
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -75,7 +75,7 @@ class SprintsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -156,9 +156,9 @@ class SprintsRelationManager extends RelationManager
                                     )
                                     ->url(function () use ($record) {
                                         if ($record->project->type === 'scrum') {
-                                            return route('filament.pages.scrum/{project}', ['project' => $record->project->id]);
+                                            return route('filament.app.pages.scrum.{project}', ['project' => $record->project->id]);
                                         } else {
-                                            return route('filament.pages.kanban/{project}', ['project' => $record->project->id]);
+                                            return route('filament.app.pages.kanban.{project}', ['project' => $record->project->id]);
                                         }
                                     }),
                             ])
