@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Filament\Pages;
+use BackedEnum;
 
 use App\Helpers\KanbanScrumHelper;
 use App\Models\Project;
-use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Pages\Actions\Action;
+use Filament\Notifications\Notification;
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -15,11 +16,11 @@ class Kanban extends Page implements HasForms
 {
     use InteractsWithForms, KanbanScrumHelper;
 
-    protected static ?string $navigationIcon = 'heroicon-o-view-boards';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-view-columns';
 
     protected static ?string $slug = 'kanban/{project}';
 
-    protected static string $view = 'filament.pages.kanban';
+    protected string $view = 'filament.pages.kanban';
 
     protected static bool $shouldRegisterNavigation = false;
 
@@ -32,7 +33,7 @@ class Kanban extends Page implements HasForms
     {
         $this->project = $project;
         if ($this->project->type === 'scrum') {
-            $this->redirect(route('filament.pages.scrum/{project}', ['project' => $project]));
+            $this->redirect(route('filament.admin.pages.scrum.{project}', ['project' => $project]));
         } elseif (
             $this->project->owner_id != auth()->user()->id
             &&
@@ -43,26 +44,29 @@ class Kanban extends Page implements HasForms
         $this->form->fill();
     }
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Action::make('refresh')
                 ->button()
                 ->label(__('Refresh'))
-                ->color('secondary')
+                ->color('gray')
                 ->action(function () {
                     $this->getRecords();
-                    Filament::notify('success', __('Kanban board updated'));
+                    Notification::make()
+                        ->success()
+                        ->title(__('Kanban board updated'))
+                        ->send();
                 })
         ];
     }
 
-    protected function getHeading(): string|Htmlable
+    public function getHeading(): string|Htmlable
     {
         return $this->kanbanHeading();
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return $this->formSchema();
     }

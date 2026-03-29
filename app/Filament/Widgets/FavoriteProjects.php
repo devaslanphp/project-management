@@ -3,7 +3,7 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Card;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\HtmlString;
 
 class FavoriteProjects extends BaseWidget
@@ -15,7 +15,7 @@ class FavoriteProjects extends BaseWidget
         'lg' => 6
     ];
 
-    protected function getColumns(): int
+    public function getColumns(): int
     {
         return 4;
     }
@@ -25,14 +25,14 @@ class FavoriteProjects extends BaseWidget
         return auth()->user()->can('List projects');
     }
 
-    protected function getCards(): array
+    public function getStats(): array
     {
         $favoriteProjects = auth()->user()->favoriteProjects;
-        $cards = [];
+        $stats = [];
         foreach ($favoriteProjects as $project) {
             $ticketsCount = $project->tickets()->count();
             $contributorsCount = $project->contributors->count();
-            $cards[] = Card::make('', new HtmlString('
+            $stats[] = Stat::make('', new HtmlString('
                     <div class="flex items-center gap-2 -mt-2 text-lg">
                         <div style=\'background-image: url("' . $project->cover . '")\'
                              class="w-8 h-8 bg-cover bg-center bg-no-repeat"></div>
@@ -57,17 +57,17 @@ class FavoriteProjects extends BaseWidget
                         . '</div>
                         <div class="text-xs w-full flex items-center gap-2 mt-2">
                             <a class="text-primary-400 hover:text-primary-500 hover:cursor-pointer"
-                               href="' . route('filament.resources.projects.view', $project) . '">
+                               href="' . route('filament.admin.resources.projects.view', $project) . '">
                                 ' . __('View details') . '
                             </a>
                             <span class="text-gray-300">|</span>
                             <a class="text-primary-400 hover:text-primary-500 hover:cursor-pointer"
-                               href="' . route('filament.pages.kanban/{project}', ['project' => $project->id]) . '">
+                               href="' . route('filament.admin.pages.kanban.{project}', ['project' => $project->id]) . '">
                                 ' . __('Tickets') . '
                             </a>
                         </div>
                     '));
         }
-        return $cards;
+        return $stats;
     }
 }

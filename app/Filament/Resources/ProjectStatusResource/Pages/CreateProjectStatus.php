@@ -10,7 +10,7 @@ class CreateProjectStatus extends CreateRecord
 {
     protected static string $resource = ProjectStatusResource::class;
 
-    protected function afterCreate(): void
+    public function afterCreate(): void
     {
         if ($this->record->is_default) {
             ProjectStatus::where('id', '<>', $this->record->id)

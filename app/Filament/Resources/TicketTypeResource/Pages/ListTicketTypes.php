@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\TicketTypeResource\Pages;
 
 use App\Filament\Resources\TicketTypeResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListTicketTypes extends ListRecords
 {
     protected static string $resource = TicketTypeResource::class;
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

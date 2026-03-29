@@ -8,11 +8,11 @@ use App\Models\TicketPriority;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
-use Filament\Facades\Filament;
-use Filament\Forms\Components\Grid;
+use Filament\Schemas\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
@@ -161,7 +161,10 @@ trait KanbanScrumHelper
             $ticket->order = $newIndex;
             $ticket->status_id = $newStatus;
             $ticket->save();
-            Filament::notify('success', __('Ticket updated'));
+            Notification::make()
+                ->success()
+                ->title(__('Ticket updated'))
+                ->send();
         }
     }
 
@@ -197,7 +200,7 @@ trait KanbanScrumHelper
     protected function kanbanHeading(): string|Htmlable
     {
         $heading = '<div class="w-full flex flex-col gap-1">';
-        $heading .= '<a href="' . route('filament.pages.board') . '"
+        $heading .= '<a href="' . route('filament.admin.pages.board') . '"
                             class="text-primary-500 text-xs font-medium hover:underline">';
         $heading .= __('Back to board');
         $heading .= '</a>';
@@ -218,7 +221,7 @@ trait KanbanScrumHelper
     protected function scrumHeading(): string|Htmlable
     {
         $heading = '<div class="w-full flex flex-col gap-1">';
-        $heading .= '<a href="' . route('filament.pages.board') . '"
+        $heading .= '<a href="' . route('filament.admin.pages.board') . '"
                             class="text-primary-500 text-xs font-medium hover:underline">';
         $heading .= __('Back to board');
         $heading .= '</a>';

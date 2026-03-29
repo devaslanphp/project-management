@@ -4,14 +4,14 @@ namespace App\Filament\Resources\TicketTypeResource\Pages;
 
 use App\Filament\Resources\TicketTypeResource;
 use App\Models\TicketType;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTicketType extends EditRecord
 {
     protected static string $resource = TicketTypeResource::class;
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\ViewAction::make(),
@@ -19,7 +19,7 @@ class EditTicketType extends EditRecord
         ];
     }
 
-    protected function afterSave(): void
+    public function afterSave(): void
     {
         if ($this->record->is_default) {
             TicketType::where('id', '<>', $this->record->id)

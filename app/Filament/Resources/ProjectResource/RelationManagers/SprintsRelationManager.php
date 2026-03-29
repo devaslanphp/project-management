@@ -5,14 +5,16 @@ namespace App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Sprint;
 use App\Models\Ticket;
 use Carbon\Carbon;
-use Closure;
-use Filament\Facades\Filament;
 use Filament\Forms;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
-use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
+use Filament\Actions;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
@@ -23,16 +25,16 @@ class SprintsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function canViewForRecord(Model $ownerRecord): bool
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass = ""): bool
     {
         return $ownerRecord->type === 'scrum';
     }
 
-    public static function form(Form $form): Form
+    public function form(Schema $form): Schema
     {
         return $form
             ->schema([
-                Forms\Components\Grid::make()
+                Schemas\Components\Grid::make()
                     ->columns(1)
                     ->visible(fn($record) => !$record)
                     ->extraAttributes([
@@ -40,14 +42,14 @@ class SprintsRelationManager extends RelationManager
                     ])
                     ->schema([
                         Forms\Components\Placeholder::make('information')
-                            ->disableLabel()
+                            ->hiddenLabel()
                             ->content(new HtmlString(
                                 '<span class="font-medium">' . __('Important:') . '</span>' . ' ' .
                                 __('The creation of a new Sprint will create a linked Epic into to the Road Map')
                             ))
                     ]),
 
-                Forms\Components\Grid::make()
+                Schemas\Components\Grid::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label(__('Sprint name'))
@@ -57,15 +59,15 @@ class SprintsRelationManager extends RelationManager
 
                         Forms\Components\DatePicker::make('starts_at')
                             ->label(__('Sprint start date'))
-                            ->reactive()
-                            ->afterStateUpdated(fn($state, Closure $set) => $set('ends_at', Carbon::parse($state)->addWeek()->subDay()))
-                            ->beforeOrEqual(fn(Closure $get) => $get('ends_at'))
+                            ->live()
+                            ->afterStateUpdated(fn($state, Set $set) => $set('ends_at', Carbon::parse($state)->addWeek()->subDay()))
+                            ->beforeOrEqual(fn(Get $get) => $get('ends_at'))
                             ->required(),
 
                         Forms\Components\DatePicker::make('ends_at')
                             ->label(__('Sprint end date'))
-                            ->reactive()
-                            ->afterOrEqual(fn(Closure $get) => $get('starts_at'))
+                            ->live()
+                            ->afterOrEqual(fn(Get $get) => $get('starts_at'))
                             ->required(),
 
                         Forms\Components\RichEditor::make('description')
@@ -75,7 +77,7 @@ class SprintsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -114,8 +116,9 @@ class SprintsRelationManager extends RelationManager
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TagsColumn::make('tickets.name')
+                Tables\Columns\TextColumn::make('tickets.name')
                     ->label(__('Tickets'))
+                    ->badge()
                     ->searchable()
                     ->sortable()
                     ->limit()
@@ -124,10 +127,10 @@ class SprintsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\Action::make('start')
+                Actions\Action::make('start')
                     ->label(__('Start sprint'))
                     ->visible(fn($record) => !$record->started_at && !$record->ended_at)
                     ->requiresConfirmation()
@@ -148,7 +151,7 @@ class SprintsRelationManager extends RelationManager
                             ->body(__('Sprint started at') . ' ' . $now)
                             ->actions([
                                 Action::make('board')
-                                    ->color('secondary')
+                                    ->color('gray')
                                     ->button()
                                     ->label(
                                         fn ()
@@ -156,16 +159,16 @@ class SprintsRelationManager extends RelationManager
                                     )
                                     ->url(function () use ($record) {
                                         if ($record->project->type === 'scrum') {
-                                            return route('filament.pages.scrum/{project}', ['project' => $record->project->id]);
+                                            return route('filament.admin.pages.scrum.{project}', ['project' => $record->project->id]);
                                         } else {
-                                            return route('filament.pages.kanban/{project}', ['project' => $record->project->id]);
+                                            return route('filament.admin.pages.kanban.{project}', ['project' => $record->project->id]);
                                         }
                                     }),
                             ])
                             ->send();
                     }),
 
-                Tables\Actions\Action::make('stop')
+                Actions\Action::make('stop')
                     ->label(__('Stop sprint'))
                     ->visible(fn($record) => $record->started_at && !$record->ended_at)
                     ->requiresConfirmation()
@@ -183,17 +186,17 @@ class SprintsRelationManager extends RelationManager
                             ->send();
                     }),
 
-                Tables\Actions\Action::make('tickets')
+                Actions\Action::make('tickets')
                     ->label(__('Tickets'))
-                    ->color('secondary')
+                    ->color('gray')
                     ->icon('heroicon-o-ticket')
-                    ->mountUsing(fn(Forms\ComponentContainer $form, Sprint $record) => $form->fill([
+                    ->fillForm(fn(Sprint $record) => [
                         'tickets' => $record->tickets->pluck('id')->toArray()
-                    ]))
+                    ])
                     ->modalHeading(fn($record) => $record->name . ' - ' . __('Associated tickets'))
                     ->form([
                         Forms\Components\Placeholder::make('info')
-                            ->disableLabel()
+                            ->hiddenLabel()
                             ->extraAttributes([
                                 'class' => 'text-danger-500 text-xs'
                             ])
@@ -228,19 +231,22 @@ class SprintsRelationManager extends RelationManager
                         $tickets = $data['tickets'];
                         Ticket::where('sprint_id', $record->id)->update(['sprint_id' => null]);
                         Ticket::whereIn('id', $tickets)->update(['sprint_id' => $record->id]);
-                        Filament::notify('success', __('Tickets associated with sprint'));
+                        Notification::make()
+                            ->success()
+                            ->title(__('Tickets associated with sprint'))
+                            ->send();
                     }),
 
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Actions\DeleteBulkAction::make(),
             ])
             ->defaultSort('id');
     }
 
-    protected function canAttach(): bool
+    public function canAttach(): bool
     {
         return false;
     }

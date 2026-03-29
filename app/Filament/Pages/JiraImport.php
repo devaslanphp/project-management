@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Filament\Pages;
+use BackedEnum;
 
 use App\Helpers\JiraHelper;
 use App\Jobs\ImportJiraTicketsJob;
-use Filament\Forms\Components\Card;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\Grid;
+use Filament\Schemas\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
+use Filament\Schemas\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
@@ -22,9 +24,9 @@ class JiraImport extends Page implements HasForms
 {
     use InteractsWithForms, JiraHelper;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cloud-download';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-cloud-arrow-down';
 
-    protected static string $view = 'filament.pages.jira-import';
+    protected string $view = 'filament.pages.jira-import';
 
     protected static ?string $slug = 'jira-import';
 
@@ -52,30 +54,30 @@ class JiraImport extends Page implements HasForms
         $this->form->fill();
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->can('Import from Jira');
     }
 
-    protected function getSubheading(): string|Htmlable|null
+    public function getSubheading(): string|Htmlable|null
     {
         return __('Use this section to login into your jira account and import tickets to this application');
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Jira import');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Settings');
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
-            Card::make()
+            Section::make()
                 ->schema([
                     Wizard::make([
                         Wizard\Step::make(__('Jira login'))
@@ -84,7 +86,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-primary-500 rounded-lg border border-primary-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->content(__('Important: Your jira credentials are only used to communicate with jira REST API, and will not be stored in this application')),
 
                                 Grid::make()
@@ -117,7 +119,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-primary-500 rounded-lg border border-primary-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->visible(fn() => !$this->loadingProjects && $this->projects)
                                     ->content(__('Choose your jira projects to import')),
 
@@ -125,7 +127,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-warning-500 rounded-lg border border-warning-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->visible(fn() => $this->loadingProjects)
                                     ->content(__('Loading projects, please wait...')),
 
@@ -133,7 +135,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-danger-500 rounded-lg border border-danger-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->visible(fn() => !$this->loadingProjects && !$this->projects)
                                     ->content(__('Your jira credentials are incorrect, please go to previous step and re-enter your jira credentials')),
 
@@ -173,7 +175,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-primary-500 rounded-lg border border-primary-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->visible(fn() => !$this->loadingTickets && $this->tickets)
                                     ->content(__('Choose your jira projects to import'));
 
@@ -181,7 +183,7 @@ class JiraImport extends Page implements HasForms
                                     ->extraAttributes([
                                         'class' => 'bg-warning-500 rounded-lg border border-warning-600 text-white font-medium text-sm py-3 px-4'
                                     ])
-                                    ->disableLabel()
+                                    ->hiddenLabel()
                                     ->visible(fn() => $this->loadingTickets)
                                     ->content(__('Loading tickets, please wait...'));
 
@@ -219,7 +221,7 @@ class JiraImport extends Page implements HasForms
                                             ->extraAttributes([
                                                 'class' => 'bg-warning-500 rounded-lg border border-warning-600 text-white font-medium text-sm py-3 px-4'
                                             ])
-                                            ->disableLabel()
+                                            ->hiddenLabel()
                                             ->visible(fn() => !$this->projects)
                                             ->content(__('No tickets found!'));
                                     }
@@ -241,10 +243,16 @@ class JiraImport extends Page implements HasForms
                 $tickets[] = $this->getJiraTicketDetails($this->host, $this->username, $this->token, $url);
             }
             dispatch(new ImportJiraTicketsJob($tickets, auth()->user()));
-            $this->notify('success', __('The importation job is started, when finished you will be notified'), true);
-            $this->redirect(route('filament.pages.jira-import'));
+            Notification::make()
+                ->success()
+                ->title(__('The importation job is started, when finished you will be notified'))
+                ->send();
+            $this->redirect(route('filament.admin.pages.jira-import'));
         } else {
-            $this->notify('warning', __('Please choose at least a jira ticket to import'));
+            Notification::make()
+                ->warning()
+                ->title(__('Please choose at least a jira ticket to import'))
+                ->send();
         }
     }
 

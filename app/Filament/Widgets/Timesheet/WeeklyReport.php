@@ -8,11 +8,11 @@ use App\Models\TicketHour;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Filament\Widgets\BarChartWidget;
+use Filament\Widgets\ChartWidget;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class WeeklyReport extends BarChartWidget
+class WeeklyReport extends ChartWidget
 {
     protected int|string|array $columnSpan = [
         'sm' => 1,
@@ -29,12 +29,17 @@ class WeeklyReport extends BarChartWidget
         parent::__construct($id);
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Weekly logged time');
     }
 
-    protected function getData(): array
+    public function getType(): string
+    {
+        return 'bar';
+    }
+
+    public function getData(): array
     {
         $weekDaysData = explode(' - ', $this->filter);
 
@@ -65,12 +70,12 @@ class WeeklyReport extends BarChartWidget
         ];
     }
 
-    protected function getFilters(): ?array
+    public function getFilters(): ?array
     {
         return $this->yearWeeks();
     }
 
-    protected function buildRapport(Collection $collection, array $dates): array
+    public function buildRapport(Collection $collection, array $dates): array
     {
         $template = $this->createReportTemplate($dates);
         foreach ($collection as $item) {
@@ -79,7 +84,7 @@ class WeeklyReport extends BarChartWidget
         return collect($template)->pluck('value')->toArray();
     }
 
-    protected function filter(User $user, array $params)
+    public function filter(User $user, array $params)
     {
         return TicketHour::select([
             DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as day"),
@@ -94,7 +99,7 @@ class WeeklyReport extends BarChartWidget
             ->get();
     }
 
-    protected function buildDatesRange($weekStartDate, $weekEndDate): array
+    public function buildDatesRange($weekStartDate, $weekEndDate): array
     {
         $period = CarbonPeriod::create($weekStartDate, $weekEndDate);
 
@@ -106,7 +111,7 @@ class WeeklyReport extends BarChartWidget
         return $dates;
     }
 
-    protected function createReportTemplate(array $dates): array
+    public function createReportTemplate(array $dates): array
     {
         $template = [];
         foreach ($dates as $date) {
@@ -115,7 +120,7 @@ class WeeklyReport extends BarChartWidget
         return $template;
     }
 
-    protected function yearWeeks(): array
+    public function yearWeeks(): array
     {
         $year = date_create('today')->format('Y');
 
@@ -131,7 +136,7 @@ class WeeklyReport extends BarChartWidget
         return $weeks;
     }
 
-    protected function getWeekStartAndFinishDays(): array
+    public function getWeekStartAndFinishDays(): array
     {
         $now = Carbon::now();
 

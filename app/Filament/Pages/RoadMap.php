@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Filament\Pages;
+use BackedEnum;
 
 use App\Models\Epic;
 use App\Models\Project;
@@ -15,9 +16,9 @@ class RoadMap extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-calendar';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-calendar';
 
-    protected static string $view = 'filament.pages.road-map';
+    protected string $view = 'filament.pages.road-map';
 
     protected static ?string $slug = 'road-map';
 
@@ -35,12 +36,12 @@ class RoadMap extends Page implements HasForms
         'updateEpic'
     ];
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Road Map');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Management');
     }
@@ -62,7 +63,7 @@ class RoadMap extends Page implements HasForms
         }
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             Select::make('selectedProject')

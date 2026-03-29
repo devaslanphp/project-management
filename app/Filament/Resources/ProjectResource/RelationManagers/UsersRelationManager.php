@@ -3,9 +3,10 @@
 namespace App\Filament\Resources\ProjectResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
+use Filament\Actions;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,13 +18,13 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $inverseRelationship = 'projectsAffected';
 
-    public static function attach(Form $form): Form
+    public function attach(Form $form): Form
     {
         return $form
             ->schema([]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -32,10 +33,11 @@ class UsersRelationManager extends RelationManager
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\BadgeColumn::make('pivot.role')
+                Tables\Columns\TextColumn::make('pivot.role')
                     ->label(__('User role'))
-                    ->enum(config('system.projects.affectations.roles.list'))
-                    ->colors(config('system.projects.affectations.roles.colors'))
+                    ->badge()
+                    ->formatStateUsing(fn (string $state): string => config('system.projects.affectations.roles.list')[$state] ?? $state)
+                    ->color(fn (string $state): string => config('system.projects.affectations.roles.colors')[$state] ?? 'gray')
                     ->searchable()
                     ->sortable(),
             ])
@@ -43,10 +45,10 @@ class UsersRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
-                Tables\Actions\AttachAction::make()
+                Actions\CreateAction::make(),
+                Actions\AttachAction::make()
                     ->preloadRecordSelect()
-                    ->form(fn (Tables\Actions\AttachAction $action): array => [
+                    ->form(fn (Actions\AttachAction $action): array => [
                         $action->getRecordSelect(),
                         Forms\Components\Select::make('role')
                             ->label(__('User role'))
@@ -57,35 +59,35 @@ class UsersRelationManager extends RelationManager
                     ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
+                Actions\EditAction::make()
                     ->modalWidth('xl')
-                    ->form(fn (Tables\Actions\EditAction $action): array => [
+                    ->form(fn (Actions\EditAction $action): array => [
                         Forms\Components\Select::make('role')
                             ->label(__('User role'))
                             ->searchable()
                             ->options(fn () => config('system.projects.affectations.roles.list'))
                             ->required(),
                     ]),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\DetachAction::make(),
+                Actions\DeleteAction::make(),
+                Actions\DetachAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\DetachBulkAction::make(),
+                Actions\DeleteBulkAction::make(),
+                Actions\DetachBulkAction::make(),
             ]);
     }
 
-    protected function canCreate(): bool
+    public function canCreate(): bool
     {
         return false;
     }
 
-    protected function canDelete(Model $record): bool
+    public function canDelete(Model $record): bool
     {
         return false;
     }
 
-    protected function canDeleteAny(): bool
+    public function canDeleteAny(): bool
     {
         return false;
     }

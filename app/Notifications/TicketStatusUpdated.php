@@ -55,7 +55,7 @@ class TicketStatusUpdated extends Notification implements ShouldQueue
             ->line('- ' . __('Old status:') . ' ' . $this->activity->oldStatus->name)
             ->line('- ' . __('New status:') . ' ' . $this->activity->newStatus->name)
             ->line(__('See more details of this ticket by clicking on the button below:'))
-            ->action(__('View details'), route('filament.resources.tickets.share', $this->ticket->code));
+            ->action(__('View details'), route('filament.admin.resources.tickets.share', $this->ticket->code));
     }
 
     public function toDatabase(User $notifiable): array
@@ -73,7 +73,7 @@ class TicketStatusUpdated extends Notification implements ShouldQueue
                 Action::make('view')
                     ->link()
                     ->icon('heroicon-s-eye')
-                    ->url(fn() => route('filament.resources.tickets.share', $this->ticket->code)),
+                    ->url(fn() => route('filament.admin.resources.tickets.share', $this->ticket->code)),
             ])
             ->getDatabaseMessage();
     }

@@ -7,11 +7,11 @@ namespace App\Filament\Widgets\Timesheet;
 use App\Models\TicketHour;
 use App\Models\User;
 use Carbon\Carbon;
-use Filament\Widgets\BarChartWidget;
+use Filament\Widgets\ChartWidget;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class ActivitiesReport extends BarChartWidget
+class ActivitiesReport extends ChartWidget
 {
     protected int|string|array $columnSpan = [
         'sm' => 1,
@@ -21,12 +21,17 @@ class ActivitiesReport extends BarChartWidget
 
     public ?string $filter = '2023';
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Logged time by activity');
     }
 
-    protected function getFilters(): ?array
+    public function getType(): string
+    {
+        return 'bar';
+    }
+
+    public function getFilters(): ?array
     {
         return [
             2022 => 2022,
@@ -34,7 +39,7 @@ class ActivitiesReport extends BarChartWidget
         ];
     }
 
-    protected function getData(): array
+    public function getData(): array
     {
         $collection = $this->filter(auth()->user(), [
             'year' => $this->filter
@@ -59,7 +64,7 @@ class ActivitiesReport extends BarChartWidget
         ];
     }
 
-    protected function getDatasets(Collection $collection): array
+    public function getDatasets(Collection $collection): array
     {
         $datasets = [
             'sets' => [],
@@ -74,7 +79,7 @@ class ActivitiesReport extends BarChartWidget
         return $datasets;
     }
 
-    protected function filter(User $user, array $params): Collection
+    public function filter(User $user, array $params): Collection
     {
         return TicketHour::with('activity')
             ->select([

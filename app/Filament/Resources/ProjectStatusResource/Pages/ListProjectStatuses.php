@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\ProjectStatusResource\Pages;
 
 use App\Filament\Resources\ProjectStatusResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListProjectStatuses extends ListRecords
 {
     protected static string $resource = ProjectStatusResource::class;
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

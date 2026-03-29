@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\TicketResource\Pages;
 
 use App\Filament\Resources\TicketResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -11,19 +11,19 @@ class ListTickets extends ListRecords
 {
     protected static string $resource = TicketResource::class;
 
-    protected function shouldPersistTableFiltersInSession(): bool
+    public function shouldPersistTableFiltersInSession(): bool
     {
         return true;
     }
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),
         ];
     }
 
-    protected function getTableQuery(): Builder
+    public function getTableQuery(): Builder
     {
         return parent::getTableQuery()
             ->where(function ($query) {

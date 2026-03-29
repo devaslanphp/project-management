@@ -3,13 +3,13 @@
 namespace App\Filament\Widgets;
 
 use App\Models\TicketPriority;
-use Filament\Widgets\DoughnutChartWidget;
+use Filament\Widgets\ChartWidget;
 
-class TicketsByPriority extends DoughnutChartWidget
+class TicketsByPriority extends ChartWidget
 {
     protected static ?int $sort = 3;
-    protected static ?string $heading = 'Chart';
-    protected static ?string $maxHeight = '300px';
+    protected ?string $heading = 'Chart';
+    protected ?string $maxHeight = '300px';
     protected int|string|array $columnSpan = [
         'sm' => 1,
         'md' => 6,
@@ -21,12 +21,17 @@ class TicketsByPriority extends DoughnutChartWidget
         return auth()->user()->can('List tickets');
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Tickets by priorities');
     }
 
-    protected function getData(): array
+    public function getType(): string
+    {
+        return 'doughnut';
+    }
+
+    public function getData(): array
     {
         $data = TicketPriority::withCount('tickets')->get();
         return [
