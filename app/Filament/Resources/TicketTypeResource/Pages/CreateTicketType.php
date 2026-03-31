@@ -10,7 +10,7 @@ class CreateTicketType extends CreateRecord
 {
     protected static string $resource = TicketTypeResource::class;
 
-    protected function afterCreate(): void
+    public function afterCreate(): void
     {
         if ($this->record->is_default) {
             TicketType::where('id', '<>', $this->record->id)

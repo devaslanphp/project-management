@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Notifications\UserCreatedNotification;
-use Devaslanphp\FilamentAvatar\Core\HasAvatarUrl;
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,16 +15,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use JeffGreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use ProtoneMedia\LaravelVerifyNewEmail\MustVerifyNewEmail;
 use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail, FilamentUser
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser, HasAvatar
 {
     use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable,
-        HasRoles, HasAvatarUrl, SoftDeletes, MustVerifyNewEmail;
+        HasRoles, SoftDeletes, MustVerifyNewEmail;
 
     /**
      * The attributes that are mass assignable.
@@ -77,6 +78,16 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         });
     }
 
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return 'https://ui-avatars.com/api/?background=random&name=' . urlencode($this->name);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
     public function projectsOwning(): HasMany
     {
         return $this->hasMany(Project::class, 'owner_id', 'id');
@@ -119,10 +130,5 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
                 return $this->hours->sum('value');
             }
         );
-    }
-
-    public function canAccessFilament(): bool
-    {
-        return true;
     }
 }

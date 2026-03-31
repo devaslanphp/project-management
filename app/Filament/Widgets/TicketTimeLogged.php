@@ -3,13 +3,13 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Ticket;
-use Filament\Widgets\BarChartWidget;
+use Filament\Widgets\ChartWidget;
 
-class TicketTimeLogged extends BarChartWidget
+class TicketTimeLogged extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    protected ?string $heading = 'Chart';
     protected static ?int $sort = 4;
-    protected static ?string $maxHeight = '300px';
+    protected ?string $maxHeight = '300px';
     protected int|string|array $columnSpan = [
         'sm' => 1,
         'md' => 6,
@@ -21,12 +21,17 @@ class TicketTimeLogged extends BarChartWidget
         return auth()->user()->can('List tickets');
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Time logged by tickets');
     }
 
-    protected function getData(): array
+    public function getType(): string
+    {
+        return 'bar';
+    }
+
+    public function getData(): array
     {
         $query = Ticket::query();
         $query->has('hours');

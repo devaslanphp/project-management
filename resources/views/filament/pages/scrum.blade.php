@@ -62,7 +62,7 @@
                 <span class="text-gray-500 text-sm">
                     {{ __("Click the below button to manage project's sprints") }}
                 </span>
-                <a href="{{ route('filament.resources.projects.view', $project) }}"
+                <a href="{{ route('filament.admin.resources.projects.view', $project) }}"
                    class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded mt-3 w-fit">
                     {{ __('Manage sprints') }}
                 </a>

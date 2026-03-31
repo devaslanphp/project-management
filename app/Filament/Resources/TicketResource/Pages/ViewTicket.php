@@ -13,22 +13,19 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ViewTicket extends ViewRecord implements HasForms
+class ViewTicket extends ViewRecord
 {
-    use InteractsWithForms;
 
     protected static string $resource = TicketResource::class;
 
-    protected static string $view = 'filament.resources.tickets.view';
+    protected string $view = 'filament.resources.tickets.view';
 
     public string $tab = 'comments';
 
@@ -42,7 +39,7 @@ class ViewTicket extends ViewRecord implements HasForms
         $this->form->fill();
     }
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\Action::make('toggleSubscribe')
@@ -65,23 +62,29 @@ class ViewTicket extends ViewRecord implements HasForms
                             ->first()
                     ) {
                         $sub->delete();
-                        $this->notify('success', __('You unsubscribed from the ticket'));
+                        Notification::make()
+                            ->success()
+                            ->title(__('You unsubscribed from the ticket'))
+                            ->send();
                     } else {
                         TicketSubscriber::create([
                             'user_id' => auth()->user()->id,
                             'ticket_id' => $this->record->id
                         ]);
-                        $this->notify('success', __('You subscribed to the ticket'));
+                        Notification::make()
+                            ->success()
+                            ->title(__('You subscribed to the ticket'))
+                            ->send();
                     }
                     $this->record->refresh();
                 }),
             Actions\Action::make('share')
                 ->label(__('Share'))
-                ->color('secondary')
+                ->color('gray')
                 ->button()
                 ->icon('heroicon-o-share')
                 ->action(fn() => $this->dispatchBrowserEvent('shareTicket', [
-                    'url' => route('filament.resources.tickets.share', $this->record->code)
+                    'url' => route('filament.admin.resources.tickets.share', $this->record->code)
                 ])),
             Actions\EditAction::make(),
             Actions\Action::make('logHours')
@@ -104,8 +107,8 @@ class ViewTicket extends ViewRecord implements HasForms
                     Select::make('activity_id')
                         ->label(__('Activity'))
                         ->searchable()
-                        ->reactive()
-                        ->options(function ($get, $set) {
+                        ->live()
+                        ->options(function (\Filament\Forms\Get $get, \Filament\Forms\Set $set) {
                             return Activity::all()->pluck('name', 'id')->toArray();
                         }),
                     Textarea::make('comment')
@@ -123,12 +126,15 @@ class ViewTicket extends ViewRecord implements HasForms
                         'comment' => $comment
                     ]);
                     $this->record->refresh();
-                    $this->notify('success', __('Time logged into ticket'));
+                    Notification::make()
+                        ->success()
+                        ->title(__('Time logged into ticket'))
+                        ->send();
                 }),
             Actions\ActionGroup::make([
                 Actions\Action::make('exportLogHours')
                     ->label(__('Export time logged'))
-                    ->icon('heroicon-o-document-download')
+                    ->icon('heroicon-o-document-arrow-down')
                     ->color('warning')
                     ->visible(
                         fn() => $this->record->watchers->where('id', auth()->user()->id)->count()
@@ -148,7 +154,7 @@ class ViewTicket extends ViewRecord implements HasForms
                         $this->record->watchers->where('id', auth()->user()->id)->count()
                         && $this->record->hours()->count()
                     ))
-                ->color('secondary'),
+                ->color('gray'),
         ];
     }
 
@@ -157,11 +163,11 @@ class ViewTicket extends ViewRecord implements HasForms
         $this->tab = $tab;
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             RichEditor::make('comment')
-                ->disableLabel()
+                ->hiddenLabel()
                 ->placeholder(__('Type a new comment'))
                 ->required()
         ];
@@ -184,7 +190,10 @@ class ViewTicket extends ViewRecord implements HasForms
         }
         $this->record->refresh();
         $this->cancelEditComment();
-        $this->notify('success', __('Comment saved'));
+        Notification::make()
+            ->success()
+            ->title(__('Comment saved'))
+            ->send();
     }
 
     public function isAdministrator(): bool
@@ -230,7 +239,10 @@ class ViewTicket extends ViewRecord implements HasForms
     {
         TicketComment::where('id', $commentId)->delete();
         $this->record->refresh();
-        $this->notify('success', __('Comment deleted'));
+        Notification::make()
+            ->success()
+            ->title(__('Comment deleted'))
+            ->send();
     }
 
     public function cancelEditComment(): void

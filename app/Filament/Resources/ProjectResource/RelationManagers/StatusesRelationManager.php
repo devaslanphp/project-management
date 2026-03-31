@@ -5,9 +5,11 @@ namespace App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
+use Filament\Actions;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,12 +19,12 @@ class StatusesRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function canViewForRecord(Model $ownerRecord): bool
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass = ""): bool
     {
         return $ownerRecord->status_type === 'custom';
     }
 
-    public static function form(Form $form): Form
+    public function form(Schema $form): Schema
     {
         return $form
             ->schema([
@@ -51,7 +53,7 @@ class StatusesRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -85,19 +87,19 @@ class StatusesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Actions\DeleteBulkAction::make(),
             ])
             ->defaultSort('order');
     }
 
-    protected function canAttach(): bool
+    public function canAttach(): bool
     {
         return false;
     }

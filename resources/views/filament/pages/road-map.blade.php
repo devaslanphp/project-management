@@ -8,7 +8,7 @@
                     {{ $this->form }}
                     <button type="submit"
                             class="px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded">
-                        <x-heroicon-o-search class="w-6 h-6" wire:loading.remove />
+                        <x-heroicon-o-magnifying-glass class="w-6 h-6" wire:loading.remove />
                         <div wire:loading.flex>
                             <div class="lds-dual-ring w-4 h-4"></div>
                         </div>
@@ -35,7 +35,7 @@
 
         <div class="w-full 2xl:hidden xl:hidden lg:hidden md:flex sm:flex flex flex-col gap-2 text-center
                     items-center justify-center text-gray-500 font-medium">
-            <x-heroicon-o-emoji-sad class="w-10 h-10" />
+            <x-heroicon-o-face-frown class="w-10 h-10" />
             <span>{{ __('Road Map chart is only available on large screen') }}</span>
         </div>
     </x-filament::card>

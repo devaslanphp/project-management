@@ -9,8 +9,8 @@ use App\Http\Controllers\Auth\OidcAuthController;
 
 // Share ticket
 Route::get('/tickets/share/{ticket:code}', function (Ticket $ticket) {
-    return redirect()->to(route('filament.resources.tickets.view', $ticket));
-})->name('filament.resources.tickets.share');
+    return redirect()->to(route('filament.admin.resources.tickets.view', $ticket));
+})->name('filament.admin.resources.tickets.share');
 
 // Validate an account
 Route::get('/validate-account/{user:creation_token}', function (User $user) {

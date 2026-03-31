@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\ActivityResource\Pages;
 
 use App\Filament\Resources\ActivityResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditActivity extends EditRecord
 {
     protected static string $resource = ActivityResource::class;
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\ViewAction::make(),

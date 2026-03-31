@@ -7,20 +7,25 @@ namespace App\Filament\Widgets\Timesheet;
 use App\Models\TicketHour;
 use App\Models\User;
 use Carbon\Carbon;
-use Filament\Widgets\BarChartWidget;
+use Filament\Widgets\ChartWidget;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class MonthlyReport extends BarChartWidget
+class MonthlyReport extends ChartWidget
 {
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Logged time monthly');
     }
 
     public ?string $filter = '2023';
 
-    protected function getData(): array
+    public function getType(): string
+    {
+        return 'bar';
+    }
+
+    public function getData(): array
     {
         $collection = $this->filter(auth()->user(), [
             'year' => $this->filter
@@ -45,7 +50,7 @@ class MonthlyReport extends BarChartWidget
         ];
     }
 
-    protected function getFilters(): ?array
+    public function getFilters(): ?array
     {
         return [
             2022 => 2022,
@@ -53,7 +58,7 @@ class MonthlyReport extends BarChartWidget
         ];
     }
 
-    protected static ?array $options = [
+    protected ?array $options = [
         'plugins' => [
             'legend' => [
                 'display' => true,
@@ -67,7 +72,7 @@ class MonthlyReport extends BarChartWidget
         'lg' => 3
     ];
 
-    protected function filter(User $user, array $params)
+    public function filter(User $user, array $params)
     {
         return TicketHour::select([
             DB::raw("DATE_FORMAT(created_at,'%m') as month"),
@@ -81,7 +86,7 @@ class MonthlyReport extends BarChartWidget
             ->get();
     }
 
-    protected function getDatasets(array $rapportData): array
+    public function getDatasets(array $rapportData): array
     {
         $datasets = [
             'sets' => [],
@@ -96,7 +101,7 @@ class MonthlyReport extends BarChartWidget
         return $datasets;
     }
 
-    protected function buildRapport(Collection $collection): array
+    public function buildRapport(Collection $collection): array
     {
         $months = [
             1 => ['January', 0],

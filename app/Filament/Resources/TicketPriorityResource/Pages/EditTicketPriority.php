@@ -4,14 +4,14 @@ namespace App\Filament\Resources\TicketPriorityResource\Pages;
 
 use App\Filament\Resources\TicketPriorityResource;
 use App\Models\TicketPriority;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTicketPriority extends EditRecord
 {
     protected static string $resource = TicketPriorityResource::class;
 
-    protected function getActions(): array
+    public function getHeaderActions(): array
     {
         return [
             Actions\ViewAction::make(),
@@ -19,7 +19,7 @@ class EditTicketPriority extends EditRecord
         ];
     }
 
-    protected function afterSave(): void
+    public function afterSave(): void
     {
         if ($this->record->is_default) {
             TicketPriority::where('id', '<>', $this->record->id)
