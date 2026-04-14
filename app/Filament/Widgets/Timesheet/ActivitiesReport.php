@@ -19,7 +19,13 @@ class ActivitiesReport extends ChartWidget
         'lg' => 3
     ];
 
-    public ?string $filter = '2023';
+    public ?string $filter = null;
+
+    public function mount(): void
+    {
+        $this->filter = (string) Carbon::now()->year;
+        parent::mount();
+    }
 
     public function getHeading(): string
     {
@@ -33,16 +39,23 @@ class ActivitiesReport extends ChartWidget
 
     public function getFilters(): ?array
     {
-        return [
-            2022 => 2022,
-            2023 => 2023
-        ];
+        $currentYear = (int) Carbon::now()->year;
+        $firstYear = (int) (TicketHour::min('created_at')
+            ? Carbon::parse(TicketHour::min('created_at'))->year
+            : $currentYear);
+
+        $years = [];
+        for ($year = $firstYear; $year <= $currentYear; $year++) {
+            $years[(string) $year] = (string) $year;
+        }
+
+        return $years;
     }
 
     public function getData(): array
     {
         $collection = $this->filter(auth()->user(), [
-            'year' => $this->filter
+            'year' => $this->filter ?: Carbon::now()->year
         ]);
 
         $datasets = $this->getDatasets($collection);

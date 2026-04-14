@@ -44,6 +44,9 @@ class ImportJiraTicketsJob implements ShouldQueue
     {
         if ($this->tickets && sizeof($this->tickets)) {
             foreach ($this->tickets as $ticket) {
+                if (!$ticket || !isset($ticket->fields)) {
+                    continue;
+                }
                 $projectDetails = $ticket->fields->project;
                 $ticketData = $ticket->fields;
 
@@ -52,7 +55,7 @@ class ImportJiraTicketsJob implements ShouldQueue
                     $project = Project::create([
                         'name' => $projectDetails->name,
                         'description' => __('Project imported from Jira, project key:') . $projectDetails->key,
-                        'status_id' => ProjectStatus::where('is_default', true)->first()->id,
+                        'status_id' => ProjectStatus::where('is_default', true)->first()?->id ?? ProjectStatus::first()->id,
                         'owner_id' => $this->user->id,
                         'ticket_prefix' => $projectDetails->key
                     ]);
@@ -66,12 +69,14 @@ class ImportJiraTicketsJob implements ShouldQueue
 
                 Ticket::create([
                     'name' => $ticketData->summary,
-                    'content' => $ticketData->description ?? __('No content found in jira ticket'),
+                    'content' => is_string($ticketData->description ?? null)
+                        ? $ticketData->description
+                        : (isset($ticketData->description) ? json_encode($ticketData->description) : __('No content found in jira ticket')),
                     'owner_id' => $this->user->id,
-                    'status_id' => TicketStatus::where('is_default', true)->first()->id,
+                    'status_id' => TicketStatus::where('is_default', true)->first()?->id ?? TicketStatus::first()->id,
                     'project_id' => $project->id,
-                    'type_id' => TicketType::where('is_default', true)->first()->id,
-                    'priority_id' => TicketPriority::where('is_default', true)->first()->id,
+                    'type_id' => TicketType::where('is_default', true)->first()?->id ?? TicketType::first()->id,
+                    'priority_id' => TicketPriority::where('is_default', true)->first()?->id ?? TicketPriority::first()->id,
                 ]);
             }
             FilamentNotification::make()

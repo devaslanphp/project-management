@@ -5,15 +5,13 @@ namespace App\Filament\Pages;
 use App\Filament\Widgets\Timesheet\ActivitiesReport;
 use App\Filament\Widgets\Timesheet\MonthlyReport;
 use App\Filament\Widgets\Timesheet\WeeklyReport;
-use Filament\Pages\Page;
+use Filament\Pages\Dashboard;
 
-class TimesheetDashboard extends Page
+class TimesheetDashboard extends Dashboard
 {
     protected static ?string $slug = 'timesheet-dashboard';
 
     protected static ?int $navigationSort = 2;
-
-    protected string $view = 'filament::pages.dashboard';
 
     public function getColumns(): int | array
     {

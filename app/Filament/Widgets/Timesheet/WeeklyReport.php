@@ -20,13 +20,12 @@ class WeeklyReport extends ChartWidget
         'lg' => 3
     ];
 
-    public function __construct($id = null)
+    public function mount(): void
     {
+        parent::mount();
+
         $weekDaysData = $this->getWeekStartAndFinishDays();
-
         $this->filter = $weekDaysData['weekStartDate'] . ' - ' . $weekDaysData['weekEndDate'];
-
-        parent::__construct($id);
     }
 
     public function getHeading(): string
@@ -41,6 +40,11 @@ class WeeklyReport extends ChartWidget
 
     public function getData(): array
     {
+        if (empty($this->filter) || !str_contains($this->filter, ' - ')) {
+            $weekDefaults = $this->getWeekStartAndFinishDays();
+            $this->filter = $weekDefaults['weekStartDate'] . ' - ' . $weekDefaults['weekEndDate'];
+        }
+
         $weekDaysData = explode(' - ', $this->filter);
 
         $collection = $this->filter(auth()->user(), [

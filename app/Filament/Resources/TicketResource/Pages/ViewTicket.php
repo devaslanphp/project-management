@@ -108,14 +108,14 @@ class ViewTicket extends ViewRecord
                         ->label(__('Activity'))
                         ->searchable()
                         ->live()
-                        ->options(function (\Filament\Forms\Get $get, \Filament\Forms\Set $set) {
+                        ->options(function (\Filament\Schemas\Components\Utilities\Get $get, \Filament\Schemas\Components\Utilities\Set $set) {
                             return Activity::all()->pluck('name', 'id')->toArray();
                         }),
                     Textarea::make('comment')
                         ->label(__('Comment'))
                         ->rows(3),
                 ])
-                ->action(function (Collection $records, array $data): void {
+                ->action(function (array $data): void {
                     $value = $data['time'];
                     $comment = $data['comment'];
                     TicketHour::create([
